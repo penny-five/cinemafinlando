@@ -16,9 +16,14 @@
 
 package com.github.pennyfive.finnkino.io;
 
+import com.github.pennyfive.finnkino.model.TheatreArea;
+import com.github.pennyfive.finnkino.model.TheatreAreas;
+
 import org.simpleframework.xml.core.Persister;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +31,8 @@ import java.util.Map;
  */
 public class FinnkinoApi {
     private static final String BASE_URL = "http://www.finnkino.fi/xml/";
+
+    private static final String PATH_THEATRE_AREAS = "TheatreAreas";
 
     private static <T> T get(Class<T> clazz, String path, Map<String, String> queryParams) throws IOException {
         HttpClient http = new HttpClient();
@@ -37,4 +44,7 @@ public class FinnkinoApi {
         }
     }
 
+    public static List<TheatreArea> getTheatreAreas() throws IOException {
+        return get(TheatreAreas.class, PATH_THEATRE_AREAS, Collections.EMPTY_MAP).getTheatreAreas();
+    }
 }
