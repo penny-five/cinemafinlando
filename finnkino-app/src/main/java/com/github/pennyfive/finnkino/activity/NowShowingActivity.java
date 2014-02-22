@@ -17,7 +17,41 @@
 package com.github.pennyfive.finnkino.activity;
 
 import android.app.Activity;
+import android.app.LoaderManager;
+import android.content.Loader;
+import android.os.Bundle;
+import android.widget.ListView;
 
-public class NowShowingActivity extends Activity {
+import com.github.pennyfive.finnkino.R;
+import com.github.pennyfive.finnkino.api.model.Schedule;
+
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
+public class NowShowingActivity extends Activity implements LoaderManager.LoaderCallbacks<Schedule> {
+    @InjectView(R.id.list) ListView listView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_now_showing);
+        ButterKnife.inject(this);
+        getLoaderManager().initLoader(0, savedInstanceState, this);
+    }
+
+    @Override
+    public Loader<Schedule> onCreateLoader(int id, Bundle args) {
+        return new ScheduleLoader(this);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Schedule> loader, Schedule schedule) {
+        listView.setAdapter(new ShowAdapter(this, schedule.getShows()));
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Schedule> loader) {
+
+    }
 
 }
