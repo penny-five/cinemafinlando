@@ -1,4 +1,4 @@
-package com.github.pennyfive.finnkino.activity;
+package com.github.pennyfive.finnkino.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;

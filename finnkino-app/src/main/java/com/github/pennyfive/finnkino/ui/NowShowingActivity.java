@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.finnkino.activity;
+package com.github.pennyfive.finnkino.ui;
 
 import android.app.Activity;
 import android.app.LoaderManager;

@@ -1,8 +1,8 @@
 package com.github.pennyfive.finnkino;
 
-import com.github.pennyfive.finnkino.activity.ScheduleLoader;
 import com.github.pennyfive.finnkino.api.FinnkinoApi;
 import com.github.pennyfive.finnkino.io.HttpClient;
+import com.github.pennyfive.finnkino.ui.ScheduleLoader;
 import com.github.pennyfive.finnkino.util.Serializers;
 
 import org.simpleframework.xml.Serializer;
