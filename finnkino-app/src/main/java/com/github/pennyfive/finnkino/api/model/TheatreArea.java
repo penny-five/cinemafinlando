@@ -14,22 +14,32 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.finnkino.model;
+package com.github.pennyfive.finnkino.api.model;
 
-import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
-import java.util.List;
 
 /**
  *
  */
-@Root
-public class TheatreAreas {
-    @ElementList(entry = "TheatreArea", inline = true)
-    private List<TheatreArea> theatreAreas;
+@Root(strict = false)
+public class TheatreArea {
+    @Element(name = "ID") private String id;
+    @Element(name = "Name") private String name;
 
-    public List<TheatreArea> getTheatreAreas() {
-        return theatreAreas;
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "TheatreArea{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
