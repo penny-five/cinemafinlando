@@ -24,12 +24,18 @@ import org.simpleframework.xml.Root;
  */
 @Root(strict = false)
 public class Show {
-    @Element(name = "ID") private String id;
-    @Element(name = "EventID") private String eventId;
-    @Element(name = "Title") private String title;
-    @Element(name = "OriginalTitle") private String originalTitle;
-    @Element(name = "ProductionYear") private int productionYear;
-    @Element(name = "LengthInMinutes") private int lengthInMinutes;
+    @Element(name = "ID")
+    private String id;
+    @Element(name = "EventID")
+    private String eventId;
+    @Element(name = "Title")
+    private String title;
+    @Element(name = "OriginalTitle")
+    private String originalTitle;
+    @Element(name = "ProductionYear")
+    private int productionYear;
+    @Element(name = "LengthInMinutes")
+    private int lengthInMinutes;
 
     public String getId() {
         return id;

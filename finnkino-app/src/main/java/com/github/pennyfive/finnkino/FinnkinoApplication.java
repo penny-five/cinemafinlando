@@ -23,13 +23,13 @@ public class FinnkinoApplication extends Application {
         objectGraph = ObjectGraph.create(new FinnkinoModule());
     }
 
-    public void inject(Object o) {
+    private void inject(Object o) {
         objectGraph.inject(o);
     }
 
     public static class InjectUtils {
 
-        public static void Inject(Object o) {
+        public static void inject(Object o) {
             instance.inject(o);
         }
     }

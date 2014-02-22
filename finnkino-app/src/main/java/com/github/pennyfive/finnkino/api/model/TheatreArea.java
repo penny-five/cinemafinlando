@@ -24,8 +24,10 @@ import org.simpleframework.xml.Root;
  */
 @Root(strict = false)
 public class TheatreArea {
-    @Element(name = "ID") private String id;
-    @Element(name = "Name") private String name;
+    @Element(name = "ID")
+    private String id;
+    @Element(name = "Name")
+    private String name;
 
     public String getId() {
         return id;

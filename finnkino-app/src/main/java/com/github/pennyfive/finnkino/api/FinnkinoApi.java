@@ -42,8 +42,8 @@ public class FinnkinoApi {
     @Inject Serializer serializer;
     @Inject HttpClient http;
 
-    public FinnkinoApi() {
-        InjectUtils.Inject(this);
+    @Inject public FinnkinoApi() {
+        InjectUtils.inject(this);
     }
 
     private <T> T get(Class<T> clazz, String path, Map<String, String> queryParams) throws IOException {

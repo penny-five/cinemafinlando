@@ -28,8 +28,10 @@ import java.util.List;
  */
 @Root(strict = false)
 public class Schedule {
-    @Element(name = "PubDate") private DateTime pubDate;
-    @ElementList(name = "Shows") private List<Show> shows;
+    @Element(name = "PubDate")
+    private DateTime pubDate;
+    @ElementList(name = "Shows")
+    private List<Show> shows;
 
     public List<Show> getShows() {
         return shows;
