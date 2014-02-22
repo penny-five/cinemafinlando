@@ -16,23 +16,20 @@
 
 package com.github.pennyfive.finnkino.api;
 
+import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
 import com.github.pennyfive.finnkino.api.model.Schedule;
 import com.github.pennyfive.finnkino.api.model.TheatreArea;
 import com.github.pennyfive.finnkino.api.model.TheatreAreas;
 import com.github.pennyfive.finnkino.io.HttpClient;
-import com.github.pennyfive.finnkino.io.xml.DateTimeConverter;
 
-import org.joda.time.DateTime;
 import org.simpleframework.xml.Serializer;
-import org.simpleframework.xml.convert.Registry;
-import org.simpleframework.xml.convert.RegistryStrategy;
-import org.simpleframework.xml.core.Persister;
-import org.simpleframework.xml.strategy.Strategy;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
+import javax.inject.Inject;
 
 /**
  *
@@ -42,37 +39,28 @@ public class FinnkinoApi {
     private static final String PATH_THEATRE_AREAS = "TheatreAreas";
     private static final String PATH_SCHEDULE = "Schedule";
 
-    private static final Serializer SERIALIZER = createXmlSerializer();
+    @Inject Serializer serializer;
+    @Inject HttpClient http;
 
-    private static <T> T get(Class<T> clazz, String path, Map<String, String> queryParams) throws IOException {
-        HttpClient http = new HttpClient();
+    public FinnkinoApi() {
+        InjectUtils.Inject(this);
+    }
+
+    private <T> T get(Class<T> clazz, String path, Map<String, String> queryParams) throws IOException {
         String response = http.get(BASE_URL + path);
         try {
-            return SERIALIZER.read(clazz, response);
+            return serializer.read(clazz, response);
         } catch (Exception e) {
             throw new IOException(e);
         }
     }
 
-    public static List<TheatreArea> getTheatreAreas() throws IOException {
+    public List<TheatreArea> getTheatreAreas() throws IOException {
         return get(TheatreAreas.class, PATH_THEATRE_AREAS, Collections.EMPTY_MAP).getTheatreAreas();
     }
 
-    public static Schedule getScheduleForAll() throws IOException {
+    public Schedule getScheduleForAll() throws IOException {
         return get(Schedule.class, PATH_SCHEDULE, Collections.EMPTY_MAP);
     }
 
-    private static Serializer createXmlSerializer() {
-        Registry registry = new Registry();
-        Strategy strategy = new RegistryStrategy(registry);
-        Serializer serializer = new Persister(strategy);
-
-        try {
-            registry.bind(DateTime.class, new DateTimeConverter());
-        } catch (Exception e) {
-            throw new IllegalStateException(e);
-        }
-
-        return serializer;
-    }
 }
