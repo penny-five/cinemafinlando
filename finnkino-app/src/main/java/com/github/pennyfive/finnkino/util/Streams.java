@@ -27,7 +27,7 @@ import java.io.InputStreamReader;
  */
 public class Streams {
 
-    public static void closeSilently(Closeable closeable) {
+    public static void closeQuietly(Closeable closeable) {
         if (closeable != null) {
             try {
                 closeable.close();
@@ -47,7 +47,5 @@ public class Streams {
         return builder.toString();
     }
 
-    private Streams() {
-
-    }
+    private Streams() {}
 }

@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.finnkino.io;
+package com.github.pennyfive.finnkino.util;
 
-import com.github.pennyfive.finnkino.util.Streams;
 import com.squareup.okhttp.OkHttpClient;
 
 import java.io.IOException;
@@ -43,7 +42,7 @@ public class HttpClient {
         try {
             return Streams.readAsString(in);
         } finally {
-            Streams.closeSilently(in);
+            Streams.closeQuietly(in);
             connection.disconnect();
         }
     }

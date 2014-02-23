@@ -20,7 +20,7 @@ import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
 import com.github.pennyfive.finnkino.api.model.Schedule;
 import com.github.pennyfive.finnkino.api.model.TheatreArea;
 import com.github.pennyfive.finnkino.api.model.TheatreAreas;
-import com.github.pennyfive.finnkino.io.HttpClient;
+import com.github.pennyfive.finnkino.util.HttpClient;
 
 import org.simpleframework.xml.Serializer;
 

@@ -43,7 +43,7 @@ public class Show {
     @Element(name = "LengthInMinutes")
     private int lengthInMinutes;
     @Element(name = "Images")
-    private ImageUrlContainer imageUrlContainer;
+    private Images images;
 
     public String getId() {
         return id;
@@ -70,6 +70,6 @@ public class Show {
     }
 
     public String getImageUrl(String size) {
-        return imageUrlContainer.getUrl(size);
+        return images.getUrl(size);
     }
 }
