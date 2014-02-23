@@ -13,7 +13,7 @@ import org.simpleframework.xml.strategy.Strategy;
  *
  */
 public class Serializers {
-    public static Serializer DEFAULT = createDefaultSerializer();
+    public static final Serializer DEFAULT = createDefaultSerializer();
 
     private static Serializer createDefaultSerializer() {
         Registry registry = new Registry();

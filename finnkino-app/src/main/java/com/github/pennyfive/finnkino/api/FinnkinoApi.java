@@ -46,6 +46,10 @@ public class FinnkinoApi {
         InjectUtils.inject(this);
     }
 
+    private <T> T get(Class<T> clazz, String path) throws IOException {
+        return get(clazz, path, Collections.EMPTY_MAP);
+    }
+
     private <T> T get(Class<T> clazz, String path, Map<String, String> queryParams) throws IOException {
         String response = http.get(BASE_URL + path);
         try {
@@ -56,11 +60,11 @@ public class FinnkinoApi {
     }
 
     public List<TheatreArea> getTheatreAreas() throws IOException {
-        return get(TheatreAreas.class, PATH_THEATRE_AREAS, Collections.EMPTY_MAP).getTheatreAreas();
+        return get(TheatreAreas.class, PATH_THEATRE_AREAS).getTheatreAreas();
     }
 
     public Schedule getScheduleForAll() throws IOException {
-        return get(Schedule.class, PATH_SCHEDULE, Collections.EMPTY_MAP);
+        return get(Schedule.class, PATH_SCHEDULE);
     }
 
 }
