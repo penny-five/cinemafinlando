@@ -24,6 +24,12 @@ import org.simpleframework.xml.Root;
  */
 @Root(strict = false)
 public class Show {
+    public static final String SIZE_PORTRAIT_MICRO = "EventMicroImagePortrait";
+    public static final String SIZE_PORTRAIT_SMALL = "EventSmallImagePortrait";
+    public static final String SIZE_PORTRAIT_LARGE = "EventLargeImagePortrait";
+    public static final String SIZE_LANDSCAPE_SMALL = "EventSmallImageLandscape";
+    public static final String SIZE_LANDSCAPE_LARGE = "EventLargeImageLandscape";
+
     @Element(name = "ID")
     private String id;
     @Element(name = "EventID")
@@ -36,6 +42,8 @@ public class Show {
     private int productionYear;
     @Element(name = "LengthInMinutes")
     private int lengthInMinutes;
+    @Element(name = "Images")
+    private ImageUrlContainer imageUrlContainer;
 
     public String getId() {
         return id;
@@ -59,5 +67,9 @@ public class Show {
 
     public int getLengthInMinutes() {
         return lengthInMinutes;
+    }
+
+    public String getImageUrl(String size) {
+        return imageUrlContainer.getUrl(size);
     }
 }

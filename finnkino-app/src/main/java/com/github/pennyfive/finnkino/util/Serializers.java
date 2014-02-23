@@ -1,6 +1,8 @@
 package com.github.pennyfive.finnkino.util;
 
+import com.github.pennyfive.finnkino.api.model.ImageUrlContainer;
 import com.github.pennyfive.finnkino.io.xml.DateTimeConverter;
+import com.github.pennyfive.finnkino.io.xml.ImageUrlContainerConverter;
 
 import org.joda.time.DateTime;
 import org.simpleframework.xml.Serializer;
@@ -23,6 +25,7 @@ public class Serializers {
 
         try {
             registry.bind(DateTime.class, new DateTimeConverter());
+            registry.bind(ImageUrlContainer.class, new ImageUrlContainerConverter());
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }

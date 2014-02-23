@@ -7,7 +7,7 @@ import org.simpleframework.xml.stream.InputNode;
 import org.simpleframework.xml.stream.OutputNode;
 
 /**
- * Converts time nodes received from Finnkino API to {@link org.joda.time.DateTime} object.
+ * Converts time nodes received from Finnkino API to {@link org.joda.time.DateTime} instances.
  */
 public class DateTimeConverter implements Converter<DateTime> {
 
