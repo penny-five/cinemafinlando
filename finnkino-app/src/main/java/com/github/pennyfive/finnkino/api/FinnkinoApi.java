@@ -16,18 +16,16 @@
 
 package com.github.pennyfive.finnkino.api;
 
+import android.net.Uri;
+import android.util.Log;
+
 import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
-import com.github.pennyfive.finnkino.api.model.Schedule;
-import com.github.pennyfive.finnkino.api.model.TheatreArea;
-import com.github.pennyfive.finnkino.api.model.TheatreAreas;
 import com.github.pennyfive.finnkino.util.HttpClient;
 
 import org.simpleframework.xml.Serializer;
 
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.inject.Inject;
 
@@ -35,9 +33,9 @@ import javax.inject.Inject;
  *
  */
 public class FinnkinoApi {
-    private static final String BASE_URL = "http://www.finnkino.fi/xml/";
-    private static final String PATH_THEATRE_AREAS = "TheatreAreas";
-    private static final String PATH_SCHEDULE = "Schedule";
+    private static final String SCHEME = "http";
+    private static final String AUTHORITY = "www.finnkino.fi";
+    private static final String BASE_PATH = "XML";
 
     @Inject Serializer serializer;
     @Inject HttpClient http;
@@ -46,25 +44,27 @@ public class FinnkinoApi {
         InjectUtils.inject(this);
     }
 
-    private <T> T get(Class<T> clazz, String path) throws IOException {
-        return get(clazz, path, Collections.EMPTY_MAP);
-    }
-
-    private <T> T get(Class<T> clazz, String path, Map<String, String> queryParams) throws IOException {
-        String response = http.get(BASE_URL + path);
+    public <T> T execute(ApiCommand<T> command) throws IOException {
+        String url = constructUrl(command);
+        Log.d("FinnkinoApi", "GET: " + url);
+        String response = http.get(url);
+        Log.d("FinnkinoApi", "RESPONSE: " + response);
         try {
-            return serializer.read(clazz, response);
+            return serializer.read(command.getTypeClass(), response);
         } catch (Exception e) {
             throw new IOException(e);
         }
     }
 
-    public List<TheatreArea> getTheatreAreas() throws IOException {
-        return get(TheatreAreas.class, PATH_THEATRE_AREAS).getTheatreAreas();
+    private static String constructUrl(ApiCommand<?> command) {
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme(SCHEME);
+        builder.encodedAuthority(AUTHORITY);
+        builder.appendPath(BASE_PATH);
+        builder.appendPath(command.getPath());
+        for (Entry<String, String> entry : command.getQueryParams().entrySet()) {
+            builder.appendQueryParameter(entry.getKey(), entry.getValue());
+        }
+        return builder.build().toString();
     }
-
-    public Schedule getScheduleForAll() throws IOException {
-        return get(Schedule.class, PATH_SCHEDULE);
-    }
-
 }

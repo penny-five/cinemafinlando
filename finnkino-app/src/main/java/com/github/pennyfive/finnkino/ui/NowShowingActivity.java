@@ -23,7 +23,9 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.github.pennyfive.finnkino.R;
+import com.github.pennyfive.finnkino.api.GetScheduleCommand;
 import com.github.pennyfive.finnkino.api.model.Schedule;
+import com.github.pennyfive.finnkino.util.ApiQueryLoader;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -41,7 +43,7 @@ public class NowShowingActivity extends Activity implements LoaderManager.Loader
 
     @Override
     public Loader<Schedule> onCreateLoader(int id, Bundle args) {
-        return new ScheduleLoader(this);
+        return new ApiQueryLoader<Schedule>(this, new GetScheduleCommand());
     }
 
     @Override

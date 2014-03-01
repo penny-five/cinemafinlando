@@ -1,7 +1,7 @@
 package com.github.pennyfive.finnkino;
 
 import com.github.pennyfive.finnkino.api.FinnkinoApi;
-import com.github.pennyfive.finnkino.ui.ScheduleLoader;
+import com.github.pennyfive.finnkino.util.ApiQueryLoader;
 import com.github.pennyfive.finnkino.util.HttpClient;
 import com.github.pennyfive.finnkino.util.Serializers;
 
@@ -20,7 +20,7 @@ import dagger.Provides;
         injects = {
                 FinnkinoApplication.class,
                 FinnkinoApi.class,
-                ScheduleLoader.class
+                ApiQueryLoader.class
         }
 )
 public class FinnkinoModule {
