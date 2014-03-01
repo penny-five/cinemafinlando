@@ -25,7 +25,6 @@ import android.widget.ListView;
 import com.github.pennyfive.finnkino.R;
 import com.github.pennyfive.finnkino.api.GetScheduleCommand;
 import com.github.pennyfive.finnkino.api.model.Schedule;
-import com.github.pennyfive.finnkino.util.ApiQueryLoader;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

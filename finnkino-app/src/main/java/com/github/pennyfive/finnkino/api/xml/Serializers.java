@@ -1,4 +1,4 @@
-package com.github.pennyfive.finnkino.util;
+package com.github.pennyfive.finnkino.api.xml;
 
 import com.github.pennyfive.finnkino.api.model.Images;
 
@@ -29,4 +29,8 @@ public class Serializers {
 
         return serializer;
     }
+
+    private Serializers() {}
+
+    ;
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.finnkino.util;
+package com.github.pennyfive.finnkino.ui;
 
 import android.content.AsyncTaskLoader;
 import android.content.Context;

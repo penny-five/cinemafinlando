@@ -1,4 +1,4 @@
-package com.github.pennyfive.finnkino.util;
+package com.github.pennyfive.finnkino.api.xml;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.ISODateTimeFormat;

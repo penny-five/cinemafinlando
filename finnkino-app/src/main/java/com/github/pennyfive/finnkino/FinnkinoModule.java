@@ -1,9 +1,9 @@
 package com.github.pennyfive.finnkino;
 
 import com.github.pennyfive.finnkino.api.FinnkinoApi;
-import com.github.pennyfive.finnkino.util.ApiQueryLoader;
+import com.github.pennyfive.finnkino.api.xml.Serializers;
+import com.github.pennyfive.finnkino.ui.ApiQueryLoader;
 import com.github.pennyfive.finnkino.util.HttpClient;
-import com.github.pennyfive.finnkino.util.Serializers;
 
 import org.simpleframework.xml.Serializer;
 
