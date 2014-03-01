@@ -15,7 +15,7 @@ public class GetNowInTheatresCommand extends ApiCommand<Events> {
     }
 
     @Override public Map<String, String> getQueryParams() {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("listType", "NowInTheatres");
         return params;
     }

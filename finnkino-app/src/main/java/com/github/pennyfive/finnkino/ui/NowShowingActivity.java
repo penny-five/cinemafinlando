@@ -42,7 +42,7 @@ public class NowShowingActivity extends Activity implements LoaderManager.Loader
 
     @Override
     public Loader<Schedule> onCreateLoader(int id, Bundle args) {
-        return new ApiQueryLoader<Schedule>(this, new GetScheduleCommand());
+        return new ApiQueryLoader<>(this, new GetScheduleCommand());
     }
 
     @Override
