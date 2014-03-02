@@ -1,7 +1,9 @@
 package com.github.pennyfive.finnkino;
 
+import android.app.Activity;
 import android.app.Application;
 
+import butterknife.ButterKnife;
 import dagger.ObjectGraph;
 
 /**
@@ -20,7 +22,7 @@ public class FinnkinoApplication extends Application {
     }
 
     private void createObjectGraph() {
-        objectGraph = ObjectGraph.create(new FinnkinoModule());
+        objectGraph = ObjectGraph.create(new FinnkinoModule(this));
     }
 
     private void inject(Object o) {
@@ -31,6 +33,11 @@ public class FinnkinoApplication extends Application {
 
         public static void inject(Object o) {
             instance.inject(o);
+        }
+
+        public static void inject(Activity activity) {
+            instance.inject(activity);
+            ButterKnife.inject(activity);
         }
     }
 }

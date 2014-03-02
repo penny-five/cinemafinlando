@@ -8,19 +8,25 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
 import com.github.pennyfive.finnkino.R;
+import com.github.pennyfive.finnkino.api.model.Event;
 import com.github.pennyfive.finnkino.api.model.Show;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  *
  */
-class ShowAdapter extends ArrayAdapter<Show> {
+public class EventListAdapter extends ArrayAdapter<Event> {
+    @Inject Picasso picasso;
 
-    public ShowAdapter(Context context, List<Show> shows) {
-        super(context, 0, shows);
+    public EventListAdapter(Context context, List<Event> events) {
+        super(context, 0, events);
+        InjectUtils.inject(this);
     }
 
     @Override
@@ -28,9 +34,9 @@ class ShowAdapter extends ArrayAdapter<Show> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_show, null);
         }
-        Show show = getItem(position);
-        ((TextView) convertView.findViewById(R.id.text)).setText(show.getTitle());
-        Picasso.with(getContext()).load(show.getImageUrl(Show.SIZE_LANDSCAPE_LARGE)).into((ImageView) convertView.findViewById(R.id.image));
+        Event event = getItem(position);
+        ((TextView) convertView.findViewById(R.id.text)).setText(event.getTitle());
+        picasso.load(event.getImageUrl(Show.SIZE_LANDSCAPE_LARGE)).into((ImageView) convertView.findViewById(R.id.image));
         return convertView;
     }
 }

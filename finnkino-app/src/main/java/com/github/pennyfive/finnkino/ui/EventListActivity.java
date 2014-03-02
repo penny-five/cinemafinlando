@@ -18,41 +18,55 @@ package com.github.pennyfive.finnkino.ui;
 
 import android.app.Activity;
 import android.app.LoaderManager;
+import android.content.Intent;
 import android.content.Loader;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
+import com.github.pennyfive.finnkino.FinnkinoIntents;
 import com.github.pennyfive.finnkino.R;
-import com.github.pennyfive.finnkino.api.GetScheduleCommand;
-import com.github.pennyfive.finnkino.api.model.Schedule;
+import com.github.pennyfive.finnkino.api.GetNowInTheatresCommand;
+import com.github.pennyfive.finnkino.api.model.Event;
+import com.github.pennyfive.finnkino.api.model.Events;
 
-import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnItemClick;
 
-public class NowShowingActivity extends Activity implements LoaderManager.LoaderCallbacks<Schedule> {
+public class EventListActivity extends Activity implements LoaderManager.LoaderCallbacks<Events> {
     @InjectView(R.id.list) ListView listView;
+    private EventListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_now_showing);
-        ButterKnife.inject(this);
+        InjectUtils.inject(this);
         getLoaderManager().initLoader(0, savedInstanceState, this);
     }
 
     @Override
-    public Loader<Schedule> onCreateLoader(int id, Bundle args) {
-        return new ApiQueryLoader<>(this, new GetScheduleCommand());
+    public Loader<Events> onCreateLoader(int id, Bundle args) {
+        return new ApiQueryLoader<>(this, new GetNowInTheatresCommand());
     }
 
     @Override
-    public void onLoadFinished(Loader<Schedule> loader, Schedule schedule) {
-        listView.setAdapter(new ShowAdapter(this, schedule.getShows()));
+    public void onLoadFinished(Loader<Events> loader, Events events) {
+        adapter = new EventListAdapter(this, events.getEvents());
+        listView.setAdapter(adapter);
     }
 
     @Override
-    public void onLoaderReset(Loader<Schedule> loader) {
+    public void onLoaderReset(Loader<Events> loader) {
 
+    }
+
+    @OnItemClick(R.id.list)
+    public void onEventClicked(int position) {
+        Event event = adapter.getItem(position);
+        Intent intent = new Intent(FinnkinoIntents.ACTION_VIEW_EVENT);
+        intent.putExtra(FinnkinoIntents.EXTRA_EVENT, event);
+        startActivity(intent);
     }
 
 }
