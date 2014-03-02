@@ -18,6 +18,6 @@ public class DateTimeConverter implements Converter<DateTime> {
 
     @Override
     public void write(OutputNode outputNode, DateTime dateTime) throws Exception {
-
+        throw new UnsupportedOperationException();
     }
 }
