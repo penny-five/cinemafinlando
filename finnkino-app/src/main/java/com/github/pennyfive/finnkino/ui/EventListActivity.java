@@ -36,7 +36,7 @@ public class EventListActivity extends Activity implements DrawerListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_now_showing);
+        setContentView(R.layout.activity_event_list);
         InjectUtils.inject(this);
 
         getFragmentManager().beginTransaction().replace(R.id.content, new EventListFragment()).commit();
