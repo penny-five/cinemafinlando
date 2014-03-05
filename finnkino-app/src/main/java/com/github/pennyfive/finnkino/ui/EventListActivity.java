@@ -17,56 +17,17 @@
 package com.github.pennyfive.finnkino.ui;
 
 import android.app.Activity;
-import android.app.LoaderManager;
-import android.content.Intent;
-import android.content.Loader;
 import android.os.Bundle;
-import android.widget.ListView;
 
-import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
-import com.github.pennyfive.finnkino.FinnkinoIntents;
 import com.github.pennyfive.finnkino.R;
-import com.github.pennyfive.finnkino.api.GetNowInTheatresCommand;
-import com.github.pennyfive.finnkino.api.model.Event;
-import com.github.pennyfive.finnkino.api.model.Events;
 
-import butterknife.InjectView;
-import butterknife.OnItemClick;
-
-public class EventListActivity extends Activity implements LoaderManager.LoaderCallbacks<Events> {
-    @InjectView(R.id.list) ListView listView;
-    private EventListAdapter adapter;
+public class EventListActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_now_showing);
-        InjectUtils.inject(this);
-        getLoaderManager().initLoader(0, savedInstanceState, this);
+        getFragmentManager().beginTransaction().replace(R.id.content, new EventListFragment()).commit();
+        getFragmentManager().beginTransaction().replace(R.id.drawer_content, new NavigationFragment()).commit();
     }
-
-    @Override
-    public Loader<Events> onCreateLoader(int id, Bundle args) {
-        return new ApiQueryLoader<>(this, new GetNowInTheatresCommand());
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Events> loader, Events events) {
-        adapter = new EventListAdapter(this, events.getEvents());
-        listView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Events> loader) {
-
-    }
-
-    @OnItemClick(R.id.list)
-    public void onEventClicked(int position) {
-        Event event = adapter.getItem(position);
-        Intent intent = new Intent(FinnkinoIntents.ACTION_VIEW_EVENT);
-        intent.putExtra(FinnkinoIntents.EXTRA_EVENT, event);
-        startActivity(intent);
-    }
-
 }

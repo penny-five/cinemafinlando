@@ -24,7 +24,8 @@ public class EventActivity extends Activity {
     @InjectView(R.id.name) TextView eventNameView;
     @InjectView(R.id.production_year) TextView productionYearView;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
         InjectUtils.inject(this);

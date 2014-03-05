@@ -25,7 +25,8 @@ public class LandscapeEventImageView extends ImageView {
         super(context, attrs, defStyle);
     }
 
-    @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int width = MeasureSpec.getSize(widthMeasureSpec);
         heightMeasureSpec = MeasureSpec.makeMeasureSpec((int) (width / ASPECT_RATIO), MeasureSpec.EXACTLY);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);

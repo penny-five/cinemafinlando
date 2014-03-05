@@ -26,5 +26,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
+    <string name="coming_soon">Tulossa ohjelmistoon</string>
+    <string name="now_showing">Ohjelmistossa nyt</string>
 
 </resources>

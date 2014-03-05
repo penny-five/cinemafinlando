@@ -7,7 +7,8 @@ import com.github.pennyfive.finnkino.api.xml.Serializers;
 import com.github.pennyfive.finnkino.ui.ApiQueryLoader;
 import com.github.pennyfive.finnkino.ui.EventActivity;
 import com.github.pennyfive.finnkino.ui.EventListActivity;
-import com.github.pennyfive.finnkino.ui.EventListAdapter;
+import com.github.pennyfive.finnkino.ui.EventListFragment;
+import com.github.pennyfive.finnkino.ui.NavigationFragment;
 import com.github.pennyfive.finnkino.util.HttpClient;
 import com.squareup.picasso.Picasso;
 
@@ -27,9 +28,10 @@ import dagger.Provides;
                 FinnkinoApplication.class,
                 FinnkinoApi.class,
                 ApiQueryLoader.class,
-                EventListAdapter.class,
+                EventListActivity.class,
+                EventListFragment.class,
                 EventActivity.class,
-                EventListActivity.class
+                NavigationFragment.class
         }
 )
 public class FinnkinoModule {
