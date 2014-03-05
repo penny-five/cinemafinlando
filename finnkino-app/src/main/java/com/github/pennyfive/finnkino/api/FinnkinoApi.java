@@ -40,7 +40,8 @@ public class FinnkinoApi {
     @Inject Serializer serializer;
     @Inject HttpClient http;
 
-    @Inject public FinnkinoApi() {
+    @Inject
+    public FinnkinoApi() {
         InjectUtils.inject(this);
     }
 
