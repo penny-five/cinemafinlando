@@ -18,20 +18,24 @@ public class Images implements Parcelable {
         return (String) values.get(size.hashCode());
     }
 
-    @Override public int describeContents() {
+    @Override
+    public int describeContents() {
         return 0;
     }
 
-    @Override public void writeToParcel(Parcel dest, int flags) {
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
         dest.writeSparseArray(values);
     }
 
     public static Creator CREATOR = new Creator<Images>() {
-        @Override public Images createFromParcel(Parcel source) {
+        @Override
+        public Images createFromParcel(Parcel source) {
             return new Images(source.readSparseArray(Images.class.getClassLoader()));
         }
 
-        @Override public Images[] newArray(int size) {
+        @Override
+        public Images[] newArray(int size) {
             return new Images[size];
         }
     };

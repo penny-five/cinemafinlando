@@ -27,13 +27,14 @@ import java.util.List;
  *
  */
 @Root(strict = false)
-public class Schedule {
+public class Schedule implements Container<Show> {
     @Element(name = "PubDate")
     private DateTime pubDate;
     @ElementList(name = "Shows")
     private List<Show> shows;
 
-    public List<Show> getShows() {
+    @Override
+    public List<Show> getItems() {
         return shows;
     }
 }

@@ -25,11 +25,12 @@ import java.util.List;
  *
  */
 @Root(strict = false)
-public class TheatreAreas {
+public class TheatreAreas implements Container<TheatreArea> {
     @ElementList(entry = "TheatreArea", inline = true)
     private List<TheatreArea> theatreAreas;
 
-    public List<TheatreArea> getTheatreAreas() {
+    @Override
+    public List<TheatreArea> getItems() {
         return theatreAreas;
     }
 }

@@ -9,11 +9,12 @@ import java.util.List;
  *
  */
 @Root(strict = false)
-public class Events {
+public class Events implements Container<Event> {
     @ElementList(entry = "Event", inline = true)
     private List<Event> events;
 
-    public List<Event> getEvents() {
+    @Override
+    public List<Event> getItems() {
         return events;
     }
 }

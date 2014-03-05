@@ -66,11 +66,13 @@ public class Event implements Parcelable {
         return images.getUrl(size);
     }
 
-    @Override public int describeContents() {
+    @Override
+    public int describeContents() {
         return 0;
     }
 
-    @Override public void writeToParcel(Parcel dest, int flags) {
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(title);
         dest.writeString(originalTitle);
@@ -83,7 +85,8 @@ public class Event implements Parcelable {
 
     public static Parcelable.Creator<Event> CREATOR = new Creator<Event>() {
 
-        @Override public Event createFromParcel(Parcel source) {
+        @Override
+        public Event createFromParcel(Parcel source) {
             Event event = new Event();
             event.id = source.readString();
             event.title = source.readString();
@@ -96,7 +99,8 @@ public class Event implements Parcelable {
             return event;
         }
 
-        @Override public Event[] newArray(int size) {
+        @Override
+        public Event[] newArray(int size) {
             return new Event[size];
         }
     };
