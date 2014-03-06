@@ -13,9 +13,7 @@ public class Fragments {
             T instance = clazz.newInstance();
             instance.setArguments(args);
             return instance;
-        } catch (InstantiationException e) {
-            throw new IllegalStateException(e);
-        } catch (IllegalAccessException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             throw new IllegalStateException(e);
         }
     }

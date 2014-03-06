@@ -5,18 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.github.pennyfive.finnkino.R;
 import com.github.pennyfive.finnkino.api.ApiCommand;
 import com.github.pennyfive.finnkino.api.GetTheatreAreasCommand;
 import com.github.pennyfive.finnkino.api.model.TheatreArea;
 import com.github.pennyfive.finnkino.api.model.TheatreAreas;
 
-import butterknife.OnItemClick;
-
 /**
  *
  */
 public class TheatreAreaFragment extends QueryListFragment<TheatreArea, TheatreAreas> {
+
     public interface Callbacks {
         void onTheatreAreaSelected(TheatreArea area);
     }
@@ -36,9 +34,8 @@ public class TheatreAreaFragment extends QueryListFragment<TheatreArea, TheatreA
         ((TextView) view.findViewById(android.R.id.text1)).setText(item.getName());
     }
 
-    @OnItemClick(R.id.list)
-    public void onItemClick(int position) {
-        TheatreArea area = getItem(position);
+    @Override
+    protected void onItemClick(int position, View view, TheatreArea area) {
         ((Callbacks) getActivity()).onTheatreAreaSelected(area);
     }
 }

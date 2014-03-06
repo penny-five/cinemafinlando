@@ -10,14 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
 import com.github.pennyfive.finnkino.R;
 import com.github.pennyfive.finnkino.api.ApiCommand;
 import com.github.pennyfive.finnkino.api.model.Container;
 
 import java.util.List;
 
-import butterknife.InjectView;
 import butterknife.OnItemClick;
 
 /**
@@ -43,7 +41,7 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
         }
     }
 
-    @InjectView(R.id.list) ListView listView;
+    private ListView listView;
     private Adapter adapter;
 
     @Override
@@ -54,7 +52,7 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        InjectUtils.inject(this, view);
+        listView = (ListView) view.findViewById(R.id.list);
         getLoaderManager().initLoader(0, savedInstanceState, this);
     }
 

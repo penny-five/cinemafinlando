@@ -20,6 +20,6 @@ public abstract class ApiCommand<T> {
 
     abstract String getPath();
 
-    // TODO might be able to get right of this method using TypeToken
+    // TODO might be able to get rid of this method using TypeToken
     abstract Class<T> getTypeClass();
 }
