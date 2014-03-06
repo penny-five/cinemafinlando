@@ -16,6 +16,9 @@
 
 package com.github.pennyfive.finnkino.api.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -23,7 +26,7 @@ import org.simpleframework.xml.Root;
  *
  */
 @Root(strict = false)
-public class TheatreArea {
+public class TheatreArea implements Parcelable {
     @Element(name = "ID")
     private String id;
     @Element(name = "Name")
@@ -44,4 +47,30 @@ public class TheatreArea {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+    }
+
+    public static Creator<TheatreArea> CREATOR = new Creator<TheatreArea>() {
+        @Override
+        public TheatreArea createFromParcel(Parcel source) {
+            TheatreArea area = new TheatreArea();
+            area.id = source.readString();
+            area.name = source.readString();
+            return area;
+        }
+
+        @Override
+        public TheatreArea[] newArray(int size) {
+            return new TheatreArea[size];
+        }
+    };
 }

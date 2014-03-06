@@ -76,6 +76,10 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
 
     }
 
+    protected final T getItem(int position) {
+        return adapter.getItem(position);
+    }
+
     @OnItemClick(R.id.list)
     public final void onItemClick(View view, int position) {
         if (position < listView.getHeaderViewsCount()) {

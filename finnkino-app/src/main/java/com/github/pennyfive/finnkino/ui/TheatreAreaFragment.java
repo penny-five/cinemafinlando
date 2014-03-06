@@ -16,7 +16,10 @@ import butterknife.OnItemClick;
 /**
  *
  */
-public class NavigationFragment extends QueryListFragment<TheatreArea, TheatreAreas> {
+public class TheatreAreaFragment extends QueryListFragment<TheatreArea, TheatreAreas> {
+    public interface Callbacks {
+        void onTheatreAreaSelected(TheatreArea area);
+    }
 
     @Override
     protected ApiCommand<TheatreAreas> onCreateCommand() {
@@ -35,6 +38,7 @@ public class NavigationFragment extends QueryListFragment<TheatreArea, TheatreAr
 
     @OnItemClick(R.id.list)
     public void onItemClick(int position) {
-        // TODO
+        TheatreArea area = getItem(position);
+        ((Callbacks) getActivity()).onTheatreAreaSelected(area);
     }
 }

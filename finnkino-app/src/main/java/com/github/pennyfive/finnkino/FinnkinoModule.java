@@ -8,7 +8,7 @@ import com.github.pennyfive.finnkino.ui.ApiQueryLoader;
 import com.github.pennyfive.finnkino.ui.EventActivity;
 import com.github.pennyfive.finnkino.ui.EventListActivity;
 import com.github.pennyfive.finnkino.ui.EventListFragment;
-import com.github.pennyfive.finnkino.ui.NavigationFragment;
+import com.github.pennyfive.finnkino.ui.TheatreAreaFragment;
 import com.github.pennyfive.finnkino.util.HttpClient;
 import com.squareup.picasso.Picasso;
 
@@ -31,7 +31,7 @@ import dagger.Provides;
                 EventListActivity.class,
                 EventListFragment.class,
                 EventActivity.class,
-                NavigationFragment.class
+                TheatreAreaFragment.class
         }
 )
 public class FinnkinoModule {
@@ -41,19 +41,27 @@ public class FinnkinoModule {
         this.context = context.getApplicationContext();
     }
 
-    @Provides @Singleton HttpClient provideHttpClient() {
+    @Provides
+    @Singleton
+    HttpClient provideHttpClient() {
         return new HttpClient();
     }
 
-    @Provides @Singleton Serializer provideSerializer() {
+    @Provides
+    @Singleton
+    Serializer provideSerializer() {
         return Serializers.DEFAULT;
     }
 
-    @Provides @Singleton FinnkinoApi provideFinnkinoApi() {
+    @Provides
+    @Singleton
+    FinnkinoApi provideFinnkinoApi() {
         return new FinnkinoApi();
     }
 
-    @Provides @Singleton Picasso providePicasso() {
+    @Provides
+    @Singleton
+    Picasso providePicasso() {
         return Picasso.with(context);
     }
 }

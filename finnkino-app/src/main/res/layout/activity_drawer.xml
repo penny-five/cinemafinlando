@@ -30,7 +30,7 @@
     <FrameLayout
         android:id="@+id/drawer_content"
         android:layout_width="240dp"
-        android:layout_gravity="left"
+        android:layout_gravity="start"
         android:layout_height="match_parent"
         android:background="@android:color/white">
     </FrameLayout>

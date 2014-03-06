@@ -22,6 +22,11 @@ import javax.inject.Inject;
  *
  */
 public class EventListFragment extends QueryListFragment<Event, Events> {
+
+    public interface Callbacks {
+        void onEventSelected(Event event);
+    }
+
     @Inject Picasso picasso;
 
     @Override
@@ -37,12 +42,17 @@ public class EventListFragment extends QueryListFragment<Event, Events> {
 
     @Override
     protected View newView(Context context, LayoutInflater inflater) {
-        return inflater.inflate(R.layout.item_show, null);
+        return inflater.inflate(R.layout.item_event, null);
     }
 
     @Override
     protected void bindView(Context context, View view, Event event) {
         ((TextView) view.findViewById(R.id.text)).setText(event.getTitle());
         picasso.load(event.getImageUrl(Show.SIZE_LANDSCAPE_LARGE)).into((ImageView) view.findViewById(R.id.image));
+    }
+
+    @Override
+    protected void onItemClick(int position, View view, Event event) {
+        ((Callbacks) getActivity()).onEventSelected(event);
     }
 }

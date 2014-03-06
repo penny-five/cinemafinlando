@@ -16,14 +16,36 @@
 
 package com.github.pennyfive.finnkino.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-public class EventListActivity extends DrawerActivity {
+import com.github.pennyfive.finnkino.FinnkinoIntents;
+import com.github.pennyfive.finnkino.api.model.Event;
+import com.github.pennyfive.finnkino.api.model.TheatreArea;
+import com.github.pennyfive.finnkino.util.Fragments;
+
+public class EventListActivity extends DrawerActivity implements TheatreAreaFragment.Callbacks, EventListFragment.Callbacks {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentFragment(new EventListFragment());
-        setDrawerFragment(new NavigationFragment());
+        setDrawerFragment(new TheatreAreaFragment());
+    }
+
+    @Override
+    public void onTheatreAreaSelected(TheatreArea area) {
+        Bundle args = new Bundle();
+        args.putParcelable(FinnkinoIntents.EXTRA_THEATRE_AREA, area);
+        setContentFragment(Fragments.instantiateWithArgs(EventListFragment.class, args));
+
+        closeDrawer();
+    }
+
+    @Override
+    public void onEventSelected(Event event) {
+        Intent intent = new Intent(FinnkinoIntents.ACTION_VIEW_EVENT);
+        intent.putExtra(FinnkinoIntents.EXTRA_EVENT, event);
+        startActivity(intent);
     }
 }

@@ -9,7 +9,8 @@ import java.util.Map;
  */
 public class GetNowInTheatresCommand extends ApiCommand<Events> {
 
-    @Override String getPath() {
+    @Override
+    String getPath() {
         return "Events";
     }
 
@@ -19,7 +20,8 @@ public class GetNowInTheatresCommand extends ApiCommand<Events> {
         params.put("listType", "NowInTheatres");
     }
 
-    @Override Class<Events> getTypeClass() {
+    @Override
+    Class<Events> getTypeClass() {
         return Events.class;
     }
 }
