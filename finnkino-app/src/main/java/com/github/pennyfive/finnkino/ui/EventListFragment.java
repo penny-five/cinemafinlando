@@ -36,6 +36,13 @@ public class EventListFragment extends QueryListFragment<Event, Events> {
     }
 
     @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getListView().setDividerHeight(UiUtils.pixelsFromResource(getActivity(), R.dimen.event_list_divider_height));
+        getListView().setDrawSelectorOnTop(true);
+    }
+
+    @Override
     protected ApiCommand<Events> onCreateCommand() {
         return new GetNowInTheatresCommand();
     }

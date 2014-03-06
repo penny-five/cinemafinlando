@@ -47,12 +47,12 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
     private Adapter adapter;
 
     @Override
-    public final View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_query_list, container, false);
     }
 
     @Override
-    public final void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         InjectUtils.inject(this, view);
         getLoaderManager().initLoader(0, savedInstanceState, this);
@@ -78,6 +78,10 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
 
     protected final T getItem(int position) {
         return adapter.getItem(position);
+    }
+
+    protected final ListView getListView() {
+        return listView;
     }
 
     @OnItemClick(R.id.list)
