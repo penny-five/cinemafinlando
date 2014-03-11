@@ -5,10 +5,10 @@ import java.util.Map;
 /**
  *
  */
-public class GetNowInTheatresCommand extends GetEventsCommand {
+public class GetComingSoonCommand extends GetEventsCommand {
 
     @Override
     protected void onSetQueryParams(Map<String, String> params) {
-        params.put(PARAM_LIST_TYPE, "NowInTheatres");
+        params.put(PARAM_LIST_TYPE, "ComingSoon");
     }
 }

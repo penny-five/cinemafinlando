@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.github.pennyfive.finnkino.R;
@@ -15,8 +17,6 @@ import com.github.pennyfive.finnkino.api.ApiCommand;
 import com.github.pennyfive.finnkino.api.model.Container;
 
 import java.util.List;
-
-import butterknife.OnItemClick;
 
 /**
  * @param <T>
@@ -53,6 +53,17 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         listView = (ListView) view.findViewById(R.id.list);
+        listView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position < listView.getHeaderViewsCount()) {
+                    QueryListFragment.this.onHeaderClick(position, view);
+                } else {
+                    position = position - listView.getHeaderViewsCount();
+                    QueryListFragment.this.onItemClick(position, view, adapter.getItem(position));
+                }
+            }
+        });
         getLoaderManager().initLoader(0, savedInstanceState, this);
     }
 
@@ -82,25 +93,11 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
         return listView;
     }
 
-    @OnItemClick(R.id.list)
-    public final void onItemClick(View view, int position) {
-        if (position < listView.getHeaderViewsCount()) {
-            QueryListFragment.this.onHeaderClick(position, view);
-        } else {
-            position = position - listView.getHeaderViewsCount();
-            QueryListFragment.this.onItemClick(position, view, adapter.getItem(position));
-        }
-    }
-
     protected abstract View newView(Context context, LayoutInflater inflater);
 
     protected abstract void bindView(Context context, View view, T item);
 
-    protected void onHeaderClick(int position, View view) {
+    protected void onHeaderClick(int position, View view) {}
 
-    }
-
-    protected void onItemClick(int position, View view, T item) {
-
-    }
+    protected void onItemClick(int position, View view, T item) {}
 }

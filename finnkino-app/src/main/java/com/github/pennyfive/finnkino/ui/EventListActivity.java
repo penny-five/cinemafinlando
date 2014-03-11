@@ -29,7 +29,11 @@ public class EventListActivity extends DrawerActivity implements TheatreAreaFrag
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentFragment(new EventListFragment());
+
+        Bundle args = new Bundle();
+        args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_NOW_IN_THEATRES);
+        setContentFragment(Fragments.instantiateWithArgs(EventListFragment.class, args));
+
         setDrawerFragment(new TheatreAreaFragment());
     }
 
@@ -37,6 +41,7 @@ public class EventListActivity extends DrawerActivity implements TheatreAreaFrag
     public void onTheatreAreaSelected(TheatreArea area) {
         Bundle args = new Bundle();
         args.putParcelable(FinnkinoIntents.EXTRA_THEATRE_AREA, area);
+        args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_THEATRE_AREA);
         setContentFragment(Fragments.instantiateWithArgs(EventListFragment.class, args));
 
         closeDrawer();

@@ -20,6 +20,8 @@ public abstract class DrawerActivity extends Activity implements DrawerListener 
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
 
+    private String actionBarTitle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,13 @@ public abstract class DrawerActivity extends Activity implements DrawerListener 
         getFragmentManager().beginTransaction().replace(R.id.drawer_content, fragment).commit();
     }
 
+    protected final void setActionBarTitle(String title) {
+        actionBarTitle = title;
+        if (!drawer.isDrawerOpen(Gravity.START)) {
+            getActionBar().setTitle(actionBarTitle);
+        }
+    }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -71,7 +80,7 @@ public abstract class DrawerActivity extends Activity implements DrawerListener 
     @Override
     public void onDrawerClosed(View drawerView) {
         drawerToggle.onDrawerClosed(drawerView);
-        getActionBar().setTitle(R.string.app_name);
+        getActionBar().setTitle(actionBarTitle);
         invalidateOptionsMenu();
     }
 
