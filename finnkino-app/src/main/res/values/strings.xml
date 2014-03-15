@@ -19,14 +19,14 @@
 <resources>
 
     <string name="app_name">Finnkino</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
-    <string name="coming_soon">Tulossa ohjelmistoon</string>
-    <string name="now_showing">Ohjelmistossa nyt</string>
+    <string name="coming_soon">Coming soon</string>
+    <string name="now_showing">Now showing</string>
+    <string name="minutes"> %s min</string>
+    <string name="tab_title_synopsis">Synopsis</string>
+    <string name="tab_title_show_times">Show times</string>
+    <string name="tab_title_information">Information</string>
 
 </resources>

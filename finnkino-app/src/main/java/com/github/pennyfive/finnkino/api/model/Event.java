@@ -27,6 +27,8 @@ public class Event implements Parcelable {
     private int productionYear;
     @Element(name = "LengthInMinutes")
     private int lengthInMinutes;
+    @Element(name = "Genres")
+    private String genres;
     @Element(name = "ShortSynopsis")
     private String shortSynopsis;
     @Element(name = "Synopsis")
@@ -54,6 +56,10 @@ public class Event implements Parcelable {
         return lengthInMinutes;
     }
 
+    public String getGenres() {
+        return genres;
+    }
+
     public String getSynopsis() {
         return synopsis;
     }
@@ -78,6 +84,7 @@ public class Event implements Parcelable {
         dest.writeString(originalTitle);
         dest.writeInt(productionYear);
         dest.writeInt(lengthInMinutes);
+        dest.writeString(genres);
         dest.writeString(shortSynopsis);
         dest.writeString(synopsis);
         dest.writeParcelable(images, 0);
@@ -93,6 +100,7 @@ public class Event implements Parcelable {
             event.originalTitle = source.readString();
             event.productionYear = source.readInt();
             event.lengthInMinutes = source.readInt();
+            event.genres = source.readString();
             event.shortSynopsis = source.readString();
             event.synopsis = source.readString();
             event.images = source.readParcelable(Event.class.getClassLoader());

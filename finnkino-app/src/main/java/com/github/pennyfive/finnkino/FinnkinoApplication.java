@@ -2,7 +2,6 @@ package com.github.pennyfive.finnkino;
 
 import android.app.Activity;
 import android.app.Application;
-import android.app.Fragment;
 import android.view.View;
 
 import butterknife.ButterKnife;
@@ -33,18 +32,22 @@ public class FinnkinoApplication extends Application {
 
     public static class InjectUtils {
 
-        public static void inject(Object o) {
+        public static void injectMembers(Object o) {
             instance.inject(o);
         }
 
-        public static void inject(Activity activity) {
-            instance.inject(activity);
-            ButterKnife.inject(activity);
+        public static void injectViews(Object o, View view) {
+            ButterKnife.inject(o, view);
         }
 
-        public static void inject(Fragment fragment, View view) {
-            instance.inject(fragment);
-            ButterKnife.inject(fragment, view);
+        public static void injectAll(Object o, View view) {
+            injectMembers(o);
+            injectViews(o, view);
+        }
+
+        public static void injectAll(Activity activity) {
+            instance.inject(activity);
+            ButterKnife.inject(activity);
         }
     }
 }

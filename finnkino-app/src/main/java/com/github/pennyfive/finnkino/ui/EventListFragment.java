@@ -28,7 +28,7 @@ import javax.inject.Inject;
 public class EventListFragment extends QueryListFragment<Event, Events> {
     public static final String EXTRA_LIST_TYPE = "list_type";
     public static final String LIST_TYPE_NOW_IN_THEATRES = "now_playing";
-    public static final String LIST_TYPE_COMING_SOON = "coming_soong";
+    public static final String LIST_TYPE_COMING_SOON = "coming_soon";
     public static final String LIST_TYPE_THEATRE_AREA = "theatre_area";
 
     public interface Callbacks {
@@ -40,7 +40,7 @@ public class EventListFragment extends QueryListFragment<Event, Events> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        InjectUtils.inject(this);
+        InjectUtils.injectMembers(this);
     }
 
     @Override

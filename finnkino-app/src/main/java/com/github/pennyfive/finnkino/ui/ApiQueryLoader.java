@@ -16,8 +16,8 @@
 
 package com.github.pennyfive.finnkino.ui;
 
-import android.content.AsyncTaskLoader;
 import android.content.Context;
+import android.support.v4.content.AsyncTaskLoader;
 
 import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
 import com.github.pennyfive.finnkino.api.ApiCommand;
@@ -38,7 +38,7 @@ public final class ApiQueryLoader<T> extends AsyncTaskLoader<T> {
     public ApiQueryLoader(Context context, ApiCommand<T> command) {
         super(context);
         this.command = command;
-        InjectUtils.inject(this);
+        InjectUtils.injectMembers(this);
     }
 
     @Override

@@ -42,7 +42,7 @@ public class FinnkinoApi {
 
     @Inject
     public FinnkinoApi() {
-        InjectUtils.inject(this);
+        InjectUtils.injectMembers(this);
     }
 
     public <T> T execute(ApiCommand<T> command) throws IOException {

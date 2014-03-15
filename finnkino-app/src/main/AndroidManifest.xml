@@ -38,8 +38,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.EventActivity">
-            <intent-filter>
+        <activity
+            android:name=".ui.EventActivity"
+            android:theme="@style/EventActivityTheme">
+        <intent-filter>
                 <action android:name="com.pennyfive.finnkino.ACTION_VIEW_EVENT"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>

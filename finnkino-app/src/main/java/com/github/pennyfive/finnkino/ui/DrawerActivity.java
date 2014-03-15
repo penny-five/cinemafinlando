@@ -1,22 +1,21 @@
 package com.github.pennyfive.finnkino.ui;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
 import com.github.pennyfive.finnkino.R;
 
 /**
  * Base class for Activities that use {@link android.support.v4.widget.DrawerLayout}.
  */
-public abstract class DrawerActivity extends Activity implements DrawerListener {
+public abstract class DrawerActivity extends FragmentActivity implements DrawerListener {
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
 
@@ -27,7 +26,6 @@ public abstract class DrawerActivity extends Activity implements DrawerListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        InjectUtils.inject(this);
         initializeDrawerToggle();
     }
 
@@ -45,11 +43,11 @@ public abstract class DrawerActivity extends Activity implements DrawerListener 
     }
 
     protected final void setContentFragment(Fragment fragment) {
-        getFragmentManager().beginTransaction().replace(R.id.content, fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment).commit();
     }
 
     protected final void setDrawerFragment(Fragment fragment) {
-        getFragmentManager().beginTransaction().replace(R.id.drawer_content, fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.drawer_content, fragment).commit();
     }
 
     protected final void setActionBarTitle(String title) {
