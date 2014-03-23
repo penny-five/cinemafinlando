@@ -28,6 +28,7 @@ import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
 import com.github.pennyfive.finnkino.FinnkinoIntents;
 import com.github.pennyfive.finnkino.R;
 import com.github.pennyfive.finnkino.api.model.Event;
+import com.github.pennyfive.finnkino.ui.CustomTypefaceTextView.CustomTypeface;
 import com.github.pennyfive.finnkino.util.Fragments;
 import com.squareup.picasso.Picasso;
 
@@ -56,7 +57,7 @@ public class EventActivity extends FragmentActivity {
 
         Event event = getIntent().getParcelableExtra(FinnkinoIntents.EXTRA_EVENT);
 
-        getActionBar().setTitle(event.getTitle());
+        getActionBar().setTitle(CustomTypeface.ROBOTO_LIGHT.wrap(this, event.getTitle()));
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
 
@@ -71,6 +72,7 @@ public class EventActivity extends FragmentActivity {
             private static final int POS_SYNOPSIS = 0;
             private static final int POS_SHOW_TIMES = 1;
             private static final int POS_INFORMATION = 2;
+            private static final int POS_MEDIA = 3;
 
             @Override
             public Fragment getItem(int position) {
@@ -81,27 +83,16 @@ public class EventActivity extends FragmentActivity {
                         return new Fragment();
                     case POS_INFORMATION:
                         return new Fragment();
+                    case POS_MEDIA:
+                        return new Fragment();
+                    default:
+                        throw new IllegalStateException();
                 }
-                return new Fragment();
             }
 
             @Override
             public int getCount() {
-                return 3;
-            }
-
-            @Override
-            public CharSequence getPageTitle(int position) {
-                switch (position) {
-                    case POS_SYNOPSIS:
-                        return getString(R.string.tab_title_synopsis);
-                    case POS_SHOW_TIMES:
-                        return getString(R.string.tab_title_show_times);
-                    case POS_INFORMATION:
-                        return getString(R.string.tab_title_information);
-                    default:
-                        throw new IllegalStateException();
-                }
+                return 4;
             }
         });
 

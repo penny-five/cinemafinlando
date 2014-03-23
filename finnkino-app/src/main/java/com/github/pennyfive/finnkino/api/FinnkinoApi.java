@@ -30,7 +30,7 @@ import java.util.Map.Entry;
 import javax.inject.Inject;
 
 /**
- *
+ * TODO replace entire thing with Retrofit service
  */
 public class FinnkinoApi {
     private static final String SCHEME = "http";

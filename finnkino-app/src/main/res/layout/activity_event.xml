@@ -31,33 +31,25 @@
         android:background="@android:color/black"/>
 
 
-    <ImageView
-        android:id="@+id/poster"
-        android:layout_width="89dp"
-        android:layout_height="120dp"
-        android:layout_below="@id/image"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="-20dp"
-        android:background="@drawable/event_poster_background"
-        android:scaleType="fitXY"
-        />
-
     <LinearLayout
-        android:id="@+id/details_layout"
+        android:id="@+id/details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="98dp"
+        android:paddingTop="8dp"
+        android:paddingRight="8dp"
+        android:minHeight="108dp"
+        android:background="@drawable/details_background"
         android:layout_below="@id/image"
-        android:layout_marginBottom="8dp"
-        android:layout_toRightOf="@id/poster"
-        android:minHeight="100dp"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:paddingBottom="8dp">
 
         <com.github.pennyfive.finnkino.ui.CustomTypefaceTextView
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:textStyle="italic"
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@android:color/white"
@@ -70,7 +62,7 @@
             android:layout_marginBottom="8dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@android:color/white"
+            android:textColor="#5674b9"
             tools:text="List of genres"/>
 
         <com.github.pennyfive.finnkino.ui.CustomTypefaceTextView
@@ -79,23 +71,34 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="@android:color/white"
+            android:textColor="#5674b9"
             tools:text="Duration in minutes"/>
     </LinearLayout>
 
-
     <com.github.pennyfive.finnkino.ui.SimplePagerTabWidget
         android:id="@+id/tabs"
-        style="@android:style/Widget.Holo.TabWidget"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_below="@id/details_layout"/>
+        android:background="#5674b9"
+        android:layout_below="@id/details"/>
+
+    <ImageView
+        android:id="@+id/poster"
+        android:layout_width="81dp"
+        android:layout_height="120dp"
+        android:layout_below="@id/image"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="-20dp"
+        android:background="@drawable/event_poster_background"
+        android:scaleType="fitXY"
+        />
 
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#f9f9f9"
         android:layout_alignParentBottom="true"
         android:layout_below="@id/tabs"/>
 

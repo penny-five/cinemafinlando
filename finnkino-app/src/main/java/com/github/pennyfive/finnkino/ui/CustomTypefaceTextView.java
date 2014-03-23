@@ -19,6 +19,10 @@ package com.github.pennyfive.finnkino.ui;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -28,18 +32,6 @@ import com.github.pennyfive.finnkino.R;
  * Custom {@link android.widget.TextView} that obtains typeface value from XML attributes and sets it automatically.
  */
 public class CustomTypefaceTextView extends TextView {
-
-    public enum CustomTypeface {
-        FJALLA(0, "FjallaOne-Regular.ttf");
-
-        private final int type;
-        private final String filename;
-
-        CustomTypeface(int type, String filename) {
-            this.type = type;
-            this.filename = filename;
-        }
-    }
 
     public CustomTypefaceTextView(Context context) {
         super(context);
@@ -68,6 +60,48 @@ public class CustomTypefaceTextView extends TextView {
     }
 
     public void setCustomTypeface(CustomTypeface typeface) {
-        setTypeface(Typeface.createFromAsset(getResources().getAssets(), typeface.filename));
+        if (!isInEditMode()) {
+            setTypeface(Typeface.createFromAsset(getResources().getAssets(), typeface.filename));
+        }
+    }
+
+    public enum CustomTypeface {
+        ROBOTO_LIGHT(0, "Roboto-Light.ttf");
+
+        private final int type;
+        private final String filename;
+
+        private CustomTypeface(int type, String filename) {
+            this.type = type;
+            this.filename = filename;
+        }
+
+        public String getFilename() {
+            return filename;
+        }
+
+        public SpannableString wrap(Context context, String src) {
+            SpannableString spannable = new SpannableString(src);
+            spannable.setSpan(new CustomTypefaceSpan(context, this), 0, src.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+            return spannable;
+        }
+    }
+
+    private static class CustomTypefaceSpan extends MetricAffectingSpan {
+        private final Typeface typeface;
+
+        public CustomTypefaceSpan(Context context, CustomTypeface typeface) {
+            this.typeface = Typeface.createFromAsset(context.getAssets(), typeface.getFilename());
+        }
+
+        @Override
+        public void updateMeasureState(TextPaint p) {
+            p.setTypeface(typeface);
+        }
+
+        @Override
+        public void updateDrawState(TextPaint tp) {
+            tp.setTypeface(typeface);
+        }
     }
 }

@@ -16,19 +16,17 @@
   ~ limitations under the License.
   -->
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:textColor="@android:color/black"
-        android:textSize="14sp"
-        tools:text="Lorem ipsum"/>
-</ScrollView>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@android:color/black"/>
+        </shape>
+    </item>
+    <item
+        android:top="1dp"
+        android:bottom="1dp">
+        <shape>
+            <solid android:color="#161616"/>
+        </shape>
+    </item>
+</layer-list>

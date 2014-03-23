@@ -15,11 +15,10 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-          style="@android:style/Widget.Holo.Tab"
-          android:textColor="@android:color/white"
-          android:orientation="vertical"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent">
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+           android:background="@drawable/tab_indicator_ab_dark"
+           android:scaleType="centerInside"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
 
-</TextView>
+</ImageView>

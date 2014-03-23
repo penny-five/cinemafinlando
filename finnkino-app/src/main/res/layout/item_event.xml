@@ -17,6 +17,7 @@
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
              android:orientation="vertical"
              android:layout_width="match_parent"
              android:layout_height="wrap_content">
@@ -26,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <TextView
+    <com.github.pennyfive.finnkino.ui.CustomTypefaceTextView
         android:id="@+id/text"
         android:textColor="@android:color/white"
         android:textSize="16sp"
@@ -34,7 +35,10 @@
         android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_gravity="bottom|left"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:customTypeface="roboto_light"/>
 
 
 </FrameLayout>

@@ -17,16 +17,18 @@
 package com.github.pennyfive.finnkino.ui;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffColorFilter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.github.pennyfive.finnkino.R;
 
@@ -52,18 +54,40 @@ public class SimplePagerTabWidget extends LinearLayout implements OnClickListene
         this.pager = pager;
         PagerAdapter adapter = pager.getAdapter();
         for (int i = 0; i < adapter.getCount(); i++) {
-            addTab(adapter.getPageTitle(i));
+            addTab(i);
         }
         setSelection(pager.getCurrentItem());
         pager.setOnPageChangeListener(this);
     }
 
-    private void addTab(CharSequence title) {
-        TextView view = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.simple_tab_item, null);
-        view.setText(title);
-        view.setTag(getChildCount());
+    private void addTab(int position) {
+        ImageView view = (ImageView) LayoutInflater.from(getContext()).inflate(R.layout.simple_tab_item, null);
+        int resid = 0;
+        // TODO remove hardcoded icon ids
+        switch (position) {
+            case 0:
+                resid = R.drawable.ic_event_synopsis;
+                break;
+            case 1:
+                resid = R.drawable.ic_event_showtimes;
+                break;
+            case 2:
+                resid = R.drawable.ic_event_information;
+                break;
+            case 3:
+                resid = R.drawable.ic_event_media;
+                break;
+        }
+
         view.setOnClickListener(this);
-        view.setGravity(Gravity.CENTER);
+        view.setTag(getChildCount());
+
+        view.setImageResource(resid);
+
+        /* I should be less lazy and create icons that already have proper alpha and color */
+        view.setAlpha(0.8f);
+        view.setColorFilter(new PorterDuffColorFilter(Color.BLACK, Mode.SRC_IN));
+
         addView(view, new LayoutParams(0, LayoutParams.MATCH_PARENT, 1));
         setWeightSum(getChildCount());
     }

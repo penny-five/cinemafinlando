@@ -90,6 +90,11 @@ public class EventListFragment extends QueryListFragment<Event, Events> {
     protected void bindView(Context context, View view, Event event) {
         ((TextView) view.findViewById(R.id.text)).setText(event.getTitle());
         picasso.load(event.getImageUrl(Show.SIZE_LANDSCAPE_LARGE)).into((ImageView) view.findViewById(R.id.image));
+//        ObjectAnimator scaleXAnimator = ObjectAnimator.ofFloat(view, "scaleX", 0.95f, 1f);
+//        ObjectAnimator scaleYAnimator = ObjectAnimator.ofFloat(view, "scaleY", 0.95f, 1f);
+//        AnimatorSet set = new AnimatorSet().setDuration(500);
+//        set.playTogether(scaleXAnimator, scaleYAnimator);
+//        set.start();
     }
 
     @Override

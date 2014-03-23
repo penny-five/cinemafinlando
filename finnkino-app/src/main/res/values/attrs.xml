@@ -18,7 +18,7 @@
 <resources>
     <declare-styleable name="CustomTypefaceTextView">
         <attr name="customTypeface" format="enum">
-            <enum name="fjalla" value="0"/>
+            <enum name="roboto_light" value="0"/>
         </attr>
     </declare-styleable>
 </resources>
