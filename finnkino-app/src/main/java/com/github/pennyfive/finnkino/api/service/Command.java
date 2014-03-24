@@ -14,22 +14,12 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.finnkino.api;
-
-import com.github.pennyfive.finnkino.api.model.TheatreAreas;
+package com.github.pennyfive.finnkino.api.service;
 
 /**
  *
  */
-public class GetTheatreAreasCommand extends ApiCommand<TheatreAreas> {
+public interface Command<T> {
 
-    @Override
-    String getPath() {
-        return "TheatreAreas";
-    }
-
-    @Override
-    Class<TheatreAreas> getTypeClass() {
-        return TheatreAreas.class;
-    }
+    T execute(FinnkinoService service);
 }

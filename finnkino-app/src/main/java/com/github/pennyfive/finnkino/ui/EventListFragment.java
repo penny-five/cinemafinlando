@@ -26,14 +26,12 @@ import android.widget.TextView;
 import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
 import com.github.pennyfive.finnkino.FinnkinoIntents;
 import com.github.pennyfive.finnkino.R;
-import com.github.pennyfive.finnkino.api.ApiCommand;
-import com.github.pennyfive.finnkino.api.GetComingSoonCommand;
-import com.github.pennyfive.finnkino.api.GetNowInTheatresCommand;
-import com.github.pennyfive.finnkino.api.GetTheatreAreaEventsCommand;
 import com.github.pennyfive.finnkino.api.model.Event;
 import com.github.pennyfive.finnkino.api.model.Events;
 import com.github.pennyfive.finnkino.api.model.Show;
 import com.github.pennyfive.finnkino.api.model.TheatreArea;
+import com.github.pennyfive.finnkino.api.service.Command;
+import com.github.pennyfive.finnkino.api.service.GetEventsCommand;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
@@ -67,15 +65,15 @@ public class EventListFragment extends QueryListFragment<Event, Events> {
     }
 
     @Override
-    protected ApiCommand<Events> onCreateCommand() {
+    protected Command<Events> onCreateCommand() {
         Bundle args = getArguments();
         switch (args.getString(EXTRA_LIST_TYPE)) {
             case LIST_TYPE_COMING_SOON:
-                return new GetComingSoonCommand();
+                return GetEventsCommand.comingSoon();
             case LIST_TYPE_NOW_IN_THEATRES:
-                return new GetNowInTheatresCommand();
+                return GetEventsCommand.nowInTheatres();
             case LIST_TYPE_THEATRE_AREA:
-                return new GetTheatreAreaEventsCommand((TheatreArea) args.get(FinnkinoIntents.EXTRA_THEATRE_AREA));
+                return GetEventsCommand.nowInTheatres((TheatreArea) args.get(FinnkinoIntents.EXTRA_THEATRE_AREA));
             default:
                 throw new IllegalStateException();
         }

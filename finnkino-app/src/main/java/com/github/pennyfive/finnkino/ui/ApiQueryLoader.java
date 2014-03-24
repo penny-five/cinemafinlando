@@ -20,22 +20,20 @@ import android.content.Context;
 import android.support.v4.content.AsyncTaskLoader;
 
 import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
-import com.github.pennyfive.finnkino.api.ApiCommand;
-import com.github.pennyfive.finnkino.api.FinnkinoApi;
-
-import java.io.IOException;
+import com.github.pennyfive.finnkino.api.service.Command;
+import com.github.pennyfive.finnkino.api.service.FinnkinoService;
 
 import javax.inject.Inject;
 
 /**
- * For querying {@link FinnkinoApi} using Loader framework.
+ * For querying {@link FinnkinoService} using Loader framework.
  */
 public final class ApiQueryLoader<T> extends AsyncTaskLoader<T> {
-    @Inject FinnkinoApi api;
-    private final ApiCommand<T> command;
+    @Inject FinnkinoService service;
+    private final Command<T> command;
     private T data;
 
-    public ApiQueryLoader(Context context, ApiCommand<T> command) {
+    public ApiQueryLoader(Context context, Command<T> command) {
         super(context);
         this.command = command;
         InjectUtils.injectMembers(this);
@@ -57,12 +55,7 @@ public final class ApiQueryLoader<T> extends AsyncTaskLoader<T> {
 
     @Override
     public T loadInBackground() {
-        try {
-            return api.execute(command);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return command.execute(service);
     }
 
     @Override

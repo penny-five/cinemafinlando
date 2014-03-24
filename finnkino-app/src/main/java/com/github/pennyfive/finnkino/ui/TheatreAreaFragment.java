@@ -21,10 +21,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.github.pennyfive.finnkino.api.ApiCommand;
-import com.github.pennyfive.finnkino.api.GetTheatreAreasCommand;
 import com.github.pennyfive.finnkino.api.model.TheatreArea;
 import com.github.pennyfive.finnkino.api.model.TheatreAreas;
+import com.github.pennyfive.finnkino.api.service.Command;
+import com.github.pennyfive.finnkino.api.service.GetTheatreAreasCommand;
 
 /**
  *
@@ -36,7 +36,7 @@ public class TheatreAreaFragment extends QueryListFragment<TheatreArea, TheatreA
     }
 
     @Override
-    protected ApiCommand<TheatreAreas> onCreateCommand() {
+    protected Command<TheatreAreas> onCreateCommand() {
         return new GetTheatreAreasCommand();
     }
 

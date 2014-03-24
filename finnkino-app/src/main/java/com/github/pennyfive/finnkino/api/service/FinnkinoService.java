@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.finnkino.api;
+package com.github.pennyfive.finnkino.api.service;
 
-import com.github.pennyfive.finnkino.api.model.Schedule;
+import com.github.pennyfive.finnkino.api.model.Events;
+import com.github.pennyfive.finnkino.api.model.TheatreAreas;
+
+import retrofit.http.GET;
+import retrofit.http.Query;
 
 /**
  *
  */
-public class GetScheduleCommand extends ApiCommand<Schedule> {
+public interface FinnkinoService {
 
-    @Override
-    String getPath() {
-        return "Schedule";
-    }
+    @GET("/events")
+    public Events getEvents(@Query("listType") String listType, @Query("area") String area);
 
-    @Override
-    Class<Schedule> getTypeClass() {
-        return Schedule.class;
-    }
+    @GET("/theatreAreas")
+    public TheatreAreas getTheatreAreas();
 }

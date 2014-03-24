@@ -29,8 +29,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.github.pennyfive.finnkino.R;
-import com.github.pennyfive.finnkino.api.ApiCommand;
 import com.github.pennyfive.finnkino.api.model.Container;
+import com.github.pennyfive.finnkino.api.service.Command;
 
 import java.util.List;
 
@@ -88,7 +88,7 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
         return new ApiQueryLoader<>(getActivity(), onCreateCommand());
     }
 
-    protected abstract ApiCommand<S> onCreateCommand();
+    protected abstract Command<S> onCreateCommand();
 
     @Override
     public final void onLoadFinished(Loader<S> loader, S data) {

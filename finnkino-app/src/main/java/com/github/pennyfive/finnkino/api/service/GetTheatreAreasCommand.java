@@ -14,31 +14,17 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.finnkino.api;
+package com.github.pennyfive.finnkino.api.service;
 
-import com.github.pennyfive.finnkino.api.model.Events;
-
-import java.util.Map;
+import com.github.pennyfive.finnkino.api.model.TheatreAreas;
 
 /**
  *
  */
-public abstract class GetEventsCommand extends ApiCommand<Events> {
-    protected final String PARAM_LIST_TYPE = "listType";
-    protected final String PARAM_AREA = "area";
-    protected final String PARAM_DATE = "dt";
-    protected final String PARAM_EVENT_ID = "eventID";
+public class GetTheatreAreasCommand implements Command<TheatreAreas> {
 
     @Override
-    final String getPath() {
-        return "Events";
-    }
-
-    @Override
-    abstract protected void onSetQueryParams(Map<String, String> params);
-
-    @Override
-    final Class<Events> getTypeClass() {
-        return Events.class;
+    public TheatreAreas execute(FinnkinoService service) {
+        return service.getTheatreAreas();
     }
 }
