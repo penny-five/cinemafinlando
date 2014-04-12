@@ -47,13 +47,23 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
         }
 
         @Override
-        public View newView(Context context, LayoutInflater inflater) {
-            return QueryListFragment.this.newView(context, inflater);
+        public View newView(Context context, LayoutInflater inflater, int position) {
+            return QueryListFragment.this.newView(context, inflater, getItem(position));
         }
 
         @Override
         public void bindView(Context context, View view, T item) {
             QueryListFragment.this.bindView(context, view, item);
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return QueryListFragment.this.getViewTypeCount();
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            return QueryListFragment.this.getItemViewType(position);
         }
     }
 
@@ -102,17 +112,33 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
 
     }
 
-    protected final T getItem(int position) {
-        return adapter.getItem(position);
+    protected final void addHeaderView(View v) {
+        listView.addHeaderView(v);
+    }
+
+    protected final void addHeaderView(View v, Object data, boolean isSelectable) {
+        listView.addHeaderView(v, data, isSelectable);
     }
 
     protected final ListView getListView() {
         return listView;
     }
 
-    protected abstract View newView(Context context, LayoutInflater inflater);
+    protected final T getItem(int position) {
+        return adapter.getItem(position);
+    }
+
+    protected abstract View newView(Context context, LayoutInflater inflater, T item);
 
     protected abstract void bindView(Context context, View view, T item);
+
+    protected int getViewTypeCount() {
+        return 1;
+    }
+
+    protected int getItemViewType(int position) {
+        return 0;
+    }
 
     protected void onHeaderClick(int position, View view) {}
 

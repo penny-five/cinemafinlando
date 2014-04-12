@@ -16,11 +16,15 @@
 
 package com.github.pennyfive.finnkino.api.model;
 
+import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -31,13 +35,33 @@ public class TheatreArea implements Parcelable {
     private String id;
     @Element(name = "Name")
     private String name;
+    private final List<TheatreArea> children = new ArrayList<>();
 
     public String getId() {
         return id;
     }
 
     public String getName() {
+        /* Individual theatres are returned from API in format "[City] :: [Theatre]". Don't want to use that format
+        in this app.
+         */
+        if (name.contains("::")) {
+            return name.substring(name.indexOf("::") + 3, name.length());
+        }
         return name;
+    }
+
+    public void addChildArea(TheatreArea child) {
+        children.add(child);
+    }
+
+    public boolean isChildArea() {
+        return name.contains("::");
+    }
+
+    public int getColor() {
+        int hash = name.hashCode();
+        return Color.rgb(hash % 255, hash % 255, hash % 255);
     }
 
     @Override
@@ -57,6 +81,7 @@ public class TheatreArea implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(name);
+        dest.writeList(children);
     }
 
     public static Creator<TheatreArea> CREATOR = new Creator<TheatreArea>() {
@@ -65,6 +90,7 @@ public class TheatreArea implements Parcelable {
             TheatreArea area = new TheatreArea();
             area.id = source.readString();
             area.name = source.readString();
+            source.readList(area.children, TheatreArea.class.getClassLoader());
             return area;
         }
 

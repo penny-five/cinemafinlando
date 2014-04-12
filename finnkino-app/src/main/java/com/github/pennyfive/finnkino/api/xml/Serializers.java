@@ -17,6 +17,7 @@
 package com.github.pennyfive.finnkino.api.xml;
 
 import com.github.pennyfive.finnkino.api.model.Images;
+import com.github.pennyfive.finnkino.api.model.TheatreAreas;
 
 import org.joda.time.DateTime;
 import org.simpleframework.xml.Serializer;
@@ -39,6 +40,7 @@ public class Serializers {
         try {
             registry.bind(DateTime.class, new DateTimeConverter());
             registry.bind(Images.class, new ImagesConverter());
+            registry.bind(TheatreAreas.class, new TheatreAreasConverter());
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }

@@ -16,7 +16,6 @@
 
 package com.github.pennyfive.finnkino.api.model;
 
-import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 import java.util.List;
@@ -26,11 +25,14 @@ import java.util.List;
  */
 @Root(strict = false)
 public class TheatreAreas implements Container<TheatreArea> {
-    @ElementList(entry = "TheatreArea", inline = true)
-    private List<TheatreArea> theatreAreas;
+    private final List<TheatreArea> areas;
+
+    public TheatreAreas(List<TheatreArea> areas) {
+        this.areas = areas;
+    }
 
     @Override
     public List<TheatreArea> getItems() {
-        return theatreAreas;
+        return areas;
     }
 }

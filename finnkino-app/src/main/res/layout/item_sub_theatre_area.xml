@@ -15,23 +15,19 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<android.support.v4.widget.DrawerLayout
+
+
+<com.github.pennyfive.finnkino.ui.CustomTypefaceTextView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawer_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/text"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <FrameLayout
-        android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/drawer_content"
-        android:layout_width="260dp"
-        android:layout_gravity="start"
-        android:layout_height="match_parent"
-        android:background="#161616">
-    </FrameLayout>
-</android.support.v4.widget.DrawerLayout>
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:textSize="18sp"
+    android:minHeight="48dp"
+    android:paddingRight="8dp"
+    android:drawablePadding="16dp"
+    android:drawableLeft="@drawable/item_sub_theatre_area_indicator"
+    android:textColor="@android:color/white"
+    app:customTypeface="roboto_light"/>

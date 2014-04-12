@@ -17,10 +17,12 @@
 package com.github.pennyfive.finnkino.ui;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.github.pennyfive.finnkino.R;
 import com.github.pennyfive.finnkino.api.model.TheatreArea;
 import com.github.pennyfive.finnkino.api.model.TheatreAreas;
 import com.github.pennyfive.finnkino.api.service.Command;
@@ -33,6 +35,10 @@ public class TheatreAreaFragment extends QueryListFragment<TheatreArea, TheatreA
 
     public interface Callbacks {
         void onTheatreAreaSelected(TheatreArea area);
+
+        void onUpcomingMoviesSelected();
+
+        void onNowPlayingMoviesSelected();
     }
 
     @Override
@@ -41,13 +47,47 @@ public class TheatreAreaFragment extends QueryListFragment<TheatreArea, TheatreA
     }
 
     @Override
-    protected View newView(Context context, LayoutInflater inflater) {
-        return inflater.inflate(android.R.layout.simple_list_item_1, null);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        addHeaderView(UiUtils.inflateWithText(getActivity(), R.layout.item_drawer, R.string.drawer_item_now_showing));
+        addHeaderView(UiUtils.inflateWithText(getActivity(), R.layout.item_drawer, R.string.drawer_item_coming_soon));
+        addHeaderView(UiUtils.inflateWithText(getActivity(), R.layout.item_drawer_title, R.string.drawer_divider_cinemas), null, false);
+    }
+
+    @Override
+    protected View newView(Context context, LayoutInflater inflater, TheatreArea area) {
+        int resid = area.isChildArea() ? R.layout.item_drawer_sub : R.layout.item_drawer;
+        return inflater.inflate(resid, null);
     }
 
     @Override
     protected void bindView(Context context, View view, TheatreArea item) {
-        ((TextView) view.findViewById(android.R.id.text1)).setText(item.getName());
+        ((TextView) view.findViewById(R.id.text)).setText(item.getName());
+    }
+
+    @Override
+    protected int getViewTypeCount() {
+        /* Uses different views for normal theatre areas and sub-theatre areas */
+        return 2;
+    }
+
+    @Override
+    protected int getItemViewType(int position) {
+        return getItem(position).isChildArea() ? 1 : 0;
+    }
+
+    @Override
+    protected void onHeaderClick(int position, View view) {
+        switch (position) {
+            case 0:
+                ((Callbacks) getActivity()).onNowPlayingMoviesSelected();
+                break;
+            case 1:
+                ((Callbacks) getActivity()).onUpcomingMoviesSelected();
+                break;
+            default:
+                throw new IllegalStateException("pos: " + position);
+        }
     }
 
     @Override

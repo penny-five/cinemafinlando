@@ -53,6 +53,7 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
                 R.string.drawer_open,
                 R.string.drawer_close
         );
+        drawer.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
         drawer.setDrawerListener(this);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);

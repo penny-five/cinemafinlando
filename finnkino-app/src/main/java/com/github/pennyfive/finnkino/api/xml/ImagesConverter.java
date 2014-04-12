@@ -27,7 +27,7 @@ import org.simpleframework.xml.stream.OutputNode;
 /**
  * Converts image url nodes received from Finnkino API to {@link com.github.pennyfive.finnkino.api.model.Images} instances.
  */
-public class ImagesConverter implements Converter<Images> {
+class ImagesConverter implements Converter<Images> {
 
     @Override
     public Images read(InputNode inputNode) throws Exception {

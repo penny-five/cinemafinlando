@@ -42,8 +42,25 @@ public class EventListActivity extends DrawerActivity implements TheatreAreaFrag
         Bundle args = new Bundle();
         args.putParcelable(FinnkinoIntents.EXTRA_THEATRE_AREA, area);
         args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_THEATRE_AREA);
-        setContentFragment(Fragments.instantiateWithArgs(EventListFragment.class, args));
+        showEventListFragmentWithArgs(args);
+    }
 
+    @Override
+    public void onUpcomingMoviesSelected() {
+        Bundle args = new Bundle();
+        args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_COMING_SOON);
+        showEventListFragmentWithArgs(args);
+    }
+
+    @Override
+    public void onNowPlayingMoviesSelected() {
+        Bundle args = new Bundle();
+        args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_NOW_IN_THEATRES);
+        showEventListFragmentWithArgs(args);
+    }
+
+    private void showEventListFragmentWithArgs(Bundle args) {
+        setContentFragment(Fragments.instantiateWithArgs(EventListFragment.class, args));
         closeDrawer();
     }
 

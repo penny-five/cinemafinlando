@@ -38,13 +38,13 @@ public abstract class BinderAdapter<T> extends ArrayAdapter<T> {
     @Override
     public final View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = newView(getContext(), inflater);
+            convertView = newView(getContext(), inflater, position);
         }
         bindView(getContext(), convertView, getItem(position));
         return convertView;
     }
 
-    public abstract View newView(Context context, LayoutInflater inflater);
+    public abstract View newView(Context context, LayoutInflater inflater, int position);
 
     public abstract void bindView(Context context, View view, T item);
 }

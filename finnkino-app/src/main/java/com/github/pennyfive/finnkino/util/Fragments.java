@@ -41,7 +41,9 @@ public class Fragments {
 
     private static Bundle intentToArgs(Intent intent) {
         Bundle args = new Bundle();
-        args.putAll(intent.getExtras());
+        if (intent != null) {
+            args.putAll(intent.getExtras());
+        }
         return args;
     }
 
