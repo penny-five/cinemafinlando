@@ -35,6 +35,8 @@ import com.github.pennyfive.finnkino.api.service.Command;
 import java.util.List;
 
 /**
+ * Base class for Fragments that get their data from Finnkino REST service. Takes care of instantiating queries, handling IO errors etc.
+ *
  * @param <T>
  * @param <S>
  */

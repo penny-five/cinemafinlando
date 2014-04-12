@@ -22,7 +22,6 @@ import android.os.Bundle;
 import com.github.pennyfive.finnkino.FinnkinoIntents;
 import com.github.pennyfive.finnkino.api.model.Event;
 import com.github.pennyfive.finnkino.api.model.TheatreArea;
-import com.github.pennyfive.finnkino.util.Fragments;
 
 public class EventListActivity extends DrawerActivity implements TheatreAreaFragment.Callbacks, EventListFragment.Callbacks {
 
@@ -32,7 +31,7 @@ public class EventListActivity extends DrawerActivity implements TheatreAreaFrag
 
         Bundle args = new Bundle();
         args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_NOW_IN_THEATRES);
-        setContentFragment(Fragments.instantiateWithArgs(EventListFragment.class, args));
+        setContentFragment(UiUtils.instantiateWithArgs(EventListFragment.class, args));
 
         setDrawerFragment(new TheatreAreaFragment());
     }
@@ -60,7 +59,7 @@ public class EventListActivity extends DrawerActivity implements TheatreAreaFrag
     }
 
     private void showEventListFragmentWithArgs(Bundle args) {
-        setContentFragment(Fragments.instantiateWithArgs(EventListFragment.class, args));
+        setContentFragment(UiUtils.instantiateWithArgs(EventListFragment.class, args));
         closeDrawer();
     }
 

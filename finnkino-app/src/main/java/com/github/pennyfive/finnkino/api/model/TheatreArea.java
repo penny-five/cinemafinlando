@@ -16,7 +16,6 @@
 
 package com.github.pennyfive.finnkino.api.model;
 
-import android.graphics.Color;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -42,9 +41,7 @@ public class TheatreArea implements Parcelable {
     }
 
     public String getName() {
-        /* Individual theatres are returned from API in format "[City] :: [Theatre]". Don't want to use that format
-        in this app.
-         */
+        /* Individual theatres are returned from API in format "[City] :: [Theatre]". Don't want to use that format. */
         if (name.contains("::")) {
             return name.substring(name.indexOf("::") + 3, name.length());
         }
@@ -57,11 +54,6 @@ public class TheatreArea implements Parcelable {
 
     public boolean isChildArea() {
         return name.contains("::");
-    }
-
-    public int getColor() {
-        int hash = name.hashCode();
-        return Color.rgb(hash % 255, hash % 255, hash % 255);
     }
 
     @Override

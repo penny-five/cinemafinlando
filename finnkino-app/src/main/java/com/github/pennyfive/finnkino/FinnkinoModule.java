@@ -40,7 +40,6 @@ import retrofit.converter.SimpleXMLConverter;
  */
 @Module(
         complete = true,
-        library = true,
         injects = {
                 FinnkinoApplication.class,
                 ApiQueryLoader.class,

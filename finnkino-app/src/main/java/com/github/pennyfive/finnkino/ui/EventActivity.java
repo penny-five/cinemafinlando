@@ -29,7 +29,6 @@ import com.github.pennyfive.finnkino.FinnkinoIntents;
 import com.github.pennyfive.finnkino.R;
 import com.github.pennyfive.finnkino.api.model.Event;
 import com.github.pennyfive.finnkino.ui.CustomTypefaceTextView.CustomTypeface;
-import com.github.pennyfive.finnkino.util.Fragments;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
@@ -78,7 +77,7 @@ public class EventActivity extends FragmentActivity {
             public Fragment getItem(int position) {
                 switch (position) {
                     case POS_SYNOPSIS:
-                        return Fragments.instantiateWithIntent(EventSynopsisFragment.class, getIntent());
+                        return UiUtils.instantiateWithIntent(EventSynopsisFragment.class, getIntent());
                     case POS_SHOW_TIMES:
                         return new Fragment();
                     case POS_INFORMATION:
