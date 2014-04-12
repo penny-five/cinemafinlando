@@ -45,9 +45,9 @@ public class Event implements Parcelable {
     private int lengthInMinutes;
     @Element(name = "Genres")
     private String genres;
-    @Element(name = "ShortSynopsis")
+    @Element(name = "ShortSynopsis", required = false)
     private String shortSynopsis;
-    @Element(name = "Synopsis")
+    @Element(name = "Synopsis", required = false)
     private String synopsis;
     @Element(name = "Images")
     private Images images;
