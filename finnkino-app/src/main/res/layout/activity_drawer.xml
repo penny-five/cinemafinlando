@@ -29,7 +29,7 @@
 
     <FrameLayout
         android:id="@+id/drawer_content"
-        android:layout_width="260dp"
+        android:layout_width="@dimen/navigation_drawer_width"
         android:layout_gravity="start"
         android:layout_height="match_parent"
         android:background="#161616">

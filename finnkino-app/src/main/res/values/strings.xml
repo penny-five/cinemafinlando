@@ -21,7 +21,6 @@
     <string name="app_name">Finnkino</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
     <string name="minutes"> %s min</string>
 
     <string name="drawer_item_now_showing">Now Showing</string>
