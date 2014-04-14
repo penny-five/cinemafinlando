@@ -22,6 +22,7 @@ import com.github.pennyfive.finnkino.api.service.FinnkinoService;
 import com.github.pennyfive.finnkino.api.xml.Serializers;
 import com.github.pennyfive.finnkino.ui.ApiQueryLoader;
 import com.github.pennyfive.finnkino.ui.EventActivity;
+import com.github.pennyfive.finnkino.ui.EventGalleryFragment;
 import com.github.pennyfive.finnkino.ui.EventListActivity;
 import com.github.pennyfive.finnkino.ui.EventListFragment;
 import com.github.pennyfive.finnkino.ui.TheatreAreaFragment;
@@ -43,10 +44,11 @@ import retrofit.converter.SimpleXMLConverter;
         injects = {
                 FinnkinoApplication.class,
                 ApiQueryLoader.class,
+                TheatreAreaFragment.class,
                 EventListActivity.class,
                 EventListFragment.class,
                 EventActivity.class,
-                TheatreAreaFragment.class
+                EventGalleryFragment.class
         }
 )
 public class FinnkinoModule {

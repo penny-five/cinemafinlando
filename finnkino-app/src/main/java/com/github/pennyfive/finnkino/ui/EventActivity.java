@@ -83,7 +83,7 @@ public class EventActivity extends FragmentActivity {
                     case POS_INFORMATION:
                         return new Fragment();
                     case POS_MEDIA:
-                        return new Fragment();
+                        return UiUtils.instantiateWithIntent(EventGalleryFragment.class, getIntent());
                     default:
                         throw new IllegalStateException();
                 }

@@ -27,7 +27,7 @@ import retrofit.http.Query;
  */
 public interface FinnkinoService {
 
-    @GET("/events")
+    @GET("/events/?includeGallery=true")
     public Events getEvents(@Query("listType") String listType, @Query("area") String area);
 
     @GET("/theatreAreas")

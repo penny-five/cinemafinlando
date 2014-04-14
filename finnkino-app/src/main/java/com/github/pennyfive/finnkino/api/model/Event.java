@@ -51,6 +51,8 @@ public class Event implements Parcelable {
     private String synopsis;
     @Element(name = "Images")
     private Images images;
+    @Element(name = "Gallery")
+    private Gallery gallery;
 
     public String getId() {
         return id;
@@ -88,6 +90,10 @@ public class Event implements Parcelable {
         return images.getUrl(size);
     }
 
+    public Gallery getGallery() {
+        return gallery;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -104,6 +110,7 @@ public class Event implements Parcelable {
         dest.writeString(shortSynopsis);
         dest.writeString(synopsis);
         dest.writeParcelable(images, 0);
+        dest.writeParcelable(gallery, 0);
     }
 
     public static Parcelable.Creator<Event> CREATOR = new Creator<Event>() {
@@ -120,6 +127,7 @@ public class Event implements Parcelable {
             event.shortSynopsis = source.readString();
             event.synopsis = source.readString();
             event.images = source.readParcelable(Event.class.getClassLoader());
+            event.gallery = source.readParcelable(Event.class.getClassLoader());
             return event;
         }
 
