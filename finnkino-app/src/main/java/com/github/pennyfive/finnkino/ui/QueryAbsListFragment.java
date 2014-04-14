@@ -27,7 +27,6 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
 
 import com.github.pennyfive.finnkino.R;
 import com.github.pennyfive.finnkino.api.model.Container;
@@ -41,7 +40,7 @@ import java.util.List;
  * @param <T>
  * @param <S>
  */
-public abstract class QueryListFragment<T, S extends Container<T>> extends Fragment
+public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Fragment
         implements LoaderManager.LoaderCallbacks<S>, OnItemClickListener {
 
     private class Adapter extends BinderAdapter<T> {
@@ -52,22 +51,22 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
 
         @Override
         public View newView(Context context, LayoutInflater inflater, int position) {
-            return QueryListFragment.this.newView(context, inflater, getItem(position));
+            return QueryAbsListFragment.this.newView(context, inflater, getItem(position));
         }
 
         @Override
         public void bindView(Context context, View view, T item) {
-            QueryListFragment.this.bindView(context, view, item);
+            QueryAbsListFragment.this.bindView(context, view, item);
         }
 
         @Override
         public int getViewTypeCount() {
-            return QueryListFragment.this.getViewTypeCount();
+            return QueryAbsListFragment.this.getViewTypeCount();
         }
 
         @Override
         public int getItemViewType(int position) {
-            return QueryListFragment.this.getItemViewType(position);
+            return QueryAbsListFragment.this.getItemViewType(position);
         }
     }
 

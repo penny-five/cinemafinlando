@@ -24,7 +24,6 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
@@ -43,7 +42,7 @@ import javax.inject.Inject;
 /**
  *
  */
-public class EventListFragment extends QueryListFragment<Event, Events> {
+public class EventListFragment extends QueryAbsListFragment<Event, Events> {
     public static final String EXTRA_LIST_TYPE = "list_type";
     public static final String LIST_TYPE_NOW_IN_THEATRES = "now_playing";
     public static final String LIST_TYPE_COMING_SOON = "coming_soon";

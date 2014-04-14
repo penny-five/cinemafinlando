@@ -17,7 +17,6 @@
 package com.github.pennyfive.finnkino.ui;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
@@ -34,7 +33,7 @@ import com.github.pennyfive.finnkino.api.service.GetTheatreAreasCommand;
 /**
  *
  */
-public class TheatreAreaFragment extends QueryListFragment<TheatreArea, TheatreAreas> {
+public class TheatreAreaFragment extends QueryAbsListFragment<TheatreArea, TheatreAreas> {
     private static final int NUM_HEADERS = 3;
 
     public interface Callbacks {
