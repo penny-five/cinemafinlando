@@ -20,6 +20,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.github.pennyfive.finnkino.R;
@@ -32,6 +35,7 @@ import com.github.pennyfive.finnkino.api.service.GetTheatreAreasCommand;
  *
  */
 public class TheatreAreaFragment extends QueryListFragment<TheatreArea, TheatreAreas> {
+    private static final int NUM_HEADERS = 3;
 
     public interface Callbacks {
         void onTheatreAreaSelected(TheatreArea area);
@@ -47,11 +51,16 @@ public class TheatreAreaFragment extends QueryListFragment<TheatreArea, TheatreA
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        addHeaderView(UiUtils.inflateWithText(getActivity(), R.layout.item_drawer, R.string.drawer_item_now_showing));
-        addHeaderView(UiUtils.inflateWithText(getActivity(), R.layout.item_drawer, R.string.drawer_item_coming_soon));
-        addHeaderView(UiUtils.inflateWithText(getActivity(), R.layout.item_drawer_title, R.string.drawer_divider_cinemas), null, false);
+    protected AbsListView createAbsListView() {
+        ListView view = new ListView(getActivity());
+        view.addHeaderView(inflateHeader(R.layout.item_drawer, R.string.drawer_item_now_showing));
+        view.addHeaderView(inflateHeader(R.layout.item_drawer, R.string.drawer_item_coming_soon));
+        view.addHeaderView(inflateHeader(R.layout.item_drawer_title, R.string.drawer_divider_cinemas), null, false);
+        return view;
+    }
+
+    private View inflateHeader(int layoutResid, int textResid) {
+        return UiUtils.inflateWithText(getActivity(), layoutResid, textResid);
     }
 
     @Override
@@ -77,7 +86,15 @@ public class TheatreAreaFragment extends QueryListFragment<TheatreArea, TheatreA
     }
 
     @Override
-    protected void onHeaderClick(int position, View view) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (position < NUM_HEADERS) {
+            onHeaderClick(position);
+        } else {
+            onItemClick(position - NUM_HEADERS);
+        }
+    }
+
+    private void onHeaderClick(int position) {
         switch (position) {
             case 0:
                 ((Callbacks) getActivity()).onNowPlayingMoviesSelected();
@@ -90,8 +107,8 @@ public class TheatreAreaFragment extends QueryListFragment<TheatreArea, TheatreA
         }
     }
 
-    @Override
-    protected void onItemClick(int position, View view, TheatreArea area) {
-        ((Callbacks) getActivity()).onTheatreAreaSelected(area);
+    private void onItemClick(int position) {
+        ((Callbacks) getActivity()).onTheatreAreaSelected(getItem(position));
     }
+
 }

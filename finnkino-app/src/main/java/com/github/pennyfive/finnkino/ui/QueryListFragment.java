@@ -24,6 +24,7 @@ import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -40,7 +41,8 @@ import java.util.List;
  * @param <T>
  * @param <S>
  */
-public abstract class QueryListFragment<T, S extends Container<T>> extends Fragment implements LoaderManager.LoaderCallbacks<S> {
+public abstract class QueryListFragment<T, S extends Container<T>> extends Fragment
+        implements LoaderManager.LoaderCallbacks<S>, OnItemClickListener {
 
     private class Adapter extends BinderAdapter<T> {
 
@@ -69,29 +71,20 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
         }
     }
 
-    private ListView listView;
+    private AbsListView absListView;
     private Adapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_query_list, container, false);
+        absListView = createAbsListView();
+        absListView.setId(R.id.list);
+        absListView.setOnItemClickListener(this);
+        return absListView;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        listView = (ListView) view.findViewById(R.id.list);
-        listView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position < listView.getHeaderViewsCount()) {
-                    QueryListFragment.this.onHeaderClick(position, view);
-                } else {
-                    position = position - listView.getHeaderViewsCount();
-                    QueryListFragment.this.onItemClick(position, view, adapter.getItem(position));
-                }
-            }
-        });
         getLoaderManager().initLoader(0, savedInstanceState, this);
     }
 
@@ -106,7 +99,7 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
     public final void onLoadFinished(Loader<S> loader, S data) {
         // TODO error handling for cases when data is null
         adapter = new Adapter(getActivity(), data.getItems());
-        listView.setAdapter(adapter);
+        absListView.setAdapter(adapter);
     }
 
     @Override
@@ -114,17 +107,12 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
 
     }
 
-    protected final void addHeaderView(View v) {
-        listView.addHeaderView(v);
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
     }
 
-    protected final void addHeaderView(View v, Object data, boolean isSelectable) {
-        listView.addHeaderView(v, data, isSelectable);
-    }
-
-    protected final ListView getListView() {
-        return listView;
-    }
+    protected abstract AbsListView createAbsListView();
 
     protected final T getItem(int position) {
         return adapter.getItem(position);
@@ -141,8 +129,4 @@ public abstract class QueryListFragment<T, S extends Container<T>> extends Fragm
     protected int getItemViewType(int position) {
         return 0;
     }
-
-    protected void onHeaderClick(int position, View view) {}
-
-    protected void onItemClick(int position, View view, T item) {}
 }

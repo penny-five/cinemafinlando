@@ -20,7 +20,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
@@ -58,13 +62,6 @@ public class EventListFragment extends QueryListFragment<Event, Events> {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        getListView().setDividerHeight(UiUtils.pixelsFromResource(getActivity(), R.dimen.event_list_divider_height));
-        getListView().setDrawSelectorOnTop(true);
-    }
-
-    @Override
     protected Command<Events> onCreateCommand() {
         Bundle args = getArguments();
         switch (args.getString(EXTRA_LIST_TYPE)) {
@@ -80,6 +77,17 @@ public class EventListFragment extends QueryListFragment<Event, Events> {
     }
 
     @Override
+    protected AbsListView createAbsListView() {
+        GridView view = new GridView(getActivity());
+        int spacing = UiUtils.pixelsFromResource(getActivity(), R.dimen.event_grid_spacing);
+        view.setHorizontalSpacing(spacing);
+        view.setVerticalSpacing(spacing);
+        view.setNumColumns(getResources().getInteger(R.integer.event_list_columns));
+        view.setDrawSelectorOnTop(true);
+        return view;
+    }
+
+    @Override
     protected View newView(Context context, LayoutInflater inflater, Event event) {
         return inflater.inflate(R.layout.item_event, null);
     }
@@ -91,7 +99,7 @@ public class EventListFragment extends QueryListFragment<Event, Events> {
     }
 
     @Override
-    protected void onItemClick(int position, View view, Event event) {
-        ((Callbacks) getActivity()).onEventSelected(event);
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        ((Callbacks) getActivity()).onEventSelected(getItem(position));
     }
 }
