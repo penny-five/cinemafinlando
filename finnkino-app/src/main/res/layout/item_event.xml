@@ -17,29 +17,68 @@
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:orientation="vertical">
 
     <com.github.pennyfive.finnkino.ui.FixedAspectRatioImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:aspectRatio="@dimen/promo_image_aspect_ratio" />
+        app:aspectRatio="@dimen/promo_image_aspect_ratio"/>
 
-    <com.github.pennyfive.finnkino.ui.CustomTypefaceTextView
-        android:id="@+id/text"
+    <LinearLayout
+        android:id="@+id/bottom_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|left"
-        android:background="@drawable/item_show_fade_bg"
-        android:ellipsize="end"
-        android:maxLines="1"
+        android:layout_gravity="bottom"
+        android:background="#64000000"
+        android:gravity="center_vertical"
         android:padding="8dp"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        app:customTypeface="roboto_light" />
+        android:orientation="horizontal">
 
+        <com.github.pennyfive.finnkino.ui.CustomTypefaceTextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:background="#5674b9"
+            android:paddingLeft="4dp"
+            android:visibility="gone"
+            android:paddingRight="4dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:textColor="@android:color/white"
+            app:customTypeface="roboto_light"
+            tools:text="10.10.2015"/>
 
+        <com.github.pennyfive.finnkino.ui.CustomTypefaceTextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginRight="8dp"
+            android:background="@android:color/holo_red_light"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:textColor="@android:color/white"
+            app:customTypeface="roboto_light"
+            tools:text="10.10.2015"/>
+
+        <com.github.pennyfive.finnkino.ui.CustomTypefaceTextView
+            android:id="@+id/text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            app:customTypeface="roboto_light"/>
+    </LinearLayout>
 </FrameLayout>

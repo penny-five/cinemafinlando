@@ -22,7 +22,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,6 +35,7 @@ import com.github.pennyfive.finnkino.api.model.TheatreArea;
 import com.github.pennyfive.finnkino.api.service.Command;
 import com.github.pennyfive.finnkino.api.service.GetEventsCommand;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import javax.inject.Inject;
 
@@ -77,13 +77,7 @@ public class EventListFragment extends QueryAbsListFragment<Event, Events> {
 
     @Override
     protected AbsListView createAbsListView() {
-        GridView view = new GridView(getActivity());
-        int spacing = UiUtils.pixelsFromResource(getActivity(), R.dimen.event_grid_spacing);
-        view.setHorizontalSpacing(spacing);
-        view.setVerticalSpacing(spacing);
-        view.setNumColumns(getResources().getInteger(R.integer.event_list_columns));
-        view.setDrawSelectorOnTop(true);
-        return view;
+        return (AbsListView) LayoutInflater.from(getActivity()).inflate(R.layout.fragment_event_list, null);
     }
 
     @Override
@@ -92,9 +86,10 @@ public class EventListFragment extends QueryAbsListFragment<Event, Events> {
     }
 
     @Override
-    protected void bindView(Context context, View view, Event event) {
+    protected void bindView(Context context, final View view, Event event) {
         ((TextView) view.findViewById(R.id.text)).setText(event.getTitle());
-        picasso.load(event.getImageUrl(Show.SIZE_LANDSCAPE_LARGE)).into((ImageView) view.findViewById(R.id.image));
+        Transformation transform = new EventBackgroundBlurTransformation(view);
+        picasso.load(event.getImageUrl(Show.SIZE_LANDSCAPE_LARGE)).transform(transform).into((ImageView) view.findViewById(R.id.image));
     }
 
     @Override

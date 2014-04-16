@@ -21,6 +21,8 @@ android {
         minSdkVersion 14
         targetSdkVersion 19
         testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
+        renderscriptTargetApi 19
+        renderscriptSupportMode true
     }
 
     compileOptions {
