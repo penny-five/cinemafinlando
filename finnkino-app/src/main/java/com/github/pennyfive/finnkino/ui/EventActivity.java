@@ -25,7 +25,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
-import com.github.pennyfive.finnkino.FinnkinoIntents;
 import com.github.pennyfive.finnkino.R;
 import com.github.pennyfive.finnkino.api.model.Event;
 import com.github.pennyfive.finnkino.ui.CustomTypefaceTextView.CustomTypeface;
@@ -54,7 +53,7 @@ public class EventActivity extends FragmentActivity {
         setContentView(R.layout.activity_event);
         InjectUtils.injectAll(this);
 
-        Event event = getIntent().getParcelableExtra(FinnkinoIntents.EXTRA_EVENT);
+        Event event = new Event();
 
         getActionBar().setTitle(CustomTypeface.ROBOTO_LIGHT.wrap(this, event.getTitle()));
         getActionBar().setDisplayHomeAsUpEnabled(true);

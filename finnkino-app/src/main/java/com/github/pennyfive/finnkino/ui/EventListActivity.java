@@ -16,7 +16,6 @@
 
 package com.github.pennyfive.finnkino.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.github.pennyfive.finnkino.FinnkinoIntents;
@@ -65,8 +64,8 @@ public class EventListActivity extends DrawerActivity implements TheatreAreaFrag
 
     @Override
     public void onEventSelected(Event event) {
-        Intent intent = new Intent(FinnkinoIntents.ACTION_VIEW_EVENT);
-        intent.putExtra(FinnkinoIntents.EXTRA_EVENT, event);
-        startActivity(intent);
+        //Intent intent = new Intent(FinnkinoIntents.ACTION_VIEW_EVENT);
+        //intent.putExtra(FinnkinoIntents.EXTRA_EVENT, event);
+        //startActivity(intent);
     }
 }
