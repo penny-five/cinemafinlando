@@ -52,6 +52,7 @@ public class TheatreAreaFragment extends QueryAbsListFragment<TheatreArea, Theat
     @Override
     protected AbsListView createAbsListView() {
         ListView view = new ListView(getActivity());
+        view.setDividerHeight(0);
         view.addHeaderView(inflateHeader(R.layout.item_drawer, R.string.drawer_item_now_showing));
         view.addHeaderView(inflateHeader(R.layout.item_drawer, R.string.drawer_item_coming_soon));
         view.addHeaderView(inflateHeader(R.layout.item_drawer_title, R.string.drawer_divider_cinemas), null, false);
@@ -109,5 +110,4 @@ public class TheatreAreaFragment extends QueryAbsListFragment<TheatreArea, Theat
     private void onItemClick(int position) {
         ((Callbacks) getActivity()).onTheatreAreaSelected(getItem(position));
     }
-
 }

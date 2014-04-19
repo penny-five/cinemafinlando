@@ -26,9 +26,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.github.pennyfive.finnkino.FinnkinoApplication.InjectUtils;
-import com.github.pennyfive.finnkino.FinnkinoIntents;
 import com.github.pennyfive.finnkino.R;
-import com.github.pennyfive.finnkino.api.model.Event;
 import com.github.pennyfive.finnkino.api.model.Gallery;
 import com.github.pennyfive.finnkino.api.model.GalleryImage;
 import com.squareup.picasso.Picasso;
@@ -54,8 +52,8 @@ public class EventGalleryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         InjectUtils.injectAll(this, view);
 
-        Event event = getArguments().getParcelable(FinnkinoIntents.EXTRA_EVENT);
-        gridView.setAdapter(new GalleryImageAdapter(event.getGallery()));
+        //Event event = getArguments().getParcelable(FinnkinoIntents.EXTRA_EVENT);
+        //gridView.setAdapter(new GalleryImageAdapter(event.getGallery()));
     }
 
     private class GalleryImageAdapter extends BinderAdapter<GalleryImage> {

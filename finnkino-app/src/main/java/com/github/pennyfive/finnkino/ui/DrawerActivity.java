@@ -27,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.github.pennyfive.finnkino.R;
+import com.github.pennyfive.finnkino.ui.CustomTypefaceTextView.CustomTypeface;
 
 /**
  * Base class for Activities that use {@link android.support.v4.widget.DrawerLayout}.
@@ -49,7 +50,7 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
         drawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawer,
-                R.drawable.ic_drawer,
+                R.drawable.cinemafinlando_ic_navigation_drawer,
                 R.string.drawer_open,
                 R.string.drawer_close
         );
@@ -70,8 +71,12 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
     protected final void setActionBarTitle(String title) {
         actionBarTitle = title;
         if (!drawer.isDrawerOpen(Gravity.START)) {
-            getActionBar().setTitle(actionBarTitle);
+            updateActionBarTitle(title);
         }
+    }
+
+    private final void updateActionBarTitle(String title) {
+        getActionBar().setTitle(CustomTypeface.ROBOTO_CONDENSED.wrap(this, title));
     }
 
     @Override
@@ -88,14 +93,14 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
     @Override
     public void onDrawerOpened(View drawerView) {
         drawerToggle.onDrawerOpened(drawerView);
-        getActionBar().setTitle(R.string.app_name);
+        updateActionBarTitle(getString(R.string.app_name));
         invalidateOptionsMenu();
     }
 
     @Override
     public void onDrawerClosed(View drawerView) {
         drawerToggle.onDrawerClosed(drawerView);
-        getActionBar().setTitle(actionBarTitle);
+        updateActionBarTitle(actionBarTitle);
         invalidateOptionsMenu();
     }
 

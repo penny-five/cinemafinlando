@@ -66,7 +66,8 @@ public class CustomTypefaceTextView extends TextView {
     }
 
     public enum CustomTypeface {
-        ROBOTO_LIGHT(0, "Roboto-Light.ttf");
+        ROBOTO_LIGHT(0, "Roboto-Light.ttf"),
+        ROBOTO_CONDENSED(0, "RobotoCondensed-Regular.ttf");
 
         private final int type;
         private final String filename;
@@ -81,6 +82,7 @@ public class CustomTypefaceTextView extends TextView {
         }
 
         public SpannableString wrap(Context context, String src) {
+            src = src != null ? src : "";
             SpannableString spannable = new SpannableString(src);
             spannable.setSpan(new CustomTypefaceSpan(context, this), 0, src.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
             return spannable;

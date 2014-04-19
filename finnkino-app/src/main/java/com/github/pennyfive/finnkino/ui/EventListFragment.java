@@ -89,7 +89,8 @@ public class EventListFragment extends QueryAbsListFragment<Event, Events> {
     protected void bindView(Context context, final View view, Event event) {
         ((TextView) view.findViewById(R.id.text)).setText(event.getTitle());
         Transformation transform = new EventBackgroundBlurTransformation(view);
-        picasso.load(event.getImageUrl(Show.SIZE_LANDSCAPE_LARGE)).transform(transform).into((ImageView) view.findViewById(R.id.image));
+        ImageView target = (ImageView) view.findViewById(R.id.image);
+        picasso.load(event.getImageUrl(Show.SIZE_LANDSCAPE_LARGE)).placeholder(R.drawable.event_placeholder).transform(transform).into(target);
     }
 
     @Override
