@@ -16,7 +16,6 @@
 
 package com.github.pennyfive.cinemafinlando.ui;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -35,19 +34,20 @@ import com.squareup.picasso.Transformation;
  * TODO need to optimize and add some comments
  */
 public class EventBackgroundBlurTransformation implements Transformation {
-    private final Context context;
+    private final RenderScript rs;
+    private final String key;
     private final float blurPortion;
 
-    public EventBackgroundBlurTransformation(View eventListItem) {
-        this.context = eventListItem.getContext().getApplicationContext();
+    public EventBackgroundBlurTransformation(RenderScript rs, View eventListItem) {
+        this.rs = rs;
+        key = String.valueOf(rs.getApplicationContext().getResources().getConfiguration().orientation);
         View bottomFrame = eventListItem.findViewById(R.id.bottom_frame);
-        this.blurPortion = bottomFrame.getMeasuredHeight() / (float) eventListItem.getMeasuredHeight();
+        blurPortion = bottomFrame.getMeasuredHeight() / (float) eventListItem.getMeasuredHeight();
     }
 
     @Override
     public Bitmap transform(Bitmap source) {
         Bitmap out = Bitmap.createBitmap(source.getWidth(), source.getHeight(), source.getConfig());
-        RenderScript rs = RenderScript.create(context);
         Allocation input = Allocation.createFromBitmap(rs, source);
         Allocation output = Allocation.createFromBitmap(rs, out);
         ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
@@ -60,12 +60,11 @@ public class EventBackgroundBlurTransformation implements Transformation {
         Canvas canvas = new Canvas(out);
         canvas.drawBitmap(source, targetRect, targetRect, null);
         source.recycle();
-        rs.destroy();
         return out;
     }
 
     @Override
     public String key() {
-        return String.valueOf(context.getResources().getConfiguration().orientation);
+        return key;
     }
 }

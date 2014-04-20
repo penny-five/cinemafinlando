@@ -18,6 +18,7 @@ package com.github.pennyfive.cinemafinlando.ui;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v8.renderscript.RenderScript;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
@@ -48,6 +49,8 @@ public class EventListFragment extends QueryAbsListFragment<Event, Events> {
     public static final String LIST_TYPE_COMING_SOON = "coming_soon";
     public static final String LIST_TYPE_THEATRE_AREA = "theatre_area";
 
+    private RenderScript rs;
+
     public interface Callbacks {
         void onEventSelected(Event event);
     }
@@ -58,6 +61,13 @@ public class EventListFragment extends QueryAbsListFragment<Event, Events> {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         InjectUtils.injectMembers(this);
+        rs = RenderScript.create(getActivity());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        rs.destroy();
     }
 
     @Override
@@ -88,7 +98,7 @@ public class EventListFragment extends QueryAbsListFragment<Event, Events> {
     @Override
     protected void bindView(Context context, final View view, Event event) {
         ((TextView) view.findViewById(R.id.text)).setText(event.getTitle());
-        Transformation transform = new EventBackgroundBlurTransformation(view);
+        Transformation transform = new EventBackgroundBlurTransformation(rs, view);
         ImageView target = (ImageView) view.findViewById(R.id.image);
         picasso.load(event.getImageUrl(Show.SIZE_LANDSCAPE_LARGE)).placeholder(R.drawable.event_placeholder).transform(transform).into(target);
     }
