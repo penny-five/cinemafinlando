@@ -29,42 +29,61 @@ import com.github.pennyfive.cinemafinlando.R;
 import com.squareup.picasso.Transformation;
 
 /**
- * {@link Transformation} that adds blurry area to the bottom of the source bitmap. Used for event list item backgrounds.
- * <p/>
- * TODO need to optimize and add some comments
+ * {@link Transformation} that adds blurry area to the bottom of the source bitmap. Used for {@link
+ * com.github.pennyfive.cinemafinlando.ui.EventListActivity} item backgrounds.
  */
 public class EventBackgroundBlurTransformation implements Transformation {
     private final RenderScript rs;
-    private final String key;
-    private final float blurPortion;
+    private final View targetItem;
 
-    public EventBackgroundBlurTransformation(RenderScript rs, View eventListItem) {
+    public EventBackgroundBlurTransformation(RenderScript rs, View targetItem) {
         this.rs = rs;
-        key = String.valueOf(rs.getApplicationContext().getResources().getConfiguration().orientation);
-        View bottomFrame = eventListItem.findViewById(R.id.bottom_frame);
-        blurPortion = bottomFrame.getMeasuredHeight() / (float) eventListItem.getMeasuredHeight();
+        this.targetItem = targetItem;
     }
 
     @Override
     public Bitmap transform(Bitmap source) {
-        Bitmap out = Bitmap.createBitmap(source.getWidth(), source.getHeight(), source.getConfig());
-        Allocation input = Allocation.createFromBitmap(rs, source);
-        Allocation output = Allocation.createFromBitmap(rs, out);
+        /* Allocate new bitmap for the result */
+        Bitmap resultBitmap = Bitmap.createBitmap(source.getWidth(), source.getHeight(), source.getConfig());
+        Canvas canvas = new Canvas(resultBitmap);
+        /* First draw the entire source bitmap... */
+        canvas.drawBitmap(source, 0, 0, null);
+
+        Bitmap blurredBottom = createBlurredBottomFrameBackground(source, measureBlurredAreaHeight(source));
+        /* ..and then the blurred bottom area on top of that. */
+        canvas.drawBitmap(
+                blurredBottom,
+                new Rect(0, 0, blurredBottom.getWidth(), blurredBottom.getHeight()),
+                new Rect(0, resultBitmap.getHeight() - blurredBottom.getHeight(), resultBitmap.getWidth(), resultBitmap.getHeight()),
+                null);
+        /* recycle bitmaps that aren't needed anymore */
+        blurredBottom.recycle();
+        source.recycle();
+        return resultBitmap;
+    }
+
+    private int measureBlurredAreaHeight(Bitmap source) {
+        View bottomFrame = targetItem.findViewById(R.id.bottom_frame);
+        float blurPortion = bottomFrame.getMeasuredHeight() / (float) targetItem.getMeasuredHeight();
+        return (int) (source.getHeight() * blurPortion);
+    }
+
+    private Bitmap createBlurredBottomFrameBackground(Bitmap source, int frameHeight) {
+        Bitmap subset = Bitmap.createBitmap(source, 0, source.getHeight() - frameHeight, source.getWidth(), frameHeight);
+        Bitmap out = Bitmap.createBitmap(subset.getWidth(), subset.getHeight(), subset.getConfig());
+        Allocation inAlloc = Allocation.createFromBitmap(rs, subset);
+        Allocation outAlloc = Allocation.createFromBitmap(rs, out);
         ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
         blur.setRadius(5);
-        blur.setInput(input);
-        blur.forEach(output);
-        output.copyTo(out);
-        int blurHeight = (int) (out.getHeight() * blurPortion);
-        Rect targetRect = new Rect(0, 0, source.getWidth(), source.getHeight() - blurHeight);
-        Canvas canvas = new Canvas(out);
-        canvas.drawBitmap(source, targetRect, targetRect, null);
-        source.recycle();
+        blur.setInput(inAlloc);
+        blur.forEach(outAlloc);
+        outAlloc.copyTo(out);
+        subset.recycle();
         return out;
     }
 
     @Override
     public String key() {
-        return key;
+        return String.valueOf(rs.getApplicationContext().getResources().getConfiguration().orientation);
     }
 }
