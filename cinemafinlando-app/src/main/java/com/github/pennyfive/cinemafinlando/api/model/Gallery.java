@@ -57,10 +57,12 @@ public class Gallery implements Parcelable {
 
     public static Parcelable.Creator<Gallery> CREATOR = new Parcelable.Creator<Gallery>() {
 
+        @Override
         public Gallery createFromParcel(Parcel source) {
             return new Gallery(source);
         }
 
+        @Override
         public Gallery[] newArray(int size) {
             return new Gallery[size];
         }

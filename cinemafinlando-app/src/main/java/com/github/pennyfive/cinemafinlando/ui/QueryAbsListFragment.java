@@ -20,17 +20,13 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.FrameLayout;
 
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.Container;
@@ -44,7 +40,7 @@ import java.util.List;
  * @param <T>
  * @param <S>
  */
-public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Fragment
+public abstract class QueryAbsListFragment<T, S extends Container<T>> extends MultiStateFragment
         implements LoaderManager.LoaderCallbacks<S>, OnItemClickListener {
 
     private class Adapter extends BinderAdapter<T> {
@@ -74,29 +70,43 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Fr
         }
     }
 
-    private AbsListView absListView;
-    private ViewGroup loadingView;
+    private static final int STATE_LOADING = 0;
+    private static final int STATE_ERROR = 1;
+    private static final int STATE_READY = 2;
+
     private Adapter adapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        absListView = createAbsListView();
-        absListView.setId(R.id.list);
-        absListView.setOnItemClickListener(this);
-
-        loadingView = (ViewGroup) inflater.inflate(R.layout.fragment_loading_layer, null);
-
-        FrameLayout rootLayout = new FrameLayout(getActivity());
-        rootLayout.addView(absListView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        rootLayout.addView(loadingView, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
-        return rootLayout;
+    protected void onStateLayoutReady(Bundle savedInstanceState) {
+        switchToState(createLoadingView(), STATE_LOADING);
+        getLoaderManager().initLoader(0, savedInstanceState, this);
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        getLoaderManager().initLoader(0, savedInstanceState, this);
-        animateLoadingView();
+    protected void onStateViewDestroyed(View view, Object tag) {
+        switch ((Integer) tag) {
+            case STATE_LOADING:
+                view.findViewById(R.id.spinner).clearAnimation();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private View createLoadingView() {
+        View loadingView = View.inflate(getActivity(), R.layout.fragment_loading_layer, null);
+        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.loading_spinner_in);
+        set.setTarget(loadingView.findViewById(R.id.spinner));
+        set.start();
+        return loadingView;
+    }
+
+    private View createContentListView(Adapter adapter) {
+        AbsListView view = createAbsListView();
+        view.setId(R.id.list);
+        view.setOnItemClickListener(this);
+        view.setAdapter(adapter);
+        return view;
     }
 
     @Override
@@ -110,24 +120,17 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Fr
     public final void onLoadFinished(Loader<S> loader, S data) {
         // TODO error handling for cases when data is null
         adapter = new Adapter(getActivity(), data.getItems());
-        absListView.setAdapter(adapter);
-        animateOutLoadingView();
+        switchToState(createContentListView(adapter), STATE_READY);
     }
 
-    private void animateLoadingView() {
-        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.loading_spinner_in);
-        set.setTarget(loadingView.findViewById(R.id.spinner));
-        set.start();
-    }
-
-    private void animateOutLoadingView() {
-        /* Combination of two animations: spinner shrinks while the layout itself fades out */
-        AnimatorSet set1 = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.loading_layer_out);
-        set1.setTarget(loadingView);
-        AnimatorSet set2 = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.loading_spinner_out);
-        set2.setTarget(loadingView.findViewById(R.id.spinner));
-        set1.playTogether(set2);
-        set1.start();
+    @Override
+    protected void onAnimateStateChange(View oldView, Object oldTag, View newView, Object newTag, AnimatorSet set) {
+        super.onAnimateStateChange(oldView, oldTag, newView, newTag, set);
+        if (oldTag.equals(STATE_LOADING)) {
+            AnimatorSet extraSet = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.loading_spinner_out);
+            extraSet.setTarget(oldView.findViewById(R.id.spinner));
+            set.playTogether(extraSet);
+        }
     }
 
     @Override

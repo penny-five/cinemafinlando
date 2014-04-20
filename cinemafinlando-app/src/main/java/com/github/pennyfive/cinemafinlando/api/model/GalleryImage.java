@@ -68,10 +68,12 @@ public class GalleryImage implements Parcelable {
     }
 
     public static Parcelable.Creator<GalleryImage> CREATOR = new Parcelable.Creator<GalleryImage>() {
+        @Override
         public GalleryImage createFromParcel(Parcel source) {
             return new GalleryImage(source);
         }
 
+        @Override
         public GalleryImage[] newArray(int size) {
             return new GalleryImage[size];
         }
