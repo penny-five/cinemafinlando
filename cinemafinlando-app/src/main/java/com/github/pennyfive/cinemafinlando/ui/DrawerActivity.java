@@ -33,6 +33,8 @@ import com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView.CustomTypef
  * Base class for Activities that use {@link android.support.v4.widget.DrawerLayout}.
  */
 public abstract class DrawerActivity extends FragmentActivity implements DrawerListener {
+    private static final String BUNDLE_ACTION_BAR_TITLE = "ab title";
+
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
 
@@ -44,6 +46,15 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
         setContentView(R.layout.activity_drawer);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         initializeDrawerToggle();
+        if (savedInstanceState != null) {
+            setActionBarTitle(savedInstanceState.getString(BUNDLE_ACTION_BAR_TITLE));
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(BUNDLE_ACTION_BAR_TITLE, actionBarTitle);
     }
 
     private void initializeDrawerToggle() {

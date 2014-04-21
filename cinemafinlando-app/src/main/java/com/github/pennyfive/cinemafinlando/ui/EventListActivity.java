@@ -19,6 +19,7 @@ package com.github.pennyfive.cinemafinlando.ui;
 import android.os.Bundle;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
+import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.Event;
 import com.github.pennyfive.cinemafinlando.api.model.TheatreArea;
 
@@ -27,11 +28,11 @@ public class EventListActivity extends DrawerActivity implements TheatreAreaFrag
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Bundle args = new Bundle();
-        args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_NOW_IN_THEATRES);
         if (savedInstanceState == null) {
-            setContentFragment(UiUtils.instantiateWithArgs(EventListFragment.class, args));
+            Bundle args = new Bundle();
+            args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_NOW_IN_THEATRES);
+            showEventListFragmentWithArgs(args, getString(R.string.now_showing));
+
             setDrawerFragment(new TheatreAreaFragment());
         }
     }
@@ -41,25 +42,26 @@ public class EventListActivity extends DrawerActivity implements TheatreAreaFrag
         Bundle args = new Bundle();
         args.putParcelable(CinemaFinlandoIntents.EXTRA_THEATRE_AREA, area);
         args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_THEATRE_AREA);
-        showEventListFragmentWithArgs(args);
+        showEventListFragmentWithArgs(args, area.getName());
     }
 
     @Override
     public void onUpcomingMoviesSelected() {
         Bundle args = new Bundle();
         args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_COMING_SOON);
-        showEventListFragmentWithArgs(args);
+        showEventListFragmentWithArgs(args, getString(R.string.coming_soon));
     }
 
     @Override
     public void onNowPlayingMoviesSelected() {
         Bundle args = new Bundle();
         args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_NOW_IN_THEATRES);
-        showEventListFragmentWithArgs(args);
+        showEventListFragmentWithArgs(args, getString(R.string.now_showing));
     }
 
-    private void showEventListFragmentWithArgs(Bundle args) {
+    private void showEventListFragmentWithArgs(Bundle args, String title) {
         setContentFragment(UiUtils.instantiateWithArgs(EventListFragment.class, args));
+        setActionBarTitle(title);
         closeDrawer();
     }
 
