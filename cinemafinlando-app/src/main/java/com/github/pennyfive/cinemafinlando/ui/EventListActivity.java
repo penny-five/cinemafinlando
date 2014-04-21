@@ -30,9 +30,10 @@ public class EventListActivity extends DrawerActivity implements TheatreAreaFrag
 
         Bundle args = new Bundle();
         args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_NOW_IN_THEATRES);
-        setContentFragment(UiUtils.instantiateWithArgs(EventListFragment.class, args));
-
-        setDrawerFragment(new TheatreAreaFragment());
+        if (savedInstanceState == null) {
+            setContentFragment(UiUtils.instantiateWithArgs(EventListFragment.class, args));
+            setDrawerFragment(new TheatreAreaFragment());
+        }
     }
 
     @Override

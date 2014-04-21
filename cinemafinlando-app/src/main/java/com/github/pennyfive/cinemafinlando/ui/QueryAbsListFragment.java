@@ -79,6 +79,11 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     @Override
     protected void onStateLayoutReady(Bundle savedInstanceState) {
         switchToState(createLoadingView(), STATE_LOADING);
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         getLoaderManager().initLoader(0, savedInstanceState, this);
     }
 
@@ -86,7 +91,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     protected void onStateViewDestroyed(View view, Object tag) {
         switch ((Integer) tag) {
             case STATE_LOADING:
-                view.findViewById(R.id.spinner).clearAnimation();
+                ((AnimatorSet) view.findViewById(R.id.spinner).getTag()).cancel();
                 break;
             default:
                 break;
@@ -94,11 +99,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     }
 
     private View createLoadingView() {
-        View loadingView = View.inflate(getActivity(), R.layout.fragment_loading_layer, null);
-        AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.loading_spinner_in);
-        set.setTarget(loadingView.findViewById(R.id.spinner));
-        set.start();
-        return loadingView;
+        return View.inflate(getActivity(), R.layout.fragment_loading_layer, null);
     }
 
     private View createContentListView(Adapter adapter) {
@@ -126,7 +127,14 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     @Override
     protected void onAnimateStateChange(View oldView, Object oldTag, View newView, Object newTag, AnimatorSet set) {
         super.onAnimateStateChange(oldView, oldTag, newView, newTag, set);
-        if (oldTag.equals(STATE_LOADING)) {
+        if (newTag != null && newTag.equals(STATE_LOADING)) {
+            View spinner = newView.findViewById(R.id.spinner);
+            AnimatorSet extraSet = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.loading_spinner_in);
+            extraSet.setTarget(spinner);
+            set.playTogether(extraSet);
+            spinner.setTag(extraSet);
+        }
+        if (oldTag != null && oldTag.equals(STATE_LOADING)) {
             AnimatorSet extraSet = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.loading_spinner_out);
             extraSet.setTarget(oldView.findViewById(R.id.spinner));
             set.playTogether(extraSet);

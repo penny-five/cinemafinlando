@@ -19,6 +19,8 @@ package com.github.pennyfive.cinemafinlando.ui;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v8.renderscript.RenderScript;
+import android.support.v8.renderscript.RenderScript.ContextType;
+import android.support.v8.renderscript.RenderScript.Priority;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
@@ -61,7 +63,8 @@ public class EventListFragment extends QueryAbsListFragment<Event, Events> {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         InjectUtils.injectMembers(this);
-        rs = RenderScript.create(getActivity());
+        rs = RenderScript.create(getActivity(), ContextType.DEBUG);
+        rs.setPriority(Priority.LOW);
     }
 
     @Override

@@ -76,7 +76,7 @@ public class TheatreAreaFragment extends QueryAbsListFragment<TheatreArea, Theat
 
     @Override
     protected int getViewTypeCount() {
-        /* Uses different views for normal theatre areas and sub-theatre areas */
+        /* Uses different views for normal theatre areas and child theatre areas */
         return 2;
     }
 
