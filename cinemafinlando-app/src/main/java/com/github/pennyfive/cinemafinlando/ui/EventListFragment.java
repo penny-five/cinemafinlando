@@ -51,13 +51,12 @@ public class EventListFragment extends QueryAbsListFragment<Event, Events> {
     public static final String LIST_TYPE_COMING_SOON = "coming_soon";
     public static final String LIST_TYPE_THEATRE_AREA = "theatre_area";
 
-    private RenderScript rs;
-
     public interface Callbacks {
         void onEventSelected(Event event);
     }
 
     @Inject Picasso picasso;
+    @Inject RenderScript rs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
