@@ -16,10 +16,11 @@
 
 package com.github.pennyfive.cinemafinlando.api.service;
 
+import java.io.IOException;
+
 /**
  *
  */
 public interface Command<T> {
-
-    T execute(FinnkinoService service);
+    T execute(FinnkinoService service) throws IOException;
 }

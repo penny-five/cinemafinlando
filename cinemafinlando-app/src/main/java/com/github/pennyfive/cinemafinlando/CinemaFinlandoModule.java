@@ -28,12 +28,16 @@ import com.github.pennyfive.cinemafinlando.ui.EventListFragment;
 import com.github.pennyfive.cinemafinlando.ui.TheatreAreaFragment;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import retrofit.ErrorHandler;
 import retrofit.RestAdapter.Builder;
 import retrofit.RestAdapter.LogLevel;
+import retrofit.RetrofitError;
 import retrofit.converter.SimpleXMLConverter;
 
 /**
@@ -71,6 +75,12 @@ public class CinemaFinlandoModule {
         builder.setEndpoint("http://www.finnkino.fi/xml/");
         builder.setConverter(new SimpleXMLConverter(Serializers.DEFAULT));
         builder.setLogLevel(LogLevel.BASIC);
+        builder.setErrorHandler(new ErrorHandler() {
+            @Override
+            public Throwable handleError(RetrofitError cause) {
+                return new IOException(cause);
+            }
+        });
         return builder.build().create(FinnkinoService.class);
     }
 }

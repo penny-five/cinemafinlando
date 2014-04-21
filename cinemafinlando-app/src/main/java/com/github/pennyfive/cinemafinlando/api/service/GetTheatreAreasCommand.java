@@ -18,13 +18,15 @@ package com.github.pennyfive.cinemafinlando.api.service;
 
 import com.github.pennyfive.cinemafinlando.api.model.TheatreAreas;
 
+import java.io.IOException;
+
 /**
  *
  */
 public class GetTheatreAreasCommand implements Command<TheatreAreas> {
 
     @Override
-    public TheatreAreas execute(FinnkinoService service) {
+    public TheatreAreas execute(FinnkinoService service) throws IOException {
         return service.getTheatreAreas();
     }
 }

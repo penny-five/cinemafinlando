@@ -19,6 +19,8 @@ package com.github.pennyfive.cinemafinlando.api.service;
 import com.github.pennyfive.cinemafinlando.api.model.Events;
 import com.github.pennyfive.cinemafinlando.api.model.TheatreAreas;
 
+import java.io.IOException;
+
 import retrofit.http.GET;
 import retrofit.http.Query;
 
@@ -28,8 +30,8 @@ import retrofit.http.Query;
 public interface FinnkinoService {
 
     @GET("/events/?includeGallery=true")
-    public Events getEvents(@Query("listType") String listType, @Query("area") String area);
+    public Events getEvents(@Query("listType") String listType, @Query("area") String area) throws IOException;
 
     @GET("/theatreAreas")
-    public TheatreAreas getTheatreAreas();
+    public TheatreAreas getTheatreAreas() throws IOException;
 }

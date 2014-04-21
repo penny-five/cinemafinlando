@@ -21,6 +21,7 @@
               android:layout_width="match_parent"
               android:background="@color/window_background"
               android:gravity="center"
+              android:clickable="true"
               android:layout_height="match_parent">
 
     <ImageView

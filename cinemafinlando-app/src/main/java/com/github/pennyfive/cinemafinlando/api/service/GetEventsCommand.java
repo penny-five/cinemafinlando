@@ -19,6 +19,8 @@ package com.github.pennyfive.cinemafinlando.api.service;
 import com.github.pennyfive.cinemafinlando.api.model.Events;
 import com.github.pennyfive.cinemafinlando.api.model.TheatreArea;
 
+import java.io.IOException;
+
 /**
  *
  */
@@ -40,7 +42,7 @@ public class GetEventsCommand implements Command<Events> {
     }
 
     @Override
-    public Events execute(FinnkinoService service) {
+    public Events execute(FinnkinoService service) throws IOException {
         return service.getEvents(listType, area);
     }
 

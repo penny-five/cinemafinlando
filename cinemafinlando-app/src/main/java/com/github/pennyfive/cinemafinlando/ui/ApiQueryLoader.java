@@ -23,6 +23,8 @@ import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils
 import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.api.service.FinnkinoService;
 
+import java.io.IOException;
+
 import javax.inject.Inject;
 
 /**
@@ -55,7 +57,12 @@ public final class ApiQueryLoader<T> extends AsyncTaskLoader<T> {
 
     @Override
     public T loadInBackground() {
-        return command.execute(service);
+        try {
+            return command.execute(service);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override

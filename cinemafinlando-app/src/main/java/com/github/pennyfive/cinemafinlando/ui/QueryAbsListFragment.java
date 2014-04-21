@@ -119,9 +119,12 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
 
     @Override
     public final void onLoadFinished(Loader<S> loader, S data) {
-        // TODO error handling for cases when data is null
-        adapter = new Adapter(getActivity(), data.getItems());
-        switchToState(createContentListView(adapter), STATE_READY);
+        if (data != null) {
+            adapter = new Adapter(getActivity(), data.getItems());
+            switchToState(createContentListView(adapter), STATE_READY);
+        } else {
+            // TODO error handling
+        }
     }
 
     @Override
