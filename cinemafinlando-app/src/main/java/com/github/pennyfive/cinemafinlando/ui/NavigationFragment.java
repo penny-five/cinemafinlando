@@ -31,9 +31,14 @@ import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.api.service.GetTheatreAreasCommand;
 
 /**
- *
+ * Fragment that shows a list of content in navigation drawer. Contains following options:
+ * <ul>
+ *     <li>View movies that are now playing in cinemas</li>
+ *     <li>View movies that are coming soon to cinemas</li>
+ *     <li>View movies for cities or individual theatres</li>
+ * </ul>
  */
-public class TheatreAreaFragment extends QueryAbsListFragment<TheatreArea, TheatreAreas> {
+public class NavigationFragment extends QueryAbsListFragment<TheatreArea, TheatreAreas> {
     private static final int NUM_HEADERS = 3;
 
     public interface Callbacks {

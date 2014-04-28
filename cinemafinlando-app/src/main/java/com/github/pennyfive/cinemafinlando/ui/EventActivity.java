@@ -17,16 +17,13 @@
 package com.github.pennyfive.cinemafinlando.ui;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
 import com.github.pennyfive.cinemafinlando.R;
-import com.github.pennyfive.cinemafinlando.api.model.Event;
+import com.github.pennyfive.cinemafinlando.api.model.Images;
 import com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView.CustomTypeface;
 import com.squareup.picasso.Picasso;
 
@@ -35,17 +32,21 @@ import javax.inject.Inject;
 import butterknife.InjectView;
 
 /**
- *
+ * Shows information for a single {@link com.github.pennyfive.cinemafinlando.api.model.Event}.
  */
 public class EventActivity extends FragmentActivity {
+    public static final String EXTRA_IMAGES = "images";
+    public static final String EXTRA_TITLE = "title";
+    public static final String EXTRA_ORIGINAL_TITLE = "original_title";
+    public static final String EXTRA_GENRES = "genres";
+    public static final String EXTRA_LENGTH = "length";
+
     @Inject Picasso picasso;
     @InjectView(R.id.poster) ImageView posterImageView;
     @InjectView(R.id.image) ImageView eventImageView;
     @InjectView(R.id.name) TextView nameTextView;
     @InjectView(R.id.genres) TextView genreTextView;
     @InjectView(R.id.length) TextView durationTextView;
-    @InjectView(R.id.tabs) SimplePagerTabWidget tabs;
-    @InjectView(R.id.pager) ViewPager pager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,47 +54,18 @@ public class EventActivity extends FragmentActivity {
         setContentView(R.layout.activity_event);
         InjectUtils.injectAll(this);
 
-        Event event = new Event();
+        Bundle extras = getIntent().getExtras();
 
-        getActionBar().setTitle(CustomTypeface.ROBOTO_LIGHT.wrap(this, event.getTitle()));
+        getActionBar().setTitle(CustomTypeface.ROBOTO_LIGHT.wrap(this, extras.getString(EXTRA_TITLE)));
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
 
-        picasso.load(event.getImageUrl(Event.SIZE_LANDSCAPE_LARGE)).into(eventImageView);
-        picasso.load(event.getImageUrl(Event.SIZE_PORTRAIT_LARGE)).into(posterImageView);
+        Images images = extras.getParcelable(EXTRA_IMAGES);
+        picasso.load(images.getUrl(Images.SIZE_LANDSCAPE_LARGE)).into(eventImageView);
+        picasso.load(images.getUrl(Images.SIZE_PORTRAIT_LARGE)).into(posterImageView);
 
-        nameTextView.setText(event.getOriginalTitle());
-        genreTextView.setText(event.getGenres());
-        durationTextView.setText(getString(R.string.minutes, event.getLengthInMinutes()));
-
-        pager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager()) {
-            private static final int POS_SYNOPSIS = 0;
-            private static final int POS_SHOW_TIMES = 1;
-            private static final int POS_INFORMATION = 2;
-            private static final int POS_MEDIA = 3;
-
-            @Override
-            public Fragment getItem(int position) {
-                switch (position) {
-                    case POS_SYNOPSIS:
-                        return UiUtils.instantiateWithIntent(EventSynopsisFragment.class, getIntent());
-                    case POS_SHOW_TIMES:
-                        return new Fragment();
-                    case POS_INFORMATION:
-                        return new Fragment();
-                    case POS_MEDIA:
-                        return UiUtils.instantiateWithIntent(EventGalleryFragment.class, getIntent());
-                    default:
-                        throw new IllegalStateException();
-                }
-            }
-
-            @Override
-            public int getCount() {
-                return 4;
-            }
-        });
-
-        tabs.setPager(pager);
+        nameTextView.setText(extras.getString(EXTRA_ORIGINAL_TITLE));
+        genreTextView.setText(extras.getString(EXTRA_GENRES));
+        durationTextView.setText(getString(R.string.minutes, extras.getInt(EXTRA_LENGTH)));
     }
 }

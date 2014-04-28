@@ -16,24 +16,23 @@
 
 package com.github.pennyfive.cinemafinlando.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.R;
-import com.github.pennyfive.cinemafinlando.api.model.Event;
+import com.github.pennyfive.cinemafinlando.api.model.Base;
 import com.github.pennyfive.cinemafinlando.api.model.TheatreArea;
 
-public class EventListActivity extends DrawerActivity implements TheatreAreaFragment.Callbacks, EventListFragment.Callbacks {
+public class EventListActivity extends DrawerActivity implements NavigationFragment.Callbacks, BaseListFragment.Callbacks {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
-            Bundle args = new Bundle();
-            args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_NOW_IN_THEATRES);
-            showEventListFragmentWithArgs(args, getString(R.string.now_showing));
-
-            setDrawerFragment(new TheatreAreaFragment());
+            showFragment(new NowInTheatresListFragment(), getString(R.string.now_showing));
+            setDrawerFragment(new NavigationFragment());
         }
     }
 
@@ -41,34 +40,32 @@ public class EventListActivity extends DrawerActivity implements TheatreAreaFrag
     public void onTheatreAreaSelected(TheatreArea area) {
         Bundle args = new Bundle();
         args.putParcelable(CinemaFinlandoIntents.EXTRA_THEATRE_AREA, area);
-        args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_THEATRE_AREA);
-        showEventListFragmentWithArgs(args, area.getName());
+        showFragment(UiUtils.instantiateWithArgs(TheatreAreaScheduleFragment.class, args), area.getName());
     }
 
     @Override
     public void onUpcomingMoviesSelected() {
-        Bundle args = new Bundle();
-        args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_COMING_SOON);
-        showEventListFragmentWithArgs(args, getString(R.string.coming_soon));
+        showFragment(new ComingSoonListFragment(), getString(R.string.coming_soon));
     }
 
     @Override
     public void onNowPlayingMoviesSelected() {
-        Bundle args = new Bundle();
-        args.putString(EventListFragment.EXTRA_LIST_TYPE, EventListFragment.LIST_TYPE_NOW_IN_THEATRES);
-        showEventListFragmentWithArgs(args, getString(R.string.now_showing));
+        showFragment(new NowInTheatresListFragment(), getString(R.string.now_showing));
     }
 
-    private void showEventListFragmentWithArgs(Bundle args, String title) {
-        setContentFragment(UiUtils.instantiateWithArgs(EventListFragment.class, args));
-        setActionBarTitle(title);
+    private void showFragment(Fragment fragment, String actionBarTitle) {
+        setContentFragment(fragment);
+        setActionBarTitle(actionBarTitle);
         closeDrawer();
     }
 
     @Override
-    public void onEventSelected(Event event) {
-        //Intent intent = new Intent(CinemaFinlandoIntents.ACTION_VIEW_EVENT);
-        //intent.putExtra(CinemaFinlandoIntents.EXTRA_EVENT, event);
-        //startActivity(intent);
+    public void onBaseSelected(Base base) {
+        Intent intent = new Intent(CinemaFinlandoIntents.ACTION_VIEW_EVENT);
+        intent.putExtra(EventActivity.EXTRA_IMAGES, base.getImages());
+        intent.putExtra(EventActivity.EXTRA_GENRES, base.getGenres());
+        intent.putExtra(EventActivity.EXTRA_TITLE, base.getTitle());
+        intent.putExtra(EventActivity.EXTRA_ORIGINAL_TITLE, base.getOriginalTitle());
+        startActivity(intent);
     }
 }

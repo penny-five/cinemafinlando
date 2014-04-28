@@ -24,6 +24,12 @@ import android.util.SparseArray;
  *
  */
 public class Images implements Parcelable {
+    public static final String SIZE_PORTRAIT_MICRO = "EventMicroImagePortrait";
+    public static final String SIZE_PORTRAIT_SMALL = "EventSmallImagePortrait";
+    public static final String SIZE_PORTRAIT_LARGE = "EventLargeImagePortrait";
+    public static final String SIZE_LANDSCAPE_SMALL = "EventSmallImageLandscape";
+    public static final String SIZE_LANDSCAPE_LARGE = "EventLargeImageLandscape";
+
     private final SparseArray<Object> values;
 
     public Images(SparseArray<Object> values) {

@@ -16,6 +16,8 @@
 
 package com.github.pennyfive.cinemafinlando.api.model;
 
+import org.joda.time.DateTime;
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 /**
@@ -23,5 +25,30 @@ import org.simpleframework.xml.Root;
  */
 @Root(strict = false)
 public class Show extends Base {
+    @Element(name = "dttmShowStart")
+    private DateTime startingTime;
+    @Element(name = "dttmShowEnd")
+    private DateTime endingTime;
+    @Element(name = "TheatreAndAuditorium")
+    private String theatreAndAuditorium;
 
+    public DateTime getEndingTime() {
+        return endingTime;
+    }
+
+    public DateTime getStartingTime() {
+        return startingTime;
+    }
+
+    public String getTheatre() {
+        return theatreAndAuditorium.split(",")[0].trim();
+    }
+
+    public String getCity() {
+        return theatreAndAuditorium.split(",")[1].trim();
+    }
+
+    public String getAuditorium() {
+        return theatreAndAuditorium.split(",")[2].trim();
+    }
 }

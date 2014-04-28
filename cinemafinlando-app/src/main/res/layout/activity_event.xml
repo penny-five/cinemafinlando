@@ -77,13 +77,6 @@
             tools:text="Duration in minutes"/>
     </LinearLayout>
 
-    <com.github.pennyfive.cinemafinlando.ui.SimplePagerTabWidget
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="#5674b9"
-        android:layout_below="@id/details"/>
-
     <ImageView
         android:id="@+id/poster"
         android:layout_width="81dp"
@@ -94,14 +87,5 @@
         android:background="@drawable/event_poster_background"
         android:scaleType="fitXY"
         />
-
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#f9f9f9"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@id/tabs"/>
 
 </RelativeLayout>

@@ -31,6 +31,7 @@ import com.github.pennyfive.cinemafinlando.R;
 /**
  *
  */
+@SuppressWarnings("UnusedDeclaration")
 public class UiUtils {
 
     private UiUtils() {}
@@ -72,6 +73,10 @@ public class UiUtils {
         return view;
     }
 
+    public static <T extends Fragment> T instantiateWithIntent(Class<T> clazz, Intent intent) {
+        return instantiateWithArgs(clazz, intentToArgs(intent));
+    }
+
     public static <T extends Fragment> T instantiateWithArgs(Class<T> clazz, Bundle args) {
         try {
             T instance = clazz.newInstance();
@@ -80,10 +85,6 @@ public class UiUtils {
         } catch (InstantiationException | IllegalAccessException e) {
             throw new IllegalStateException(e);
         }
-    }
-
-    public static <T extends Fragment> T instantiateWithIntent(Class<T> clazz, Intent intent) {
-        return instantiateWithArgs(clazz, intentToArgs(intent));
     }
 
     private static Bundle intentToArgs(Intent intent) {

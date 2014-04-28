@@ -16,8 +16,6 @@
 
 package com.github.pennyfive.cinemafinlando.api.model;
 
-import org.joda.time.DateTime;
-import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -28,8 +26,6 @@ import java.util.List;
  */
 @Root(strict = false)
 public class Schedule implements Container<Show> {
-    @Element(name = "PubDate")
-    private DateTime pubDate;
     @ElementList(name = "Shows")
     private List<Show> shows;
 

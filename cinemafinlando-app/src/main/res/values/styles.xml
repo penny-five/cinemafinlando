@@ -28,12 +28,13 @@
         <item name="android:icon">@drawable/ic_ab_home</item>
     </style>
 
-    <style name="EventActivityTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="EventActivityTheme" parent="AppTheme">
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:actionBarStyle">@style/EventActivityTheme.ActionBar</item>
     </style>
 
-    <style name="EventActivityTheme.ActionBar" parent="android:Widget.Holo.ActionBar.Solid">
+    <style name="EventActivityTheme.ActionBar" parent="AppTheme.ActionBarStyle">
         <item name="android:background">@drawable/ab_background_fade</item>
         <item name="android:titleTextStyle">@style/EventActivityTheme.ActionBar.TitleTextStyle
         </item>

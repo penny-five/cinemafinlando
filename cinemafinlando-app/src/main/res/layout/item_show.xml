@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#1f1f21"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#353943"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+            android:id="@+id/starting_time"
+            android:layout_width="wrap_content"
+            android:minWidth="70dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            app:customTypeface="roboto_condensed"
+            android:textSize="17sp"
+            tools:text="20:00"/>
+
+        <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            app:customTypeface="roboto_condensed"
+            tools:text="Hobitti - Smaugin autioittama maa (2D)"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#1c1c1e"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+            android:id="@+id/ending_time"
+            android:layout_width="wrap_content"
+            android:minWidth="70dp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:layout_height="wrap_content"
+            android:textColor="#868686"
+            app:customTypeface="roboto_condensed"
+            android:textSize="15sp"
+            tools:text="22:15"/>
+
+        <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+            android:id="@+id/details"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="8dp"
+            android:textColor="#868686"
+            android:textSize="15sp"
+            app:customTypeface="roboto_condensed"
+            tools:text="Tennispalatsi 1, Helsinki"/>
+    </LinearLayout>
+</LinearLayout>

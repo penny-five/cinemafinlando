@@ -53,22 +53,8 @@
             android:paddingTop="2dp"
             android:textColor="@android:color/white"
             android:visibility="gone"
-            app:customTypeface="roboto_light"
-            tools:text="10.10.2015"/>
-
-        <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:background="@android:color/holo_red_light"
-            android:paddingBottom="2dp"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:paddingTop="2dp"
-            android:textColor="@android:color/white"
-            android:visibility="gone"
-            app:customTypeface="roboto_light"
+            android:textSize="15sp"
+            app:customTypeface="roboto_condensed"
             tools:text="10.10.2015"/>
 
         <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
@@ -80,8 +66,8 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
-            app:customTypeface="roboto_light"
+            android:textSize="16.5sp"
+            app:customTypeface="roboto_condensed"
             tools:text="Name of the movie"/>
     </LinearLayout>
 </FrameLayout>

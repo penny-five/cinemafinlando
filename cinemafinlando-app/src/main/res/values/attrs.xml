@@ -19,6 +19,7 @@
     <declare-styleable name="CustomTypefaceTextView">
         <attr name="customTypeface" format="enum">
             <enum name="roboto_light" value="0"/>
+            <enum name="roboto_condensed" value="1"/>
         </attr>
     </declare-styleable>
     <declare-styleable name="FixedAspectRatioImageView">

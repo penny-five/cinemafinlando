@@ -67,7 +67,7 @@ public class CustomTypefaceTextView extends TextView {
 
     public enum CustomTypeface {
         ROBOTO_LIGHT(0, "Roboto-Light.ttf"),
-        ROBOTO_CONDENSED(0, "RobotoCondensed-Regular.ttf");
+        ROBOTO_CONDENSED(1, "RobotoCondensed-Regular.ttf");
 
         private final int type;
         private final String filename;

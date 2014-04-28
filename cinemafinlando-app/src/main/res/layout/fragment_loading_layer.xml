@@ -16,18 +16,19 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:background="@color/window_background"
-              android:gravity="center"
-              android:clickable="true"
-              android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:gravity="center"
+             android:clickable="true"
+             android:background="@color/window_background"
+             android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/spinner"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:src="@drawable/loading_spinner"
         android:layout_height="wrap_content"/>
 
-</LinearLayout>
+</FrameLayout>

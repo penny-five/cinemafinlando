@@ -17,6 +17,7 @@
 package com.github.pennyfive.cinemafinlando.api.service;
 
 import com.github.pennyfive.cinemafinlando.api.model.Events;
+import com.github.pennyfive.cinemafinlando.api.model.Schedule;
 import com.github.pennyfive.cinemafinlando.api.model.TheatreAreas;
 
 import java.io.IOException;
@@ -34,4 +35,7 @@ public interface FinnkinoService {
 
     @GET("/theatreAreas")
     public TheatreAreas getTheatreAreas() throws IOException;
+
+    @GET("/Schedule")
+    public Schedule getSchedule(@Query("area") String theatreAreaId) throws IOException;
 }

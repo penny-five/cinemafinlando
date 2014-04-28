@@ -87,7 +87,7 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
     }
 
     private void updateActionBarTitle(String title) {
-        getActionBar().setTitle(CustomTypeface.ROBOTO_CONDENSED.wrap(this, title));
+        getActionBar().setTitle(CustomTypeface.ROBOTO_LIGHT.wrap(this, title));
     }
 
     @Override

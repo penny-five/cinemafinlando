@@ -18,15 +18,19 @@ package com.github.pennyfive.cinemafinlando;
 
 import android.content.Context;
 import android.support.v8.renderscript.RenderScript;
+import android.support.v8.renderscript.RenderScript.Priority;
 
 import com.github.pennyfive.cinemafinlando.api.service.FinnkinoService;
 import com.github.pennyfive.cinemafinlando.api.xml.Serializers;
 import com.github.pennyfive.cinemafinlando.ui.ApiQueryLoader;
+import com.github.pennyfive.cinemafinlando.ui.BaseListFragment;
+import com.github.pennyfive.cinemafinlando.ui.ComingSoonListFragment;
 import com.github.pennyfive.cinemafinlando.ui.EventActivity;
 import com.github.pennyfive.cinemafinlando.ui.EventGalleryFragment;
 import com.github.pennyfive.cinemafinlando.ui.EventListActivity;
-import com.github.pennyfive.cinemafinlando.ui.EventListFragment;
-import com.github.pennyfive.cinemafinlando.ui.TheatreAreaFragment;
+import com.github.pennyfive.cinemafinlando.ui.NavigationFragment;
+import com.github.pennyfive.cinemafinlando.ui.NowInTheatresListFragment;
+import com.github.pennyfive.cinemafinlando.ui.TheatreAreaScheduleFragment;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -49,9 +53,12 @@ import retrofit.converter.SimpleXMLConverter;
         injects = {
                 CinemaFinlandoApplication.class,
                 ApiQueryLoader.class,
-                TheatreAreaFragment.class,
+                NavigationFragment.class,
                 EventListActivity.class,
-                EventListFragment.class,
+                BaseListFragment.class,
+                ComingSoonListFragment.class,
+                NowInTheatresListFragment.class,
+                TheatreAreaScheduleFragment.class,
                 EventActivity.class,
                 EventGalleryFragment.class
         }
@@ -88,6 +95,8 @@ public class CinemaFinlandoModule {
     @Provides
     @Singleton
     RenderScript provideRenderscript() {
-        return RenderScript.create(context);
+        RenderScript rs = RenderScript.create(context);
+        rs.setPriority(Priority.LOW);
+        return rs;
     }
 }

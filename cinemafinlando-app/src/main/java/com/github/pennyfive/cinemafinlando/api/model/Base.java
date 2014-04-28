@@ -16,6 +16,7 @@
 
 package com.github.pennyfive.cinemafinlando.api.model;
 
+import org.joda.time.DateTime;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
@@ -26,12 +27,6 @@ import org.simpleframework.xml.Root;
  */
 @Root(strict = false)
 public abstract class Base {
-    public static final String SIZE_PORTRAIT_MICRO = "EventMicroImagePortrait";
-    public static final String SIZE_PORTRAIT_SMALL = "EventSmallImagePortrait";
-    public static final String SIZE_PORTRAIT_LARGE = "EventLargeImagePortrait";
-    public static final String SIZE_LANDSCAPE_SMALL = "EventSmallImageLandscape";
-    public static final String SIZE_LANDSCAPE_LARGE = "EventLargeImageLandscape";
-
     @Element(name = "ID")
     private String id;
     @Element(name = "Title")
@@ -42,6 +37,8 @@ public abstract class Base {
     private int productionYear;
     @Element(name = "LengthInMinutes")
     private int lengthInMinutes;
+    @Element(name = "dtLocalRelease")
+    private DateTime releaseDate;
     @Element(name = "Genres")
     private String genres;
     @Element(name = "Images")
@@ -67,11 +64,15 @@ public abstract class Base {
         return lengthInMinutes;
     }
 
+    public DateTime getReleaseDate() {
+        return releaseDate;
+    }
+
     public String getGenres() {
         return genres;
     }
 
-    public String getImageUrl(String size) {
-        return images.getUrl(size);
+    public Images getImages() {
+        return images;
     }
 }

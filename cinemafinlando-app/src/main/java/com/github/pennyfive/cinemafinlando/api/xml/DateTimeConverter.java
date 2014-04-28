@@ -29,7 +29,7 @@ class DateTimeConverter implements Converter<DateTime> {
 
     @Override
     public DateTime read(InputNode inputNode) throws Exception {
-        return ISODateTimeFormat.dateTimeNoMillis().parseDateTime(inputNode.getValue());
+        return ISODateTimeFormat.dateHourMinuteSecond().parseDateTime(inputNode.getValue());
     }
 
     @Override
