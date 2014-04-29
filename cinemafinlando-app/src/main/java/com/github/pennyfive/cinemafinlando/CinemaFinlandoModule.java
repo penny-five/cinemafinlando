@@ -23,13 +23,13 @@ import android.support.v8.renderscript.RenderScript.Priority;
 import com.github.pennyfive.cinemafinlando.api.service.FinnkinoService;
 import com.github.pennyfive.cinemafinlando.api.xml.Serializers;
 import com.github.pennyfive.cinemafinlando.ui.ApiQueryLoader;
-import com.github.pennyfive.cinemafinlando.ui.BaseListFragment;
 import com.github.pennyfive.cinemafinlando.ui.ComingSoonListFragment;
 import com.github.pennyfive.cinemafinlando.ui.EventActivity;
 import com.github.pennyfive.cinemafinlando.ui.EventGalleryFragment;
 import com.github.pennyfive.cinemafinlando.ui.EventListActivity;
+import com.github.pennyfive.cinemafinlando.ui.EventListFragment;
 import com.github.pennyfive.cinemafinlando.ui.NavigationFragment;
-import com.github.pennyfive.cinemafinlando.ui.NowInTheatresListFragment;
+import com.github.pennyfive.cinemafinlando.ui.NowShowingListFragment;
 import com.github.pennyfive.cinemafinlando.ui.TheatreAreaScheduleFragment;
 import com.squareup.picasso.Picasso;
 
@@ -55,9 +55,9 @@ import retrofit.converter.SimpleXMLConverter;
                 ApiQueryLoader.class,
                 NavigationFragment.class,
                 EventListActivity.class,
-                BaseListFragment.class,
+                EventListFragment.class,
                 ComingSoonListFragment.class,
-                NowInTheatresListFragment.class,
+                NowShowingListFragment.class,
                 TheatreAreaScheduleFragment.class,
                 EventActivity.class,
                 EventGalleryFragment.class

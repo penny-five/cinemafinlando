@@ -26,31 +26,31 @@ import android.widget.TextView;
 
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.TheatreArea;
-import com.github.pennyfive.cinemafinlando.api.model.TheatreAreas;
+import com.github.pennyfive.cinemafinlando.api.model.TheatreAreaContainer;
 import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.api.service.GetTheatreAreasCommand;
 
 /**
- * Fragment that shows a list of content in navigation drawer. Contains following options:
+ * Contents for navigation drawer. Contains following options:
  * <ul>
  *     <li>View movies that are now playing in cinemas</li>
  *     <li>View movies that are coming soon to cinemas</li>
  *     <li>View movies for cities or individual theatres</li>
  * </ul>
  */
-public class NavigationFragment extends QueryAbsListFragment<TheatreArea, TheatreAreas> {
+public class NavigationFragment extends QueryAbsListFragment<TheatreArea, TheatreAreaContainer> {
     private static final int NUM_HEADERS = 3;
 
     public interface Callbacks {
         void onTheatreAreaSelected(TheatreArea area);
 
-        void onUpcomingMoviesSelected();
+        void onComingSoonSelected();
 
-        void onNowPlayingMoviesSelected();
+        void onNowShowingSelected();
     }
 
     @Override
-    protected Command<TheatreAreas> onCreateCommand() {
+    protected Command<TheatreAreaContainer> onCreateCommand() {
         return new GetTheatreAreasCommand();
     }
 
@@ -102,10 +102,10 @@ public class NavigationFragment extends QueryAbsListFragment<TheatreArea, Theatr
     private void onHeaderClick(int position) {
         switch (position) {
             case 0:
-                ((Callbacks) getActivity()).onNowPlayingMoviesSelected();
+                ((Callbacks) getActivity()).onNowShowingSelected();
                 break;
             case 1:
-                ((Callbacks) getActivity()).onUpcomingMoviesSelected();
+                ((Callbacks) getActivity()).onComingSoonSelected();
                 break;
             default:
                 throw new IllegalStateException("pos: " + position);

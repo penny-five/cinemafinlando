@@ -26,7 +26,7 @@ import android.widget.TextView;
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.R;
-import com.github.pennyfive.cinemafinlando.api.model.Event;
+import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
 
 import butterknife.InjectView;
 
@@ -46,7 +46,7 @@ public class EventSynopsisFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         InjectUtils.injectViews(this, view);
 
-        Event event = (Event) getArguments().get(CinemaFinlandoIntents.EXTRA_EVENT);
+        DetailedEvent event = (DetailedEvent) getArguments().get(CinemaFinlandoIntents.EXTRA_EVENT);
         textView.setText(event.getSynopsis());
     }
 }

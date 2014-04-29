@@ -1,14 +1,11 @@
 package com.github.pennyfive.cinemafinlando.ui;
 
 import android.content.Context;
-import android.os.Bundle;
-import android.support.v8.renderscript.RenderScript;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.TextView;
 
-import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.Schedule;
@@ -16,27 +13,15 @@ import com.github.pennyfive.cinemafinlando.api.model.Show;
 import com.github.pennyfive.cinemafinlando.api.model.TheatreArea;
 import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.api.service.GetScheduleCommand;
-import com.squareup.picasso.Picasso;
 
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-
-import javax.inject.Inject;
 
 /**
  * Shows schedule for a Theatre area.
  */
 public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Schedule> {
     private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormat.forPattern("HH:mm");
-
-    @Inject Picasso picasso;
-    @Inject RenderScript rs;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        InjectUtils.injectMembers(this);
-    }
 
     @Override
     protected Command<Schedule> onCreateCommand() {

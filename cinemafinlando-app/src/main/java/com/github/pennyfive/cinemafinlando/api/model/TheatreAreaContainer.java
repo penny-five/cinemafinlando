@@ -14,19 +14,25 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.cinemafinlando.api.service;
+package com.github.pennyfive.cinemafinlando.api.model;
 
-import com.github.pennyfive.cinemafinlando.api.model.TheatreAreaContainer;
+import org.simpleframework.xml.Root;
 
-import java.io.IOException;
+import java.util.List;
 
 /**
  *
  */
-public class GetTheatreAreasCommand implements Command<TheatreAreaContainer> {
+@Root(strict = false)
+public class TheatreAreaContainer implements Container<TheatreArea> {
+    private final List<TheatreArea> areas;
+
+    public TheatreAreaContainer(List<TheatreArea> areas) {
+        this.areas = areas;
+    }
 
     @Override
-    public TheatreAreaContainer execute(FinnkinoService service) throws IOException {
-        return service.getTheatreAreas();
+    public List<TheatreArea> getItems() {
+        return areas;
     }
 }

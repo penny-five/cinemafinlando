@@ -57,14 +57,6 @@ public class TheatreArea implements Parcelable {
     }
 
     @Override
-    public String toString() {
-        return "TheatreArea{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    @Override
     public int describeContents() {
         return 0;
     }

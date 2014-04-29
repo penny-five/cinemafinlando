@@ -16,7 +16,7 @@
 
 package com.github.pennyfive.cinemafinlando.api.service;
 
-import com.github.pennyfive.cinemafinlando.api.model.Events;
+import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
 import com.github.pennyfive.cinemafinlando.api.model.TheatreArea;
 
 import java.io.IOException;
@@ -24,7 +24,7 @@ import java.io.IOException;
 /**
  *
  */
-public class GetEventsCommand implements Command<Events> {
+public class GetEventsCommand implements Command<DetailedEventContainer> {
     private static final String TYPE_COMING_SOON = "ComingSoon";
     private static final String TYPE_NOW_IN_THEATRES = "NowInTheatres";
 
@@ -42,7 +42,7 @@ public class GetEventsCommand implements Command<Events> {
     }
 
     @Override
-    public Events execute(FinnkinoService service) throws IOException {
+    public DetailedEventContainer execute(FinnkinoService service) throws IOException {
         return service.getEvents(listType, area);
     }
 

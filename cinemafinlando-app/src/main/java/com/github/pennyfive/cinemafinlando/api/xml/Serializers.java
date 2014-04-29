@@ -16,8 +16,8 @@
 
 package com.github.pennyfive.cinemafinlando.api.xml;
 
-import com.github.pennyfive.cinemafinlando.api.model.Images;
-import com.github.pennyfive.cinemafinlando.api.model.TheatreAreas;
+import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
+import com.github.pennyfive.cinemafinlando.api.model.TheatreAreaContainer;
 
 import org.joda.time.DateTime;
 import org.simpleframework.xml.Serializer;
@@ -39,8 +39,8 @@ public class Serializers {
 
         try {
             registry.bind(DateTime.class, new DateTimeConverter());
-            registry.bind(Images.class, new ImagesConverter());
-            registry.bind(TheatreAreas.class, new TheatreAreasConverter());
+            registry.bind(EventGallery.class, new ImagesConverter());
+            registry.bind(TheatreAreaContainer.class, new TheatreAreasConverter());
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }

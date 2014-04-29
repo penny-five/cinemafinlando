@@ -16,39 +16,31 @@
 
 package com.github.pennyfive.cinemafinlando.api.model;
 
-import org.joda.time.DateTime;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
 /**
- * Show is a one-time event, with time and location.
+ *
  */
 @Root(strict = false)
-public class Show extends Event {
-    @Element(name = "dttmShowStart")
-    private DateTime startingTime;
-    @Element(name = "dttmShowEnd")
-    private DateTime endingTime;
-    @Element(name = "TheatreAndAuditorium")
-    private String theatreAndAuditorium;
+public class DetailedEvent extends Event {
+    @Element(name = "ShortSynopsis", required = false)
+    private String shortSynopsis;
+    @Element(name = "Synopsis", required = false)
+    private String synopsis;
 
-    public DateTime getEndingTime() {
-        return endingTime;
+    @Element(name = "Gallery")
+    private DetailedEventGallery gallery;
+
+    public String getSynopsis() {
+        return synopsis;
     }
 
-    public DateTime getStartingTime() {
-        return startingTime;
+    public String getShortSynopsis() {
+        return shortSynopsis;
     }
 
-    public String getTheatre() {
-        return theatreAndAuditorium.split(",")[0].trim();
-    }
-
-    public String getCity() {
-        return theatreAndAuditorium.split(",")[1].trim();
-    }
-
-    public String getAuditorium() {
-        return theatreAndAuditorium.split(",")[2].trim();
+    public DetailedEventGallery getGallery() {
+        return gallery;
     }
 }

@@ -28,9 +28,10 @@ import android.widget.TextView;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
 import com.github.pennyfive.cinemafinlando.R;
-import com.github.pennyfive.cinemafinlando.api.model.Base;
-import com.github.pennyfive.cinemafinlando.api.model.Container;
-import com.github.pennyfive.cinemafinlando.api.model.Images;
+import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
+import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
+import com.github.pennyfive.cinemafinlando.api.model.Event;
+import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -39,10 +40,10 @@ import javax.inject.Inject;
 /**
  *
  */
-public abstract class BaseListFragment<T extends Base, E extends Container<T>> extends QueryAbsListFragment<T, E> {
+public abstract class EventListFragment extends QueryAbsListFragment<DetailedEvent, DetailedEventContainer> {
 
     public interface Callbacks {
-        void onBaseSelected(Base base);
+        void onEventSelected(Event event);
     }
 
     @Inject Picasso picasso;
@@ -60,28 +61,28 @@ public abstract class BaseListFragment<T extends Base, E extends Container<T>> e
     }
 
     @Override
-    protected final View newView(Context context, LayoutInflater inflater, T base) {
+    protected final View newView(Context context, LayoutInflater inflater, DetailedEvent event) {
         View view = inflater.inflate(R.layout.item_event, null);
         onNewView(view);
         return view;
     }
 
     @Override
-    protected final void bindView(Context context, final View view, T t) {
-        ((TextView) view.findViewById(R.id.text)).setText(t.getTitle());
+    protected final void bindView(Context context, final View view, DetailedEvent event) {
+        ((TextView) view.findViewById(R.id.text)).setText(event.getTitle());
         Transformation transform = new EventBackgroundBlurTransformation(rs, view);
         ImageView target = (ImageView) view.findViewById(R.id.image);
-        String url = t.getImages().getUrl(Images.SIZE_LANDSCAPE_LARGE);
+        String url = event.getImages().getUrl(EventGallery.SIZE_LANDSCAPE_LARGE);
         picasso.load(url).placeholder(R.drawable.event_placeholder).transform(transform).into(target);
-        onViewBound(view, t);
+        onViewBound(view, event);
     }
 
     protected abstract void onNewView(View view);
 
-    protected abstract void onViewBound(View view, T item);
+    protected abstract void onViewBound(View view, DetailedEvent event);
 
     @Override
     public final void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ((Callbacks) getActivity()).onBaseSelected(getItem(position));
+        ((Callbacks) getActivity()).onEventSelected(getItem(position));
     }
 }

@@ -18,29 +18,29 @@ package com.github.pennyfive.cinemafinlando.api.xml;
 
 import android.util.SparseArray;
 
-import com.github.pennyfive.cinemafinlando.api.model.Images;
+import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
 
 import org.simpleframework.xml.convert.Converter;
 import org.simpleframework.xml.stream.InputNode;
 import org.simpleframework.xml.stream.OutputNode;
 
 /**
- * Converts image url nodes received from Finnkino API to {@link com.github.pennyfive.finnkino.api.model.Images} instances.
+ * Converts image url nodes received from Finnkino API to {@link EventGallery} instances.
  */
-class ImagesConverter implements Converter<Images> {
+class ImagesConverter implements Converter<EventGallery> {
 
     @Override
-    public Images read(InputNode inputNode) throws Exception {
+    public EventGallery read(InputNode inputNode) throws Exception {
         SparseArray<Object> array = new SparseArray<>();
         InputNode child;
         while ((child = inputNode.getNext()) != null) {
             array.put(child.getName().hashCode(), child.getValue());
         }
-        return new Images(array);
+        return new EventGallery(array);
     }
 
     @Override
-    public void write(OutputNode outputNode, Images images) throws Exception {
+    public void write(OutputNode outputNode, EventGallery eventImageGallery) throws Exception {
         throw new UnsupportedOperationException();
     }
 }

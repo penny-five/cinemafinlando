@@ -2,18 +2,18 @@ package com.github.pennyfive.cinemafinlando.ui;
 
 import android.view.View;
 
-import com.github.pennyfive.cinemafinlando.api.model.Event;
-import com.github.pennyfive.cinemafinlando.api.model.Events;
+import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
+import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
 import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.api.service.GetEventsCommand;
 
 /**
  * Shows list of movies that are now shown in the selected theatre.
  */
-public class NowInTheatresListFragment extends BaseListFragment<Event, Events> {
+public class NowShowingListFragment extends EventListFragment {
 
     @Override
-    protected Command<Events> onCreateCommand() {
+    protected Command<DetailedEventContainer> onCreateCommand() {
         return GetEventsCommand.nowInTheatres();
     }
 
@@ -23,7 +23,7 @@ public class NowInTheatresListFragment extends BaseListFragment<Event, Events> {
     }
 
     @Override
-    protected void onViewBound(View view, Event item) {
+    protected void onViewBound(View view, DetailedEvent item) {
 
     }
 }

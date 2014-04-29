@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
 import com.github.pennyfive.cinemafinlando.R;
-import com.github.pennyfive.cinemafinlando.api.model.Images;
+import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
 import com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView.CustomTypeface;
 import com.squareup.picasso.Picasso;
 
@@ -32,7 +32,7 @@ import javax.inject.Inject;
 import butterknife.InjectView;
 
 /**
- * Shows information for a single {@link com.github.pennyfive.cinemafinlando.api.model.Event}.
+ * Shows information for a single {@link com.github.pennyfive.cinemafinlando.api.model.DetailedEvent}.
  */
 public class EventActivity extends FragmentActivity {
     public static final String EXTRA_IMAGES = "images";
@@ -60,9 +60,9 @@ public class EventActivity extends FragmentActivity {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
 
-        Images images = extras.getParcelable(EXTRA_IMAGES);
-        picasso.load(images.getUrl(Images.SIZE_LANDSCAPE_LARGE)).into(eventImageView);
-        picasso.load(images.getUrl(Images.SIZE_PORTRAIT_LARGE)).into(posterImageView);
+        EventGallery eventImageGallery = extras.getParcelable(EXTRA_IMAGES);
+        picasso.load(eventImageGallery.getUrl(EventGallery.SIZE_LANDSCAPE_LARGE)).into(eventImageView);
+        picasso.load(eventImageGallery.getUrl(EventGallery.SIZE_PORTRAIT_LARGE)).into(posterImageView);
 
         nameTextView.setText(extras.getString(EXTRA_ORIGINAL_TITLE));
         genreTextView.setText(extras.getString(EXTRA_GENRES));

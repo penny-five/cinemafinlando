@@ -17,7 +17,7 @@
 package com.github.pennyfive.cinemafinlando.api.xml;
 
 import com.github.pennyfive.cinemafinlando.api.model.TheatreArea;
-import com.github.pennyfive.cinemafinlando.api.model.TheatreAreas;
+import com.github.pennyfive.cinemafinlando.api.model.TheatreAreaContainer;
 
 import org.simpleframework.xml.convert.Converter;
 import org.simpleframework.xml.stream.InputNode;
@@ -28,9 +28,9 @@ import java.util.LinkedList;
 /**
  *
  */
-class TheatreAreasConverter implements Converter<TheatreAreas> {
+class TheatreAreasConverter implements Converter<TheatreAreaContainer> {
     @Override
-    public TheatreAreas read(InputNode node) throws Exception {
+    public TheatreAreaContainer read(InputNode node) throws Exception {
         LinkedList<TheatreArea> areas = new LinkedList<>();
         InputNode child;
         while ((child = node.getNext()) != null) {
@@ -44,11 +44,11 @@ class TheatreAreasConverter implements Converter<TheatreAreas> {
         /* Remove the first area. It's a special item returned by the API that can be used to fetch events for all
          theatre areas but we don't want it. */
         areas.remove(0);
-        return new TheatreAreas(areas);
+        return new TheatreAreaContainer(areas);
     }
 
     @Override
-    public void write(OutputNode node, TheatreAreas value) throws Exception {
+    public void write(OutputNode node, TheatreAreaContainer value) throws Exception {
         throw new UnsupportedOperationException();
     }
 }

@@ -4,8 +4,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.github.pennyfive.cinemafinlando.R;
-import com.github.pennyfive.cinemafinlando.api.model.Event;
-import com.github.pennyfive.cinemafinlando.api.model.Events;
+import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
+import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
 import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.api.service.GetEventsCommand;
 
@@ -15,11 +15,11 @@ import org.joda.time.format.DateTimeFormatter;
 /**
  * Shows list of movies that are coming soon to cinemas.
  */
-public class ComingSoonListFragment extends BaseListFragment<Event, Events> {
-    private final DateTimeFormatter releaseDateFormatter = DateTimeFormat.forPattern("dd.MM.yyyy");
+public class ComingSoonListFragment extends EventListFragment {
+    private static final DateTimeFormatter RELEASE_DATE_FORMATTER = DateTimeFormat.forPattern("dd.MM.yyyy");
 
     @Override
-    protected Command<Events> onCreateCommand() {
+    protected Command<DetailedEventContainer> onCreateCommand() {
         return GetEventsCommand.comingSoon();
     }
 
@@ -29,7 +29,7 @@ public class ComingSoonListFragment extends BaseListFragment<Event, Events> {
     }
 
     @Override
-    protected void onViewBound(View view, Event event) {
-        ((TextView) view.findViewById(R.id.date)).setText(event.getReleaseDate().toString(releaseDateFormatter));
+    protected void onViewBound(View view, DetailedEvent event) {
+        ((TextView) view.findViewById(R.id.date)).setText(event.getReleaseDate().toString(RELEASE_DATE_FORMATTER));
     }
 }

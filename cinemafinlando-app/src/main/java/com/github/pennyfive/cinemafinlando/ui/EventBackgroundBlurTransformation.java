@@ -29,8 +29,7 @@ import com.github.pennyfive.cinemafinlando.R;
 import com.squareup.picasso.Transformation;
 
 /**
- * {@link Transformation} that adds blurry area to the bottom of the source bitmap. Used for {@link
- * com.github.pennyfive.cinemafinlando.ui.EventListActivity} item backgrounds.
+ * {@link Transformation} that adds blurry area to the bottom of the source bitmap. Used for {@link EventListActivity} item backgrounds.
  */
 public class EventBackgroundBlurTransformation implements Transformation {
     private final RenderScript rs;

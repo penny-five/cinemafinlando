@@ -27,8 +27,8 @@ import android.widget.ImageView;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
 import com.github.pennyfive.cinemafinlando.R;
-import com.github.pennyfive.cinemafinlando.api.model.Gallery;
-import com.github.pennyfive.cinemafinlando.api.model.GalleryImage;
+import com.github.pennyfive.cinemafinlando.api.model.DetailedEventGallery;
+import com.github.pennyfive.cinemafinlando.api.model.DetailedEventGallery.Image;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
@@ -51,14 +51,11 @@ public class EventGalleryFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         InjectUtils.injectAll(this, view);
-
-        //Event event = getArguments().getParcelable(CinemaFinlandoIntents.EXTRA_EVENT);
-        //gridView.setAdapter(new GalleryImageAdapter(event.getGallery()));
     }
 
-    private class GalleryImageAdapter extends BinderAdapter<GalleryImage> {
+    private class GalleryImageAdapter extends BinderAdapter<Image> {
 
-        private GalleryImageAdapter(Gallery gallery) {
+        private GalleryImageAdapter(DetailedEventGallery gallery) {
             super(getActivity(), gallery.getImages());
         }
 
@@ -68,7 +65,7 @@ public class EventGalleryFragment extends Fragment {
         }
 
         @Override
-        public void bindView(Context context, View view, GalleryImage item) {
+        public void bindView(Context context, View view, Image item) {
             picasso.load(item.getThumbnailUrl()).into((ImageView) view.findViewById(R.id.image));
         }
     }

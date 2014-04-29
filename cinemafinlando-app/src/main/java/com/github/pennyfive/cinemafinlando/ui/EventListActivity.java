@@ -22,16 +22,16 @@ import android.support.v4.app.Fragment;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.R;
-import com.github.pennyfive.cinemafinlando.api.model.Base;
+import com.github.pennyfive.cinemafinlando.api.model.Event;
 import com.github.pennyfive.cinemafinlando.api.model.TheatreArea;
 
-public class EventListActivity extends DrawerActivity implements NavigationFragment.Callbacks, BaseListFragment.Callbacks {
+public class EventListActivity extends DrawerActivity implements NavigationFragment.Callbacks, EventListFragment.Callbacks {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
-            showFragment(new NowInTheatresListFragment(), getString(R.string.now_showing));
+            setContentFragment(new NowShowingListFragment(), getString(R.string.now_showing));
             setDrawerFragment(new NavigationFragment());
         }
     }
@@ -40,32 +40,32 @@ public class EventListActivity extends DrawerActivity implements NavigationFragm
     public void onTheatreAreaSelected(TheatreArea area) {
         Bundle args = new Bundle();
         args.putParcelable(CinemaFinlandoIntents.EXTRA_THEATRE_AREA, area);
-        showFragment(UiUtils.instantiateWithArgs(TheatreAreaScheduleFragment.class, args), area.getName());
+        setContentFragment(UiUtils.instantiateWithArgs(TheatreAreaScheduleFragment.class, args), area.getName());
     }
 
     @Override
-    public void onUpcomingMoviesSelected() {
-        showFragment(new ComingSoonListFragment(), getString(R.string.coming_soon));
+    public void onComingSoonSelected() {
+        setContentFragment(new ComingSoonListFragment(), getString(R.string.coming_soon));
     }
 
     @Override
-    public void onNowPlayingMoviesSelected() {
-        showFragment(new NowInTheatresListFragment(), getString(R.string.now_showing));
+    public void onNowShowingSelected() {
+        setContentFragment(new NowShowingListFragment(), getString(R.string.now_showing));
     }
 
-    private void showFragment(Fragment fragment, String actionBarTitle) {
+    private void setContentFragment(Fragment fragment, String actionBarTitle) {
         setContentFragment(fragment);
         setActionBarTitle(actionBarTitle);
         closeDrawer();
     }
 
     @Override
-    public void onBaseSelected(Base base) {
+    public void onEventSelected(Event event) {
         Intent intent = new Intent(CinemaFinlandoIntents.ACTION_VIEW_EVENT);
-        intent.putExtra(EventActivity.EXTRA_IMAGES, base.getImages());
-        intent.putExtra(EventActivity.EXTRA_GENRES, base.getGenres());
-        intent.putExtra(EventActivity.EXTRA_TITLE, base.getTitle());
-        intent.putExtra(EventActivity.EXTRA_ORIGINAL_TITLE, base.getOriginalTitle());
+        intent.putExtra(EventActivity.EXTRA_IMAGES, event.getImages());
+        intent.putExtra(EventActivity.EXTRA_GENRES, event.getGenres());
+        intent.putExtra(EventActivity.EXTRA_TITLE, event.getTitle());
+        intent.putExtra(EventActivity.EXTRA_ORIGINAL_TITLE, event.getOriginalTitle());
         startActivity(intent);
     }
 }
