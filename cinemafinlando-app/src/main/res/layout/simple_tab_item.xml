@@ -16,9 +16,9 @@
   ~ limitations under the License.
   -->
 <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-           android:background="@drawable/tab_indicator_ab_dark"
-           android:scaleType="centerInside"
            android:layout_width="match_parent"
-           android:layout_height="match_parent">
+           android:layout_height="match_parent"
+           android:background="@drawable/tab_indicator_ab_dark"
+           android:scaleType="centerInside">
 
 </ImageView>

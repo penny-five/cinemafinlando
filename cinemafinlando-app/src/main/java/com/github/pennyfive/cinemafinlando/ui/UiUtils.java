@@ -46,7 +46,8 @@ public class UiUtils {
     }
 
     /**
-     * Inflates a layout and sets given text resource string to TextView with id R.id.text. Obviously this requires that the provided layout file
+     * Inflates a layout and sets given text resource string to TextView with id R.id.text. Obviously this requires that the provided layout
+     * file
      * contains a TextView with the id R.id.text.
      *
      * @param context
@@ -59,7 +60,8 @@ public class UiUtils {
     }
 
     /**
-     * Inflates a layout and sets given text resource string to TextView with id R.id.text. Obviously this requires that the provided layout file
+     * Inflates a layout and sets given text resource string to TextView with id R.id.text. Obviously this requires that the provided layout
+     * file
      * contains a TextView with the id R.id.text.
      *
      * @param context
@@ -87,7 +89,7 @@ public class UiUtils {
         }
     }
 
-    private static Bundle intentToArgs(Intent intent) {
+    public static Bundle intentToArgs(Intent intent) {
         Bundle args = new Bundle();
         if (intent != null) {
             args.putAll(intent.getExtras());

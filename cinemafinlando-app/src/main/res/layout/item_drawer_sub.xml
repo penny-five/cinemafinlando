@@ -18,16 +18,16 @@
 
 
 <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+    android:id="@+id/text"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/text"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:drawableLeft="@drawable/item_drawer_sub_indicator"
+    android:drawablePadding="16dp"
     android:gravity="center_vertical"
-    android:textSize="18sp"
     android:minHeight="48dp"
     android:paddingRight="8dp"
-    android:drawablePadding="16dp"
-    android:drawableLeft="@drawable/item_drawer_sub_indicator"
     android:textColor="@android:color/white"
+    android:textSize="18sp"
     app:customTypeface="roboto_light"/>

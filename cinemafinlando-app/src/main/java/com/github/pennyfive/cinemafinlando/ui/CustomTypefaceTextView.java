@@ -77,7 +77,7 @@ public class CustomTypefaceTextView extends TextView {
             this.filename = filename;
         }
 
-        public String getFilename() {
+        private String getFilename() {
             return filename;
         }
 

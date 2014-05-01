@@ -17,11 +17,13 @@
 package com.github.pennyfive.cinemafinlando.ui;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
+import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
 import com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView.CustomTypeface;
@@ -35,12 +37,6 @@ import butterknife.InjectView;
  * Shows information for a single {@link com.github.pennyfive.cinemafinlando.api.model.DetailedEvent}.
  */
 public class EventActivity extends FragmentActivity {
-    public static final String EXTRA_IMAGES = "images";
-    public static final String EXTRA_TITLE = "title";
-    public static final String EXTRA_ORIGINAL_TITLE = "original_title";
-    public static final String EXTRA_GENRES = "genres";
-    public static final String EXTRA_LENGTH = "length";
-
     @Inject Picasso picasso;
     @InjectView(R.id.poster) ImageView posterImageView;
     @InjectView(R.id.image) ImageView eventImageView;
@@ -54,18 +50,23 @@ public class EventActivity extends FragmentActivity {
         setContentView(R.layout.activity_event);
         InjectUtils.injectAll(this);
 
+        Fragment detailsFragment = UiUtils.instantiateWithIntent(EventDetailsFragment.class, getIntent());
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, detailsFragment).commit();
+
         Bundle extras = getIntent().getExtras();
 
-        getActionBar().setTitle(CustomTypeface.ROBOTO_LIGHT.wrap(this, extras.getString(EXTRA_TITLE)));
+        getActionBar().setTitle(CustomTypeface.ROBOTO_LIGHT.wrap(this, extras.getString(CinemaFinlandoIntents.EXTRA_TITLE)));
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
 
-        EventGallery eventImageGallery = extras.getParcelable(EXTRA_IMAGES);
+        EventGallery eventImageGallery = extras.getParcelable(CinemaFinlandoIntents.EXTRA_IMAGES);
         picasso.load(eventImageGallery.getUrl(EventGallery.SIZE_LANDSCAPE_LARGE)).into(eventImageView);
         picasso.load(eventImageGallery.getUrl(EventGallery.SIZE_PORTRAIT_LARGE)).into(posterImageView);
 
-        nameTextView.setText(extras.getString(EXTRA_ORIGINAL_TITLE));
-        genreTextView.setText(extras.getString(EXTRA_GENRES));
-        durationTextView.setText(getString(R.string.minutes, extras.getInt(EXTRA_LENGTH)));
+        nameTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_ORIGINAL_TITLE));
+        genreTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_GENRES));
+        durationTextView.setText(getString(R.string.minutes, extras.getInt(CinemaFinlandoIntents.EXTRA_LENGTH)));
+
+
     }
 }

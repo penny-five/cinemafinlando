@@ -25,7 +25,6 @@ import com.github.pennyfive.cinemafinlando.api.xml.Serializers;
 import com.github.pennyfive.cinemafinlando.ui.ApiQueryLoader;
 import com.github.pennyfive.cinemafinlando.ui.ComingSoonListFragment;
 import com.github.pennyfive.cinemafinlando.ui.EventActivity;
-import com.github.pennyfive.cinemafinlando.ui.EventGalleryFragment;
 import com.github.pennyfive.cinemafinlando.ui.EventListActivity;
 import com.github.pennyfive.cinemafinlando.ui.EventListFragment;
 import com.github.pennyfive.cinemafinlando.ui.NavigationFragment;
@@ -60,7 +59,6 @@ import retrofit.converter.SimpleXMLConverter;
                 NowShowingListFragment.class,
                 TheatreAreaScheduleFragment.class,
                 EventActivity.class,
-                EventGalleryFragment.class
         }
 )
 public class CinemaFinlandoModule {

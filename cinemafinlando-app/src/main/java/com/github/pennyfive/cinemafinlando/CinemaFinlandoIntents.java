@@ -22,6 +22,11 @@ package com.github.pennyfive.cinemafinlando;
 public class CinemaFinlandoIntents {
     public static final String ACTION_VIEW_EVENT = "com.pennyfive.cinemafinlando.ACTION_VIEW_EVENT";
 
-    public static final String EXTRA_EVENT = "event";
     public static final String EXTRA_THEATRE_AREA = "theatre_area";
+    public static final String EXTRA_EVENT_ID = "event_id";
+    public static final String EXTRA_IMAGES = "images";
+    public static final String EXTRA_TITLE = "title";
+    public static final String EXTRA_ORIGINAL_TITLE = "original_title";
+    public static final String EXTRA_GENRES = "genres";
+    public static final String EXTRA_LENGTH = "length";
 }

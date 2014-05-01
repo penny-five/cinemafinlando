@@ -9,12 +9,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
 import com.github.pennyfive.cinemafinlando.R;
 
 /**
- * Base class for Fragments that have multiple states, each requiring its own UI, and should be able to switch between those states easily (e.g .
+ * Base class for Fragments that have multiple states, each requiring its own UI, and should be able to switch between those states easily (e.g
+ * .
  * a Fragment that shows different UI when loading the data or when the loading failed). This base class handles the heavy lifting, including
  * transitions between different states.
  */
@@ -36,51 +38,36 @@ public abstract class MultiStateFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onDestroyView() {
-        for (int i = 0; i < rootLayout.getChildCount(); i++) {
-            View child = rootLayout.getChildAt(i);
-            onStateViewDestroyed(child, child.getTag(R.id.state_id));
-        }
-        super.onDestroyView();
-    }
-
     /**
-     * Called when subclass should set the first state with {@link #switchToState(android.view.View, Object)}.
+     * Called when subclass should set the first state with {@link #switchView(android.view.View)}.
      *
      * @param savedInstanceState
      */
     protected abstract void onStateLayoutReady(Bundle savedInstanceState);
 
-    protected final void switchToState(View stateView, Object tag) {
-        stateView.setTag(R.id.state_id, tag);
+    protected final void switchView(View view) {
         if (rootLayout.getChildCount() > 0) {
             final View old = rootLayout.getChildAt(rootLayout.getChildCount() - 1);
             AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.state_in);
-            rootLayout.addView(stateView);
-            set.setTarget(stateView);
+            rootLayout.addView(view);
+            set.setTarget(view);
             set.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
                     rootLayout.removeView(old);
-                    onStateViewDestroyed(old, old.getTag(R.id.state_id));
                 }
             });
-            onAnimateStateChange(old, old.getTag(R.id.state_id), stateView, tag, set);
             set.start();
         } else {
-            rootLayout.addView(stateView);
+            rootLayout.addView(view);
             AnimatorSet set = new AnimatorSet();
-            onAnimateStateChange(null, null, stateView, tag, set);
             set.start();
         }
     }
 
-    protected void onAnimateStateChange(View oldView, Object oldTag, View newView, Object newTag, AnimatorSet set) {
-
-    }
-
-    protected void onStateViewDestroyed(View view, Object tag) {
-        // default implementation does nothing
+    protected View inflateDefaultLoadingView() {
+        View view = View.inflate(getActivity(), R.layout.fragment_loading_layer, null);
+        view.findViewById(R.id.spinner).startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.spinner_spin_around));
+        return view;
     }
 }

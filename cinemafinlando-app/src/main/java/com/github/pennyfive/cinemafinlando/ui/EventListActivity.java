@@ -62,10 +62,12 @@ public class EventListActivity extends DrawerActivity implements NavigationFragm
     @Override
     public void onEventSelected(Event event) {
         Intent intent = new Intent(CinemaFinlandoIntents.ACTION_VIEW_EVENT);
-        intent.putExtra(EventActivity.EXTRA_IMAGES, event.getImages());
-        intent.putExtra(EventActivity.EXTRA_GENRES, event.getGenres());
-        intent.putExtra(EventActivity.EXTRA_TITLE, event.getTitle());
-        intent.putExtra(EventActivity.EXTRA_ORIGINAL_TITLE, event.getOriginalTitle());
+        intent.putExtra(CinemaFinlandoIntents.EXTRA_EVENT_ID, event.getId());
+        intent.putExtra(CinemaFinlandoIntents.EXTRA_TITLE, event.getTitle());
+        intent.putExtra(CinemaFinlandoIntents.EXTRA_ORIGINAL_TITLE, event.getOriginalTitle());
+        intent.putExtra(CinemaFinlandoIntents.EXTRA_LENGTH, event.getLengthInMinutes());
+        intent.putExtra(CinemaFinlandoIntents.EXTRA_IMAGES, event.getImages());
+        intent.putExtra(CinemaFinlandoIntents.EXTRA_GENRES, event.getGenres());
         startActivity(intent);
     }
 }

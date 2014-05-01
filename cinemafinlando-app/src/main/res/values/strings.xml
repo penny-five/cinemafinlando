@@ -26,6 +26,10 @@
     <string name="now_showing">Now Showing</string>
     <string name="coming_soon">Coming Soon</string>
 
+
+    <string name="release_date">Release date</string>
+    <string name="age_rating">Age rating</string>
+
     <string name="drawer_divider_cinemas">Cinemas</string>
 
 </resources>

@@ -33,7 +33,6 @@ import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
 import com.github.pennyfive.cinemafinlando.api.model.Event;
 import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Transformation;
 
 import javax.inject.Inject;
 
@@ -70,10 +69,9 @@ public abstract class EventListFragment extends QueryAbsListFragment<DetailedEve
     @Override
     protected final void bindView(Context context, final View view, DetailedEvent event) {
         ((TextView) view.findViewById(R.id.text)).setText(event.getTitle());
-        Transformation transform = new EventBackgroundBlurTransformation(rs, view);
         ImageView target = (ImageView) view.findViewById(R.id.image);
         String url = event.getImages().getUrl(EventGallery.SIZE_LANDSCAPE_LARGE);
-        picasso.load(url).placeholder(R.drawable.event_placeholder).transform(transform).into(target);
+        picasso.load(url).placeholder(R.drawable.event_placeholder).into(target);
         onViewBound(view, event);
     }
 

@@ -17,16 +17,16 @@
   -->
 
 <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+    android:id="@+id/text"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/text"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:textSize="18sp"
     android:minHeight="56dp"
     android:padding="8dp"
-    tools:text="Theatre area"
     android:textColor="@android:color/white"
-    app:customTypeface="roboto_light"/>
+    android:textSize="18sp"
+    app:customTypeface="roboto_light"
+    tools:text="Theatre area"/>

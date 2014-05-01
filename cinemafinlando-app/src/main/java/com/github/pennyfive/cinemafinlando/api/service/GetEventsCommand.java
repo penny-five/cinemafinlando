@@ -28,33 +28,34 @@ public class GetEventsCommand implements Command<DetailedEventContainer> {
     private static final String TYPE_COMING_SOON = "ComingSoon";
     private static final String TYPE_NOW_IN_THEATRES = "NowInTheatres";
 
+    private final String eventId;
     private final String listType;
     private final String area;
 
-    private GetEventsCommand(String listType) {
-        this.listType = listType;
-        this.area = null;
-    }
-
-    private GetEventsCommand(String listType, String area) {
+    private GetEventsCommand(String eventId, String listType, String area) {
+        this.eventId = eventId;
         this.listType = listType;
         this.area = area;
     }
 
     @Override
     public DetailedEventContainer execute(FinnkinoService service) throws IOException {
-        return service.getEvents(listType, area);
+        return service.getEvents(eventId, listType, area);
     }
 
     public static GetEventsCommand comingSoon() {
-        return new GetEventsCommand(TYPE_COMING_SOON);
+        return new GetEventsCommand(null, TYPE_COMING_SOON, null);
     }
 
     public static GetEventsCommand nowInTheatres() {
-        return new GetEventsCommand(TYPE_NOW_IN_THEATRES);
+        return new GetEventsCommand(null, TYPE_NOW_IN_THEATRES, null);
     }
 
     public static GetEventsCommand nowInTheatres(TheatreArea area) {
-        return new GetEventsCommand(TYPE_NOW_IN_THEATRES, area.getId());
+        return new GetEventsCommand(null, TYPE_NOW_IN_THEATRES, area.getId());
+    }
+
+    public static GetEventsCommand forEvent(String eventId) {
+        return new GetEventsCommand(eventId, null, null);
     }
 }

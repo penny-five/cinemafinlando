@@ -16,8 +16,6 @@
 
 package com.github.pennyfive.cinemafinlando.ui;
 
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
@@ -70,36 +68,17 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
         }
     }
 
-    private static final int STATE_LOADING = 0;
-    private static final int STATE_ERROR = 1;
-    private static final int STATE_READY = 2;
-
     private Adapter adapter;
 
     @Override
     protected void onStateLayoutReady(Bundle savedInstanceState) {
-        switchToState(createLoadingView(), STATE_LOADING);
+        switchView(inflateDefaultLoadingView());
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getLoaderManager().initLoader(0, savedInstanceState, this);
-    }
-
-    @Override
-    protected void onStateViewDestroyed(View view, Object tag) {
-        switch ((Integer) tag) {
-            case STATE_LOADING:
-                ((AnimatorSet) view.findViewById(R.id.spinner).getTag()).cancel();
-                break;
-            default:
-                break;
-        }
-    }
-
-    private View createLoadingView() {
-        return View.inflate(getActivity(), R.layout.fragment_loading_layer, null);
     }
 
     private View createContentListView(Adapter adapter) {
@@ -121,26 +100,9 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     public final void onLoadFinished(Loader<S> loader, S data) {
         if (data != null) {
             adapter = new Adapter(getActivity(), data.getItems());
-            switchToState(createContentListView(adapter), STATE_READY);
+            switchView(createContentListView(adapter));
         } else {
             // TODO error handling
-        }
-    }
-
-    @Override
-    protected void onAnimateStateChange(View oldView, Object oldTag, View newView, Object newTag, AnimatorSet set) {
-        super.onAnimateStateChange(oldView, oldTag, newView, newTag, set);
-        if (newTag != null && newTag.equals(STATE_LOADING)) {
-            View spinner = newView.findViewById(R.id.spinner);
-            AnimatorSet extraSet = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.loading_spinner_in);
-            extraSet.setTarget(spinner);
-            set.playTogether(extraSet);
-            spinner.setTag(extraSet);
-        }
-        if (oldTag != null && oldTag.equals(STATE_LOADING)) {
-            AnimatorSet extraSet = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.loading_spinner_out);
-            extraSet.setTarget(oldView.findViewById(R.id.spinner));
-            set.playTogether(extraSet);
         }
     }
 

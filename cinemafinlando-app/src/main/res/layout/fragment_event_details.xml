@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#0d0d0d"
+              android:orientation="vertical"
+              tools:context=".ui.EventActivity">
+
+    <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+        android:id="@+id/synopsis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp"
+        android:textSize="14sp"
+        app:customTypeface="roboto_condensed"
+        tools:text="Lorem ipsum"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/window_background"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/release_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Release: 20.30.2014"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/age_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Rating: 16"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+        android:background="@android:color/black"/>
+
+    <it.sephiroth.android.library.widget.HListView
+        android:id="@+id/gallery"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:clipToPadding="false"
+        android:drawSelectorOnTop="true"
+        android:listSelector="@drawable/list_selector"
+        android:overScrollMode="never"
+        android:padding="12dp"
+        app:hlv_dividerWidth="12dp"/>
+
+</LinearLayout>
