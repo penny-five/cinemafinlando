@@ -38,5 +38,5 @@ public interface FinnkinoService {
     public TheatreAreaContainer getTheatreAreas() throws IOException;
 
     @GET("/Schedule")
-    public Schedule getSchedule(@Query("area") String theatreAreaId) throws IOException;
+    public Schedule getSchedule(@Query("area") String theatreAreaId, @Query("dt") String date) throws IOException;
 }

@@ -1,5 +1,7 @@
 package com.github.pennyfive.cinemafinlando.ui;
 
+import android.app.ActionBar;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,6 +19,13 @@ import org.joda.time.format.DateTimeFormatter;
  */
 public class ComingSoonListFragment extends EventListFragment {
     private static final DateTimeFormatter RELEASE_DATE_FORMATTER = DateTimeFormat.forPattern("dd.MM.yyyy");
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        ((DrawerActivity) getActivity()).setActionBarNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+        ((DrawerActivity) getActivity()).setActionBarTitle(getString(R.string.coming_soon));
+    }
 
     @Override
     protected Command<DetailedEventContainer> onCreateCommand() {

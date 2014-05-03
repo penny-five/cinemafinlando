@@ -55,7 +55,6 @@ public class EventListActivity extends DrawerActivity implements NavigationFragm
 
     private void setContentFragment(Fragment fragment, String actionBarTitle) {
         setContentFragment(fragment);
-        setActionBarTitle(actionBarTitle);
         closeDrawer();
     }
 

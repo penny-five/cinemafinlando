@@ -25,7 +25,7 @@ import android.widget.ArrayAdapter;
 import java.util.List;
 
 /**
- * ArrayAdapter implementation that has similar interface as {@link android.widget.CursorAdapter}.
+ * Extended ArrayAdapter implementation that has similar interface as {@link android.widget.CursorAdapter}.
  */
 public abstract class BinderAdapter<T> extends ArrayAdapter<T> {
     private final LayoutInflater inflater;
@@ -35,16 +35,42 @@ public abstract class BinderAdapter<T> extends ArrayAdapter<T> {
         inflater = LayoutInflater.from(context);
     }
 
+    public BinderAdapter(Context context, T[] items) {
+        super(context, 0, items);
+        inflater = LayoutInflater.from(context);
+    }
+
     @Override
     public final View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = newView(getContext(), inflater, position);
+            convertView = newView(inflater, parent);
         }
-        bindView(getContext(), convertView, getItem(position));
+        bindView(convertView, getItem(position), position);
         return convertView;
     }
 
-    public abstract View newView(Context context, LayoutInflater inflater, int position);
+    protected View newView(LayoutInflater inflater, ViewGroup parent) {
+        throw new IllegalStateException("Subclass didn't implement method");
+    }
 
-    public abstract void bindView(Context context, View view, T item);
+    protected void bindView(View view, T item, int position) {
+        throw new IllegalStateException("Subclass didn't implement method");
+    }
+
+    @Override
+    public final View getDropDownView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = newDropDownView(inflater, parent);
+        }
+        bindDropDownView(convertView, getItem(position), position);
+        return convertView;
+    }
+
+    protected View newDropDownView(LayoutInflater inflater, ViewGroup parent) {
+        throw new IllegalStateException("Subclass didn't implement method");
+    }
+
+    protected void bindDropDownView(View view, T item, int position) {
+        throw new IllegalStateException("Subclass didn't implement method");
+    }
 }

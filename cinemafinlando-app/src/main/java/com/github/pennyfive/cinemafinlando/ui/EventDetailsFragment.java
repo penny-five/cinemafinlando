@@ -1,11 +1,11 @@
 package com.github.pennyfive.cinemafinlando.ui;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -56,12 +56,12 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
         galleryView.setAdapter(new BinderAdapter<Image>(getActivity(), event.getGallery().getImages()) {
 
             @Override
-            public View newView(Context context, LayoutInflater inflater, int position) {
-                return inflater.inflate(R.layout.item_event_gallery, null);
+            protected View newView(LayoutInflater inflater, ViewGroup parent) {
+                return inflater.inflate(R.layout.item_event_gallery, parent, false);
             }
 
             @Override
-            public void bindView(Context context, View view, Image item) {
+            protected void bindView(View view, Image item, int position) {
                 ImageView target = (ImageView) view.findViewById(R.id.image);
                 Picasso.with(getContext()).load(item.getThumbnailUrl()).placeholder(android.R.color.black).into(target);
             }

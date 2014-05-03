@@ -22,6 +22,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -48,13 +49,13 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
         }
 
         @Override
-        public View newView(Context context, LayoutInflater inflater, int position) {
-            return QueryAbsListFragment.this.newView(context, inflater, getItem(position));
+        protected View newView(LayoutInflater inflater, ViewGroup parent) {
+            return QueryAbsListFragment.this.newView(inflater, parent);
         }
 
         @Override
-        public void bindView(Context context, View view, T item) {
-            QueryAbsListFragment.this.bindView(context, view, item);
+        protected void bindView(View view, T item, int position) {
+            QueryAbsListFragment.this.bindView(view, item, position);
         }
 
         @Override
@@ -81,7 +82,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
         getLoaderManager().initLoader(0, savedInstanceState, this);
     }
 
-    private View createContentListView(Adapter adapter) {
+    private View inflateContentListView(Adapter adapter) {
         AbsListView view = createAbsListView();
         view.setId(R.id.list);
         view.setOnItemClickListener(this);
@@ -100,7 +101,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     public final void onLoadFinished(Loader<S> loader, S data) {
         if (data != null) {
             adapter = new Adapter(getActivity(), data.getItems());
-            switchView(createContentListView(adapter));
+            switchView(inflateContentListView(adapter));
         } else {
             // TODO error handling
         }
@@ -116,15 +117,20 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
 
     }
 
+    protected void restart() {
+        switchView(inflateDefaultLoadingView());
+        getLoaderManager().restartLoader(0, null, this);
+    }
+
     protected abstract AbsListView createAbsListView();
 
     protected final T getItem(int position) {
         return adapter.getItem(position);
     }
 
-    protected abstract View newView(Context context, LayoutInflater inflater, T item);
+    protected abstract View newView(LayoutInflater inflater, ViewGroup parent);
 
-    protected abstract void bindView(Context context, View view, T item);
+    protected abstract void bindView(View view, T item, int position);
 
     protected int getViewTypeCount() {
         return 1;

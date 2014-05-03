@@ -17,8 +17,6 @@
 package com.github.pennyfive.cinemafinlando;
 
 import android.content.Context;
-import android.support.v8.renderscript.RenderScript;
-import android.support.v8.renderscript.RenderScript.Priority;
 
 import com.github.pennyfive.cinemafinlando.api.service.FinnkinoService;
 import com.github.pennyfive.cinemafinlando.api.xml.Serializers;
@@ -88,13 +86,5 @@ public class CinemaFinlandoModule {
             }
         });
         return builder.build().create(FinnkinoService.class);
-    }
-
-    @Provides
-    @Singleton
-    RenderScript provideRenderscript() {
-        RenderScript rs = RenderScript.create(context);
-        rs.setPriority(Priority.LOW);
-        return rs;
     }
 }

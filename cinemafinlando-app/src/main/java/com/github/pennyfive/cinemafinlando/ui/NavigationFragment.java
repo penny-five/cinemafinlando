@@ -16,9 +16,9 @@
 
 package com.github.pennyfive.cinemafinlando.ui;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -33,9 +33,9 @@ import com.github.pennyfive.cinemafinlando.api.service.GetTheatreAreasCommand;
 /**
  * Contents for navigation drawer. Contains following options:
  * <ul>
- *     <li>View movies that are now playing in cinemas</li>
- *     <li>View movies that are coming soon to cinemas</li>
- *     <li>View movies for cities or individual theatres</li>
+ * <li>View movies that are now playing in cinemas</li>
+ * <li>View movies that are coming soon to cinemas</li>
+ * <li>View movies for cities or individual theatres</li>
  * </ul>
  */
 public class NavigationFragment extends QueryAbsListFragment<TheatreArea, TheatreAreaContainer> {
@@ -69,13 +69,12 @@ public class NavigationFragment extends QueryAbsListFragment<TheatreArea, Theatr
     }
 
     @Override
-    protected View newView(Context context, LayoutInflater inflater, TheatreArea area) {
-        int resid = area.isChildArea() ? R.layout.item_drawer_sub : R.layout.item_drawer;
-        return inflater.inflate(resid, null);
+    protected View newView(LayoutInflater inflater, ViewGroup parent) {
+        return inflater.inflate(R.layout.item_drawer, parent, false);
     }
 
     @Override
-    protected void bindView(Context context, View view, TheatreArea item) {
+    protected void bindView(View view, TheatreArea item, int position) {
         ((TextView) view.findViewById(R.id.text)).setText(item.getName());
     }
 

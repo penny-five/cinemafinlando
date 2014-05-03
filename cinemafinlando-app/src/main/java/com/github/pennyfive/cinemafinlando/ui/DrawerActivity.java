@@ -16,6 +16,7 @@
 
 package com.github.pennyfive.cinemafinlando.ui;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -39,6 +40,7 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
     private ActionBarDrawerToggle drawerToggle;
 
     private String actionBarTitle;
+    private int navigationMode = ActionBar.NAVIGATION_MODE_STANDARD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +83,15 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
 
     protected final void setActionBarTitle(String title) {
         actionBarTitle = title;
-        if (!drawer.isDrawerOpen(Gravity.START)) {
+        if (drawer == null || !drawer.isDrawerOpen(Gravity.START)) {
             updateActionBarTitle(title);
+        }
+    }
+
+    protected final void setActionBarNavigationMode(int mode) {
+        navigationMode = mode;
+        if (drawer == null || !drawer.isDrawerOpen(Gravity.START)) {
+            getActionBar().setNavigationMode(mode);
         }
     }
 
@@ -90,10 +99,16 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
         getActionBar().setTitle(CustomTypeface.ROBOTO_LIGHT.wrap(this, title));
     }
 
+    protected void updateNavigationMode(int mode) {
+        getActionBar().setNavigationMode(mode);
+        getActionBar().setDisplayShowTitleEnabled(mode == ActionBar.NAVIGATION_MODE_STANDARD);
+    }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         drawerToggle.syncState();
+        updateNavigationMode(navigationMode);
     }
 
     @Override
@@ -104,6 +119,7 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
     @Override
     public void onDrawerOpened(View drawerView) {
         drawerToggle.onDrawerOpened(drawerView);
+        updateNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         updateActionBarTitle(getString(R.string.app_name));
         invalidateOptionsMenu();
     }
@@ -111,6 +127,7 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
     @Override
     public void onDrawerClosed(View drawerView) {
         drawerToggle.onDrawerClosed(drawerView);
+        updateNavigationMode(navigationMode);
         updateActionBarTitle(actionBarTitle);
         invalidateOptionsMenu();
     }

@@ -16,11 +16,10 @@
 
 package com.github.pennyfive.cinemafinlando.ui;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v8.renderscript.RenderScript;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -46,7 +45,6 @@ public abstract class EventListFragment extends QueryAbsListFragment<DetailedEve
     }
 
     @Inject Picasso picasso;
-    @Inject RenderScript rs;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,14 +58,14 @@ public abstract class EventListFragment extends QueryAbsListFragment<DetailedEve
     }
 
     @Override
-    protected final View newView(Context context, LayoutInflater inflater, DetailedEvent event) {
-        View view = inflater.inflate(R.layout.item_event, null);
+    protected View newView(LayoutInflater inflater, ViewGroup parent) {
+        View view = inflater.inflate(R.layout.item_event, parent, false);
         onNewView(view);
         return view;
     }
 
     @Override
-    protected final void bindView(Context context, final View view, DetailedEvent event) {
+    protected void bindView(View view, DetailedEvent event, int position) {
         ((TextView) view.findViewById(R.id.text)).setText(event.getTitle());
         ImageView target = (ImageView) view.findViewById(R.id.image);
         String url = event.getImages().getUrl(EventGallery.SIZE_LANDSCAPE_LARGE);
