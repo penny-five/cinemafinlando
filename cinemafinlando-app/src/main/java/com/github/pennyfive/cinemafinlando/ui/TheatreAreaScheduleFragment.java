@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
@@ -93,7 +94,9 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
 
     @Override
     protected AbsListView createAbsListView() {
-        return (AbsListView) LayoutInflater.from(getActivity()).inflate(R.layout.fragment_event_list, null);
+        GridView grid = (GridView) LayoutInflater.from(getActivity()).inflate(R.layout.fragment_event_list, null);
+        grid.setNumColumns(1); // Makes no sense to have more than 1 column in a list that shows a timetable
+        return grid;
     }
 
     @Override
