@@ -9,6 +9,7 @@ Depends on several open source libraries + gradle for compilation.
 
 * UI tuning and bug fixing (required before can be released on Google Play)
 * Proper tablet UI
+* Crashlytics integration
 * IMDB/Rotten Tomatoes integration
 
 ##License
