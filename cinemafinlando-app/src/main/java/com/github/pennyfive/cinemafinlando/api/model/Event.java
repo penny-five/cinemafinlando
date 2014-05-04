@@ -41,7 +41,7 @@ public abstract class Event {
     @Element(name = "Images")
     private EventGallery images;
 
-    public abstract String getId();
+    public abstract String getEventId();
 
     public String getTitle() {
         return title;

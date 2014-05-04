@@ -4,4 +4,7 @@
     <item
         android:id="@+id/menu_view_event"
         android:title="@string/menu_view_event"/>
+    <item
+        android:id="@+id/menu_reserve_tickets"
+        android:title="@string/menu_reserve_tickets"/>
 </menu>

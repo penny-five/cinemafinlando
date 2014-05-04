@@ -60,7 +60,7 @@ public class EventListActivity extends DrawerActivity implements NavigationFragm
     @Override
     public void onEventSelected(Event event) {
         Intent intent = new Intent(CinemaFinlandoIntents.ACTION_VIEW_EVENT);
-        intent.putExtra(CinemaFinlandoIntents.EXTRA_EVENT_ID, event.getId());
+        intent.putExtra(CinemaFinlandoIntents.EXTRA_EVENT_ID, event.getEventId());
         intent.putExtra(CinemaFinlandoIntents.EXTRA_TITLE, event.getTitle());
         intent.putExtra(CinemaFinlandoIntents.EXTRA_ORIGINAL_TITLE, event.getOriginalTitle());
         intent.putExtra(CinemaFinlandoIntents.EXTRA_LENGTH, event.getLengthInMinutes());

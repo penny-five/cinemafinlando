@@ -34,7 +34,7 @@ public class DetailedEvent extends Event {
     private DetailedEventGallery gallery;
 
     @Override
-    public String getId() {
+    public String getEventId() {
         return id;
     }
 

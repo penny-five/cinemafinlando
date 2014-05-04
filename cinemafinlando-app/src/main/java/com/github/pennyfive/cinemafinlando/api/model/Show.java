@@ -25,6 +25,8 @@ import org.simpleframework.xml.Root;
  */
 @Root(strict = false)
 public class Show extends Event {
+    @Element(name = "ID")
+    private String showId;
     @Element(name = "EventID")
     private String eventId;
     @Element(name = "dttmShowStart")
@@ -34,8 +36,12 @@ public class Show extends Event {
     @Element(name = "TheatreAndAuditorium")
     private String theatreAndAuditorium;
 
+    public String getShowId() {
+        return showId;
+    }
+
     @Override
-    public String getId() {
+    public String getEventId() {
         return eventId;
     }
 

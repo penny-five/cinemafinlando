@@ -3,6 +3,8 @@ package com.github.pennyfive.cinemafinlando.ui;
 import android.app.ActionBar;
 import android.app.ActionBar.OnNavigationListener;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -151,9 +153,13 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
         menu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                Show show = getItem(position);
                 switch (item.getItemId()) {
                     case R.id.menu_view_event:
-                        ((EventCallbacks) getActivity()).onEventSelected(getItem(position));
+                        viewEvent(show);
+                        break;
+                    case R.id.menu_reserve_tickets:
+                        reserveTickets(show);
                         break;
                     default:
                         throw new IllegalStateException();
@@ -162,5 +168,19 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
             }
         });
         menu.show();
+    }
+
+    private void viewEvent(Show show) {
+        ((EventCallbacks) getActivity()).onEventSelected(show);
+    }
+
+    private void reserveTickets(Show show) {
+        Uri uri = Uri.parse("https://www.finnkino.fi/Websales/Show")
+                .buildUpon()
+                .appendPath(show.getShowId())
+                .appendQueryParameter("area", theatreArea.getId())
+                .build();
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 }
