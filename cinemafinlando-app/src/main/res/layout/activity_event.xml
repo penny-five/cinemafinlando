@@ -25,7 +25,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.EventActivity">
 
-<RelativeLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -36,6 +36,11 @@
             android:layout_alignParentTop="true"
             android:background="@android:color/black"
             app:aspectRatio="@dimen/promo_image_aspect_ratio"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:src="@drawable/ab_background_fade"/>
 
         <LinearLayout
             android:id="@+id/details"

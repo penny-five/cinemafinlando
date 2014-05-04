@@ -23,6 +23,8 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -59,6 +61,7 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
     @InjectView(R.id.length) TextView durationTextView;
 
     private Drawable actionBarBackgroundDrawable;
+    private Interpolator actionBarBackgroundAlphaInterpolator = new DecelerateInterpolator();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +100,8 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
     @Override
     public void onScroll(int position) {
         float ratio = Math.max(0, Math.min(1, position / (float) eventImageView.getHeight()));
-        actionBarBackgroundDrawable.setAlpha((int) (ratio * 255));
+        float interpolatedRatio = actionBarBackgroundAlphaInterpolator.getInterpolation(ratio);
+        actionBarBackgroundDrawable.setAlpha((int) (interpolatedRatio * 255));
     }
 
     /**
