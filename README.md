@@ -1,4 +1,4 @@
-![promo](https://raw.githubusercontent.com/penny-five/finnkino-app/development/assets/promo.png)
+![promo](https://raw.githubusercontent.com/penny-five/cinemafinlando/development/assets/promo.png)
 #Cinema Finlando 
 
 Android app that shows schedules for Finnkino cinemas in Finland.
