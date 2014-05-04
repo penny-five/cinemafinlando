@@ -1,7 +1,7 @@
 ![promo](https://raw.githubusercontent.com/penny-five/cinemafinlando/development/assets/promo.png)
 #Cinema Finlando 
 
-Android app that shows schedules for Finnkino cinemas in Finland.
+Android app that shows schedules for Finnkino cinemas in Finland. Still work in progress.
 
 Depends on several open source libraries + gradle for compilation.
 
