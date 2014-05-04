@@ -35,7 +35,6 @@
     </style>
 
     <style name="EventActivityTheme.ActionBar" parent="AppTheme.ActionBarStyle">
-        <item name="android:background">@drawable/ab_background_fade</item>
         <item name="android:titleTextStyle">@style/EventActivityTheme.ActionBar.TitleTextStyle
         </item>
     </style>
