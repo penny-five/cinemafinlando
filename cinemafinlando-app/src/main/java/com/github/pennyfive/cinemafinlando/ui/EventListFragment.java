@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,7 +55,9 @@ public abstract class EventListFragment extends QueryAbsListFragment<DetailedEve
 
     @Override
     protected final AbsListView createAbsListView() {
-        return (AbsListView) LayoutInflater.from(getActivity()).inflate(R.layout.fragment_event_list, null);
+        GridView grid = (GridView) LayoutInflater.from(getActivity()).inflate(R.layout.generic_gridview, null);
+        grid.setNumColumns(getResources().getInteger(R.integer.event_list_columns));
+        return grid;
     }
 
     @Override

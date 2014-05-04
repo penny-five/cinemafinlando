@@ -1,5 +1,6 @@
 package com.github.pennyfive.cinemafinlando.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
@@ -13,6 +14,7 @@ import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
+import com.github.pennyfive.cinemafinlando.api.model.DetailedEventGallery;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventGallery.Image;
 import com.github.pennyfive.cinemafinlando.api.service.GetEventsCommand;
 import com.squareup.picasso.Picasso;
@@ -27,6 +29,24 @@ import it.sephiroth.android.library.widget.HListView;
  */
 public class EventDetailsFragment extends MultiStateFragment implements LoaderCallbacks<DetailedEventContainer> {
     private static final DateTimeFormatter RELEASE_DATE_FORMATTER = DateTimeFormat.forPattern("dd.MM.yyyy");
+
+    private class GalleryAdapter extends BinderAdapter<Image> {
+
+        public GalleryAdapter(Context context, DetailedEventGallery gallery) {
+            super(context, gallery.getImages());
+        }
+
+        @Override
+        protected View newView(LayoutInflater inflater, ViewGroup parent) {
+            return inflater.inflate(R.layout.item_event_gallery, parent, false);
+        }
+
+        @Override
+        protected void bindView(View view, Image item, int position) {
+            ImageView target = (ImageView) view.findViewById(R.id.image);
+            Picasso.with(getContext()).load(item.getThumbnailUrl()).placeholder(android.R.color.black).into(target);
+        }
+    }
 
     @Override
     protected void onStateLayoutReady(Bundle savedInstanceState) {
@@ -53,19 +73,7 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
         ((TextView) view.findViewById(R.id.age_rating)).setText(String.valueOf(event.getProductionYear()));
 
         HListView galleryView = (HListView) view.findViewById(R.id.gallery);
-        galleryView.setAdapter(new BinderAdapter<Image>(getActivity(), event.getGallery().getImages()) {
-
-            @Override
-            protected View newView(LayoutInflater inflater, ViewGroup parent) {
-                return inflater.inflate(R.layout.item_event_gallery, parent, false);
-            }
-
-            @Override
-            protected void bindView(View view, Image item, int position) {
-                ImageView target = (ImageView) view.findViewById(R.id.image);
-                Picasso.with(getContext()).load(item.getThumbnailUrl()).placeholder(android.R.color.black).into(target);
-            }
-        });
+        galleryView.setAdapter(new GalleryAdapter(getActivity(), event.getGallery()));
 
         return view;
     }

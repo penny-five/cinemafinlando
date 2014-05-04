@@ -27,7 +27,7 @@ import org.simpleframework.xml.stream.OutputNode;
 /**
  * Converts image url nodes received from Finnkino API to {@link EventGallery} instances.
  */
-class ImagesConverter implements Converter<EventGallery> {
+class EventGalleryConverter implements Converter<EventGallery> {
 
     @Override
     public EventGallery read(InputNode inputNode) throws Exception {

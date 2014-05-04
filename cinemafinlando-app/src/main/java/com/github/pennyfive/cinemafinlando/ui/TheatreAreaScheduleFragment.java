@@ -94,7 +94,7 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
 
     @Override
     protected AbsListView createAbsListView() {
-        GridView grid = (GridView) LayoutInflater.from(getActivity()).inflate(R.layout.fragment_event_list, null);
+        GridView grid = (GridView) LayoutInflater.from(getActivity()).inflate(R.layout.generic_gridview, null);
         grid.setNumColumns(1); // Makes no sense to have more than 1 column in a list that shows a timetable
         return grid;
     }
@@ -123,7 +123,7 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
     }
 
     private static LocalDate[] getDaysForNextWeek() {
-        final LocalDate[] days = new LocalDate[6];
+        final LocalDate[] days = new LocalDate[7];
         days[0] = LocalDate.now();
         for (int i = 1; i < days.length; i++) {
             days[i] = days[i - 1].plusDays(1);

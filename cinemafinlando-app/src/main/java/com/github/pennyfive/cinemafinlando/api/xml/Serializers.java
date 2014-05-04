@@ -39,7 +39,7 @@ public class Serializers {
 
         try {
             registry.bind(DateTime.class, new DateTimeConverter());
-            registry.bind(EventGallery.class, new ImagesConverter());
+            registry.bind(EventGallery.class, new EventGalleryConverter());
             registry.bind(TheatreAreaContainer.class, new TheatreAreasConverter());
         } catch (Exception e) {
             throw new IllegalStateException(e);

@@ -117,6 +117,11 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
 
     }
 
+    /**
+     * Call to restart loader and show loading view.
+     * <p/>
+     * {@link #onCreateCommand()} will be called after.
+     */
     protected void restart() {
         switchView(inflateDefaultLoadingView());
         getLoaderManager().restartLoader(0, null, this);

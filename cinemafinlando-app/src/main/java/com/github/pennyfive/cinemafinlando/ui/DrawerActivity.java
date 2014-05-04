@@ -73,7 +73,7 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
         getActionBar().setHomeButtonEnabled(true);
     }
 
-    protected final void setContentFragment(Fragment fragment) {
+    protected void setContentFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment).commit();
     }
 

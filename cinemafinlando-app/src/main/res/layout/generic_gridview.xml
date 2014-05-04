@@ -22,9 +22,8 @@
           android:background="#111111"
           android:clipToPadding="false"
           android:drawSelectorOnTop="true"
-          android:listSelector="@drawable/list_selector"
           android:horizontalSpacing="12dp"
-          android:numColumns="@integer/event_list_columns"
+          android:listSelector="@drawable/list_selector"
           android:padding="12dp"
           android:scrollbarStyle="outsideOverlay"
           android:verticalSpacing="12dp">

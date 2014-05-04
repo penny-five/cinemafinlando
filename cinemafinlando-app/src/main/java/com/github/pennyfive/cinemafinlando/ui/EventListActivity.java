@@ -21,7 +21,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
-import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.Event;
 import com.github.pennyfive.cinemafinlando.api.model.TheatreArea;
 
@@ -31,7 +30,7 @@ public class EventListActivity extends DrawerActivity implements NavigationFragm
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
-            setContentFragment(new NowShowingListFragment(), getString(R.string.now_showing));
+            setContentFragment(new NowShowingListFragment());
             setDrawerFragment(new NavigationFragment());
         }
     }
@@ -40,21 +39,21 @@ public class EventListActivity extends DrawerActivity implements NavigationFragm
     public void onTheatreAreaSelected(TheatreArea area) {
         Bundle args = new Bundle();
         args.putParcelable(CinemaFinlandoIntents.EXTRA_THEATRE_AREA, area);
-        setContentFragment(UiUtils.instantiateWithArgs(TheatreAreaScheduleFragment.class, args), area.getName());
+        setContentFragment(UiUtils.instantiateWithArgs(TheatreAreaScheduleFragment.class, args));
     }
 
     @Override
     public void onComingSoonSelected() {
-        setContentFragment(new ComingSoonListFragment(), getString(R.string.coming_soon));
+        setContentFragment(new ComingSoonListFragment());
     }
 
     @Override
     public void onNowShowingSelected() {
-        setContentFragment(new NowShowingListFragment(), getString(R.string.now_showing));
+        setContentFragment(new NowShowingListFragment());
     }
 
-    private void setContentFragment(Fragment fragment, String actionBarTitle) {
-        setContentFragment(fragment);
+    protected void setContentFragment(Fragment fragment) {
+        super.setContentFragment(fragment);
         closeDrawer();
     }
 

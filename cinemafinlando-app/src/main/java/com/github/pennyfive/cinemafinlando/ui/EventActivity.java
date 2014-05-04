@@ -50,8 +50,10 @@ public class EventActivity extends FragmentActivity {
         setContentView(R.layout.activity_event);
         InjectUtils.injectAll(this);
 
-        Fragment detailsFragment = UiUtils.instantiateWithIntent(EventDetailsFragment.class, getIntent());
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, detailsFragment).commit();
+        if (savedInstanceState == null) {
+            Fragment detailsFragment = UiUtils.instantiateWithIntent(EventDetailsFragment.class, getIntent());
+            getSupportFragmentManager().beginTransaction().replace(R.id.container, detailsFragment).commit();
+        }
 
         Bundle extras = getIntent().getExtras();
 
@@ -66,7 +68,5 @@ public class EventActivity extends FragmentActivity {
         nameTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_ORIGINAL_TITLE));
         genreTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_GENRES));
         durationTextView.setText(getString(R.string.minutes, extras.getInt(CinemaFinlandoIntents.EXTRA_LENGTH)));
-
-
     }
 }
