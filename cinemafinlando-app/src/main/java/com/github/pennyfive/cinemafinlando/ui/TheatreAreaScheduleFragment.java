@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
+import android.provider.CalendarContract.Events;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -158,6 +160,9 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
                     case R.id.menu_view_event:
                         viewEvent(show);
                         break;
+                    case R.id.menu_add_to_calendar:
+                        addToCalendar(show);
+                        break;
                     case R.id.menu_reserve_tickets:
                         reserveTickets(show);
                         break;
@@ -172,6 +177,17 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
 
     private void viewEvent(Show show) {
         ((EventCallbacks) getActivity()).onEventSelected(show);
+    }
+
+    private void addToCalendar(Show show) {
+        Intent intent = new Intent(Intent.ACTION_INSERT);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setData(Events.CONTENT_URI);
+        intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, show.getStartingTime().getMillis());
+        intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, show.getEndingTime().getMillis());
+        intent.putExtra(Events.TITLE, show.getTitle());
+        intent.putExtra(Events.EVENT_LOCATION, show.getTheatre() + ", " + show.getAuditorium());
+        startActivity(intent);
     }
 
     private void reserveTickets(Show show) {

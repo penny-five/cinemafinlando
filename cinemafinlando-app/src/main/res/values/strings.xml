@@ -33,6 +33,7 @@
 
     <string name="menu_view_event">View event</string>
     <string name="menu_reserve_tickets">Reserve tickets</string>
+    <string name="menu_add_to_calendar">Add to calendar</string>
 
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
