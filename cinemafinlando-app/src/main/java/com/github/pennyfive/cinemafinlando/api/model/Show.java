@@ -25,12 +25,19 @@ import org.simpleframework.xml.Root;
  */
 @Root(strict = false)
 public class Show extends Event {
+    @Element(name = "EventID")
+    private String eventId;
     @Element(name = "dttmShowStart")
     private DateTime startingTime;
     @Element(name = "dttmShowEnd")
     private DateTime endingTime;
     @Element(name = "TheatreAndAuditorium")
     private String theatreAndAuditorium;
+
+    @Override
+    public String getId() {
+        return eventId;
+    }
 
     public DateTime getEndingTime() {
         return endingTime;

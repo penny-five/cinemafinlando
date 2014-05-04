@@ -40,6 +40,15 @@
             android:textSize="17sp"
             app:customTypeface="roboto_condensed"
             tools:text="Hobitti - Smaugin autioittama maa (2D)"/>
+
+        <ImageView
+            android:id="@+id/overflow"
+            android:layout_width="wrap_content"
+            android:background="@drawable/list_selector"
+            android:minWidth="40dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_item_overflow"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
     <View

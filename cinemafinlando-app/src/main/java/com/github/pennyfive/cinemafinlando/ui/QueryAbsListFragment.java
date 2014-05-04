@@ -64,12 +64,23 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
         }
 
         @Override
+        public boolean areAllItemsEnabled() {
+            return itemsClickable;
+        }
+
+        @Override
+        public boolean isEnabled(int position) {
+            return itemsClickable ? true : false;
+        }
+
+        @Override
         public int getItemViewType(int position) {
             return QueryAbsListFragment.this.getItemViewType(position);
         }
     }
 
     private Adapter adapter;
+    private boolean itemsClickable = true;
 
     @Override
     protected void onStateLayoutReady(Bundle savedInstanceState) {
@@ -125,6 +136,10 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     protected void restart() {
         switchView(inflateDefaultLoadingView());
         getLoaderManager().restartLoader(0, null, this);
+    }
+
+    protected void setItemsClickable(boolean itemsClickable) {
+        this.itemsClickable = itemsClickable;
     }
 
     protected abstract AbsListView createAbsListView();

@@ -24,13 +24,19 @@ import org.simpleframework.xml.Root;
  */
 @Root(strict = false)
 public class DetailedEvent extends Event {
+    @Element(name = "ID")
+    private String id;
     @Element(name = "ShortSynopsis", required = false)
     private String shortSynopsis;
     @Element(name = "Synopsis", required = false)
     private String synopsis;
-
     @Element(name = "Gallery")
     private DetailedEventGallery gallery;
+
+    @Override
+    public String getId() {
+        return id;
+    }
 
     public String getSynopsis() {
         return synopsis;

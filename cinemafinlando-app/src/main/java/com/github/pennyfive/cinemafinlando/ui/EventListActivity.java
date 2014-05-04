@@ -24,7 +24,7 @@ import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.api.model.Event;
 import com.github.pennyfive.cinemafinlando.api.model.TheatreArea;
 
-public class EventListActivity extends DrawerActivity implements NavigationFragment.Callbacks, EventListFragment.Callbacks {
+public class EventListActivity extends DrawerActivity implements NavigationFragment.Callbacks, EventCallbacks {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

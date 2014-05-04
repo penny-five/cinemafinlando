@@ -5,10 +5,14 @@ import android.app.ActionBar.OnNavigationListener;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.GridView;
+import android.widget.PopupMenu;
+import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
@@ -26,7 +30,7 @@ import org.joda.time.format.DateTimeFormatter;
 /**
  * Shows schedule for a Theatre area for the selected date. User can pick the date from a spinner in the action bar.
  */
-public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Schedule> implements OnNavigationListener {
+public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Schedule> implements OnNavigationListener, OnClickListener {
     private static final DateTimeFormatter SHOW_TIME_FORMATTER = DateTimeFormat.forPattern("HH:mm");
     private static final DateTimeFormatter SPINNER_DAY_FORMATTER = DateTimeFormat.forPattern("dd.MM.yyyy");
 
@@ -83,6 +87,8 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
 
         theatreArea = getArguments().getParcelable(CinemaFinlandoIntents.EXTRA_THEATRE_AREA);
 
+        setItemsClickable(false);
+
         adapter = new DateAdapter(getActivity(), getDaysForNextWeek());
         getActivity().getActionBar().setListNavigationCallbacks(adapter, this);
     }
@@ -101,11 +107,14 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
 
     @Override
     protected View newView(LayoutInflater inflater, ViewGroup parent) {
-        return inflater.inflate(R.layout.item_show, parent, false);
+        View view = inflater.inflate(R.layout.item_show, parent, false);
+        view.findViewById(R.id.overflow).setOnClickListener(this);
+        return view;
     }
 
     @Override
     protected void bindView(View view, Show show, int position) {
+        view.findViewById(R.id.overflow).setTag(position);
         ((TextView) view.findViewById(R.id.title)).setText(show.getTitle());
         ((TextView) view.findViewById(R.id.starting_time)).setText(show.getStartingTime().toString(SHOW_TIME_FORMATTER));
         ((TextView) view.findViewById(R.id.ending_time)).setText(show.getEndingTime().toString(SHOW_TIME_FORMATTER));
@@ -129,5 +138,29 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
             days[i] = days[i - 1].plusDays(1);
         }
         return days;
+    }
+
+    @Override
+    public void onClick(View v) {
+        showPopupMenu(v, (Integer) v.getTag());
+    }
+
+    private void showPopupMenu(View view, final int position) {
+        PopupMenu menu = new PopupMenu(getActivity(), view);
+        menu.inflate(R.menu.show);
+        menu.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_view_event:
+                        ((EventCallbacks) getActivity()).onEventSelected(getItem(position));
+                        break;
+                    default:
+                        throw new IllegalStateException();
+                }
+                return true;
+            }
+        });
+        menu.show();
     }
 }

@@ -30,7 +30,6 @@ import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
-import com.github.pennyfive.cinemafinlando.api.model.Event;
 import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
 import com.squareup.picasso.Picasso;
 
@@ -40,11 +39,6 @@ import javax.inject.Inject;
  *
  */
 public abstract class EventListFragment extends QueryAbsListFragment<DetailedEvent, DetailedEventContainer> {
-
-    public interface Callbacks {
-        void onEventSelected(Event event);
-    }
-
     @Inject Picasso picasso;
 
     @Override
@@ -82,6 +76,6 @@ public abstract class EventListFragment extends QueryAbsListFragment<DetailedEve
 
     @Override
     public final void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ((Callbacks) getActivity()).onEventSelected(getItem(position));
+        ((EventCallbacks) getActivity()).onEventSelected(getItem(position));
     }
 }

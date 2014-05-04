@@ -26,8 +26,6 @@ import org.simpleframework.xml.Root;
  */
 @Root(strict = false)
 public abstract class Event {
-    @Element(name = "ID")
-    private String id;
     @Element(name = "Title")
     private String title;
     @Element(name = "OriginalTitle")
@@ -43,9 +41,7 @@ public abstract class Event {
     @Element(name = "Images")
     private EventGallery images;
 
-    public String getId() {
-        return id;
-    }
+    public abstract String getId();
 
     public String getTitle() {
         return title;
