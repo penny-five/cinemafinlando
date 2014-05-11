@@ -19,6 +19,7 @@ import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventGallery;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventGallery.Image;
 import com.github.pennyfive.cinemafinlando.api.service.GetEventsCommand;
+import com.github.pennyfive.cinemafinlando.ui.view.adapter.BinderAdapter;
 import com.squareup.picasso.Picasso;
 
 import org.joda.time.format.DateTimeFormat;

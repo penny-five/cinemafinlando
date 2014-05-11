@@ -33,8 +33,9 @@ import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
 import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
-import com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView.CustomTypeface;
-import com.github.pennyfive.cinemafinlando.ui.ListenableScrollView.OnScrollListener;
+import com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView.CustomTypeface;
+import com.github.pennyfive.cinemafinlando.ui.view.ListenableScrollView;
+import com.github.pennyfive.cinemafinlando.ui.view.ListenableScrollView.OnScrollListener;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;

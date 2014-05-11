@@ -30,6 +30,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.Container;
 import com.github.pennyfive.cinemafinlando.api.service.Command;
+import com.github.pennyfive.cinemafinlando.ui.view.adapter.BinderAdapter;
 
 import java.util.List;
 

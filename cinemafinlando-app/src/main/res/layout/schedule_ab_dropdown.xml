@@ -10,7 +10,7 @@
     android:orientation="horizontal"
     android:padding="10dp">
 
-    <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+    <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

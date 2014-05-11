@@ -1,4 +1,4 @@
-package com.github.pennyfive.cinemafinlando.ui;
+package com.github.pennyfive.cinemafinlando.ui.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

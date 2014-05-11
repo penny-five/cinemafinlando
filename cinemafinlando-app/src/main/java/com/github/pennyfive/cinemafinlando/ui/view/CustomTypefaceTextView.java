@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.cinemafinlando.ui;
+package com.github.pennyfive.cinemafinlando.ui.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;

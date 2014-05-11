@@ -21,7 +21,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
-    <com.github.pennyfive.cinemafinlando.ui.FixedAspectRatioImageView
+    <com.github.pennyfive.cinemafinlando.ui.view.FixedAspectRatioImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

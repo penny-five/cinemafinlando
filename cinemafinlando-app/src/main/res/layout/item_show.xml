@@ -16,7 +16,7 @@
         android:background="#353943"
         android:orientation="horizontal">
 
-        <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/starting_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
             app:customTypeface="roboto_condensed"
             tools:text="20:00"/>
 
-        <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/ending_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
             app:customTypeface="roboto_condensed"
             tools:text="22:15"/>
 
-        <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/details"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

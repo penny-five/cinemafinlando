@@ -28,7 +28,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.github.pennyfive.cinemafinlando.R;
-import com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView.CustomTypeface;
+import com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView.CustomTypeface;
 
 /**
  * Base class for Activities that use {@link android.support.v4.widget.DrawerLayout}.

@@ -16,7 +16,7 @@
   ~ limitations under the License.
   -->
 
-<com.github.pennyfive.cinemafinlando.ui.ListenableScrollView
+<com.github.pennyfive.cinemafinlando.ui.view.ListenableScrollView
     android:id="@+id/scrollview"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.github.pennyfive.cinemafinlando.ui.FixedAspectRatioImageView
+        <com.github.pennyfive.cinemafinlando.ui.view.FixedAspectRatioImageView
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             android:paddingRight="12dp"
             android:paddingTop="12dp">
 
-            <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+            <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                 android:textStyle="italic"
                 tools:text="Movie name"/>
 
-            <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+            <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
                 android:id="@+id/genres"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,7 +76,7 @@
                 android:textColor="#5674b9"
                 tools:text="List of genres"/>
 
-            <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+            <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
                 android:id="@+id/length"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -104,4 +104,4 @@
             android:layout_below="@id/details"
             tools:layout="@layout/fragment_event_details"/>
     </RelativeLayout>
-</com.github.pennyfive.cinemafinlando.ui.ListenableScrollView>
+</com.github.pennyfive.cinemafinlando.ui.view.ListenableScrollView>

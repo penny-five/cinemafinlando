@@ -8,7 +8,7 @@
               android:orientation="vertical"
               tools:context=".ui.EventActivity">
 
-    <com.github.pennyfive.cinemafinlando.ui.CustomTypefaceTextView
+    <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
         android:id="@+id/synopsis"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
