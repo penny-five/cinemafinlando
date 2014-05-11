@@ -19,7 +19,7 @@ package com.github.pennyfive.cinemafinlando.api.model;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,10 +28,10 @@ import java.util.List;
 @Root(strict = false)
 public class ContentDescriptorContainer extends Container<ContentDescriptor> {
     @ElementList(entry = "ContentDescriptor", inline = true, required = false)
-    private List<ContentDescriptor> descriptors;
+    private List<ContentDescriptor> descriptors = new ArrayList<>();
 
     @Override
     public List<ContentDescriptor> getItems() {
-        return descriptors != null ? descriptors : Collections.EMPTY_LIST;
+        return descriptors;
     }
 }

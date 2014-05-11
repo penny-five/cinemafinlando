@@ -70,7 +70,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
 
         @Override
         public boolean isEnabled(int position) {
-            return itemsClickable ? true : false;
+            return itemsClickable;
         }
 
         @Override

@@ -52,6 +52,7 @@ public class EventListActivity extends DrawerActivity implements NavigationFragm
         setContentFragment(new NowShowingListFragment());
     }
 
+    @Override
     protected void setContentFragment(Fragment fragment) {
         super.setContentFragment(fragment);
         closeDrawer();
