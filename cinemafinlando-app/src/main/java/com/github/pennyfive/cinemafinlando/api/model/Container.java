@@ -16,11 +16,17 @@
 
 package com.github.pennyfive.cinemafinlando.api.model;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
  *
  */
-public interface Container<T> {
-    List<T> getItems();
+public abstract class Container<T> implements Iterable {
+    public abstract List<T> getItems();
+
+    @Override
+    public final Iterator iterator() {
+        return getItems().iterator();
+    }
 }

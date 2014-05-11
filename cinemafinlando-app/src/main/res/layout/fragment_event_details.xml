@@ -34,7 +34,7 @@
             android:id="@+id/release_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Release: 20.30.2014"/>
+            tools:text="20.30.2014"/>
 
         <Space
             android:layout_width="0dp"
@@ -42,10 +42,10 @@
             android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/age_rating"
+            android:id="@+id/production_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Rating: 16"/>
+            tools:text="2013"/>
     </LinearLayout>
 
     <View
@@ -64,5 +64,36 @@
         android:overScrollMode="never"
         android:padding="12dp"
         app:hlv_dividerWidth="12dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/window_background"
+        android:orientation="horizontal"
+        android:paddingBottom="6dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="6dp">
+
+        <LinearLayout
+            android:id="@+id/descriptor_icons"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/age_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="6dp"
+            android:paddingTop="6dp"
+            tools:text="16"/>
+    </LinearLayout>
 
 </LinearLayout>

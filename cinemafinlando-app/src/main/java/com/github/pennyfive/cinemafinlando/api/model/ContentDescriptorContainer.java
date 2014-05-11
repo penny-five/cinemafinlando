@@ -16,23 +16,22 @@
 
 package com.github.pennyfive.cinemafinlando.api.model;
 
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
  *
  */
 @Root(strict = false)
-public class TheatreAreaContainer extends Container<TheatreArea> {
-    private final List<TheatreArea> areas;
-
-    public TheatreAreaContainer(List<TheatreArea> areas) {
-        this.areas = areas;
-    }
+public class ContentDescriptorContainer extends Container<ContentDescriptor> {
+    @ElementList(entry = "ContentDescriptor", inline = true, required = false)
+    private List<ContentDescriptor> descriptors;
 
     @Override
-    public List<TheatreArea> getItems() {
-        return areas;
+    public List<ContentDescriptor> getItems() {
+        return descriptors != null ? descriptors : Collections.EMPTY_LIST;
     }
 }

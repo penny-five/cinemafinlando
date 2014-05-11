@@ -25,7 +25,7 @@ import java.util.List;
  *
  */
 @Root(strict = false)
-public class Schedule implements Container<Show> {
+public class Schedule extends Container<Show> {
     @ElementList(name = "Shows")
     private List<Show> shows;
 

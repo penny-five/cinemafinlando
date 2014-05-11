@@ -25,7 +25,7 @@ import java.util.List;
  *
  */
 @Root(strict = false)
-public class DetailedEventContainer implements Container<DetailedEvent> {
+public class DetailedEventContainer extends Container<DetailedEvent> {
     @ElementList(entry = "Event", inline = true)
     private List<DetailedEvent> events;
 

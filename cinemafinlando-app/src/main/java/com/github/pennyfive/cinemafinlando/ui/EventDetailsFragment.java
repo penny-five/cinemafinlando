@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.R;
+import com.github.pennyfive.cinemafinlando.api.model.ContentDescriptor;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventGallery;
@@ -21,6 +23,8 @@ import com.squareup.picasso.Picasso;
 
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+
+import javax.inject.Inject;
 
 import it.sephiroth.android.library.widget.HListView;
 
@@ -48,6 +52,14 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
         }
     }
 
+    @Inject Picasso picasso;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        InjectUtils.injectMembers(this);
+    }
+
     @Override
     protected void onStateLayoutReady(Bundle savedInstanceState) {
         switchView(new View(getActivity()));
@@ -70,10 +82,20 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
         View view = View.inflate(getActivity(), R.layout.fragment_event_details, null);
         ((TextView) view.findViewById(R.id.synopsis)).setText(event.getSynopsis());
         ((TextView) view.findViewById(R.id.release_date)).setText(event.getReleaseDate().toString(RELEASE_DATE_FORMATTER));
-        ((TextView) view.findViewById(R.id.age_rating)).setText(String.valueOf(event.getProductionYear()));
+        ((TextView) view.findViewById(R.id.production_year)).setText(String.valueOf(event.getProductionYear()));
 
         HListView galleryView = (HListView) view.findViewById(R.id.gallery);
         galleryView.setAdapter(new GalleryAdapter(getActivity(), event.getGallery()));
+
+        ((TextView) view.findViewById(R.id.age_rating)).setText(String.valueOf(event.getAgeRating()));
+
+        ViewGroup descriptorIconLayout = (ViewGroup) view.findViewById(R.id.descriptor_icons);
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        for (ContentDescriptor descriptor : event.getContentDescriptors().getItems()) {
+            ImageView descriptorIconView = (ImageView) inflater.inflate(R.layout.descriptor_icon, descriptorIconLayout, false);
+            descriptorIconLayout.addView(descriptorIconView);
+            picasso.load(descriptor.getImageUrl()).into(descriptorIconView);
+        }
 
         return view;
     }

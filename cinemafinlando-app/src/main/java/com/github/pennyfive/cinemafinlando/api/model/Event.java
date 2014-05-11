@@ -40,6 +40,8 @@ public abstract class Event {
     private String genres;
     @Element(name = "Images")
     private EventGallery images;
+    @Element(name = "Rating")
+    private String ageRating;
 
     public abstract String getEventId();
 
@@ -69,5 +71,9 @@ public abstract class Event {
 
     public EventGallery getImages() {
         return images;
+    }
+
+    public String getAgeRating() {
+        return ageRating;
     }
 }

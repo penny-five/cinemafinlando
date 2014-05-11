@@ -32,6 +32,8 @@ public class DetailedEvent extends Event {
     private String synopsis;
     @Element(name = "Gallery")
     private DetailedEventGallery gallery;
+    @Element(name = "ContentDescriptors")
+    private ContentDescriptorContainer descriptors;
 
     @Override
     public String getEventId() {
@@ -48,5 +50,9 @@ public class DetailedEvent extends Event {
 
     public DetailedEventGallery getGallery() {
         return gallery;
+    }
+
+    public ContentDescriptorContainer getContentDescriptors() {
+        return descriptors;
     }
 }
