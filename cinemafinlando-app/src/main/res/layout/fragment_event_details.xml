@@ -5,7 +5,6 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="#0d0d0d"
               android:orientation="vertical"
               tools:context=".ui.EventActivity">
 
@@ -51,7 +50,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-
         android:background="@android:color/black"/>
 
     <it.sephiroth.android.library.widget.HListView
@@ -95,5 +93,10 @@
             android:paddingTop="6dp"
             tools:text="16"/>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"/>
 
 </LinearLayout>

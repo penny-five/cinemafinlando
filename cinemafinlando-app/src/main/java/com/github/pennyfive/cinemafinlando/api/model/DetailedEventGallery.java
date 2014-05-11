@@ -32,9 +32,10 @@ import java.util.List;
 @Root(strict = false)
 public class DetailedEventGallery implements Parcelable {
     @ElementList(entry = "GalleryImage", inline = true, required = false)
-    private List<Image> images;
+    private List<Image> images = new ArrayList<>();
 
     public DetailedEventGallery() {
+
     }
 
     private DetailedEventGallery(Parcel in) {
