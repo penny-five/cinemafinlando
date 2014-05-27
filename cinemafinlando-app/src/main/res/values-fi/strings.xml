@@ -15,6 +15,9 @@
     <string name="today">Tänään</string>
     <string name="tomorrow">Huomenna</string>
 
+    <string name="sort_by_name">Lajittele nimen mukaan</string>
+    <string name="sort_by_date">Lajittele ensi-illan mukaan</string>
+
     <string-array name="week_days">
         <item>Maanantai</item>
         <item>Tiistai</item>

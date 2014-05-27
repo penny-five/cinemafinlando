@@ -32,6 +32,7 @@ import com.github.pennyfive.cinemafinlando.api.model.Container;
 import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.ui.view.adapter.BinderAdapter;
 
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -81,6 +82,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     }
 
     private Adapter adapter;
+    private Comparator<T> comparator;
     private boolean itemsClickable = true;
 
     @Override
@@ -113,6 +115,9 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     public final void onLoadFinished(Loader<S> loader, S data) {
         if (data != null) {
             adapter = new Adapter(getActivity(), data.getItems());
+            if (comparator != null) {
+                adapter.sort(comparator);
+            }
             switchView(inflateContentListView(adapter));
         } else {
             // TODO error handling
@@ -159,5 +164,13 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
 
     protected int getItemViewType(int position) {
         return 0;
+    }
+
+    protected final void sort(Comparator<T> comparator) {
+        this.comparator = comparator;
+        if (adapter != null) {
+            adapter.sort(comparator);
+            adapter.notifyDataSetChanged();
+        }
     }
 }

@@ -24,6 +24,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -130,6 +131,21 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
         updateNavigationMode(navigationMode);
         updateActionBarTitle(actionBarTitle);
         invalidateOptionsMenu();
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (drawer.isDrawerOpen(Gravity.START)) {
+            // Hide contextual menu items when drawer is open, as advised in Design Guidelines.
+            hideMenuItems(menu);
+        }
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    private static void hideMenuItems(Menu menu) {
+        for (int i = 0; i < menu.size(); i++) {
+            menu.getItem(i).setVisible(false);
+        }
     }
 
     protected void closeDrawer() {

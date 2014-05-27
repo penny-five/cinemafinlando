@@ -35,6 +35,9 @@
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
 
+    <string name="sort_by_name">Sort by name</string>
+    <string name="sort_by_date">Sort by release date</string>
+
     <string-array name="week_days">
         <item>Monday</item>
         <item>Tuesday</item>

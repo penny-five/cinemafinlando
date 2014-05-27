@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/sort_order"
+        android:showAsAction="ifRoom"
+        android:icon="@drawable/ic_sort"
+        android:title="Sort order">
+        <menu>
+            <item
+                android:id="@+id/sort_by_date"
+                android:title="@string/sort_by_date"/>
+            <item
+                android:id="@+id/sort_by_name"
+                android:title="@string/sort_by_name"/>
+        </menu>
+    </item>
+</menu>
