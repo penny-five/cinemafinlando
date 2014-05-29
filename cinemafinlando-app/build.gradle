@@ -35,11 +35,11 @@ dependencies {
     compile 'com.android.support:support-v4:+'
     compile 'it.sephiroth.android.library.horizontallistview:library:+'
     compile 'joda-time:joda-time:2.3'
-    compile 'com.jakewharton:butterknife:4.0.1'
+    compile 'com.jakewharton:butterknife:5.1.0'
     compile 'com.squareup.dagger:dagger:1.2.1'
     provided 'com.squareup.dagger:dagger-compiler:1.2.1'
     compile 'com.squareup.picasso:picasso:2.2.0'
-    compile 'com.squareup.retrofit:retrofit:1.5.0'
+    compile 'com.squareup.retrofit:retrofit:1.5.1'
     compile('com.squareup.retrofit:converter-simplexml:1.5.0') {
         exclude module: 'stax'
         exclude module: 'stax-api'
