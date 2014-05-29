@@ -38,7 +38,7 @@ import it.sephiroth.android.library.widget.HListView;
 public class EventDetailsFragment extends MultiStateFragment implements LoaderCallbacks<DetailedEventContainer>, OnItemClickListener {
     private static final DateTimeFormatter RELEASE_DATE_FORMATTER = DateTimeFormat.forPattern("dd.MM.yyyy");
 
-    private class GalleryAdapter extends BinderAdapter<Image> {
+    private static class GalleryAdapter extends BinderAdapter<Image> {
 
         public GalleryAdapter(Context context, DetailedEventGallery gallery) {
             super(context, gallery.getImages());

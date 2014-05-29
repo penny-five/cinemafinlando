@@ -15,8 +15,7 @@ import com.github.pennyfive.cinemafinlando.R;
 
 /**
  * Base class for Fragments that have multiple states, each requiring its own UI, and should be able to switch between those states easily (e.g
- * .
- * a Fragment that shows different UI when loading the data or when the loading failed). This base class handles the heavy lifting, including
+ * . a Fragment that shows different UI when loading the data or when the loading failed). This base class handles the heavy lifting, including
  * transitions between different states.
  */
 public abstract class MultiStateFragment extends Fragment {

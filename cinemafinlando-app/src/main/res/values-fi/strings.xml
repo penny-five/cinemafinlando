@@ -10,11 +10,12 @@
 
     <string name="menu_view_event">Näytä tiedot</string>
     <string name="menu_add_to_calendar">Lisää kalenteriin</string>
-    <string name="menu_reserve_tickets">Varaa lippuja</string>
+    <string name="menu_reserve_tickets">Osta lippuja</string>
 
     <string name="today">Tänään</string>
     <string name="tomorrow">Huomenna</string>
 
+    <string name="sort_order">Lajittelujärjestys</string>
     <string name="sort_by_name">Lajittele nimen mukaan</string>
     <string name="sort_by_date">Lajittele ensi-illan mukaan</string>
 

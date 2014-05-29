@@ -29,12 +29,13 @@
     <string name="drawer_divider_cinemas">Cinemas</string>
 
     <string name="menu_view_event">View event</string>
-    <string name="menu_reserve_tickets">Reserve tickets</string>
+    <string name="menu_reserve_tickets">Buy tickets</string>
     <string name="menu_add_to_calendar">Add to calendar</string>
 
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
 
+    <string name="sort_order">Sort order</string>
     <string name="sort_by_name">Sort by name</string>
     <string name="sort_by_date">Sort by release date</string>
 

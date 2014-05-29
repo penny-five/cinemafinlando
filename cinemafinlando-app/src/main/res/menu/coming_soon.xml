@@ -3,10 +3,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/sort_order"
-        android:showAsAction="ifRoom"
         android:icon="@drawable/ic_sort"
-        android:title="Sort order">
-        <menu>
+        android:showAsAction="ifRoom"
+        android:title="@string/sort_order">
+    <menu>
             <item
                 android:id="@+id/sort_by_date"
                 android:title="@string/sort_by_date"/>
