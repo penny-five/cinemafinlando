@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright 2014 Joonas Lehtonen
   ~
@@ -15,8 +16,7 @@
   -->
 
 <resources>
-    <!-- Example customization of dimensions originally defined in res/values/dimens.xml
-         (such as screen margins) for screens with more than 820dp of available width. This
-         would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
-    <dimen name="activity_horizontal_margin">64dp</dimen>
+    <dimen name="navigation_drawer_width">260dp</dimen>
+    <dimen name="gallery_pager_margin">32dp</dimen>
+    <dimen name="schedule_grid_horizontal_padding">196dp</dimen>
 </resources>

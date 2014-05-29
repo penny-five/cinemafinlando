@@ -105,9 +105,7 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
 
     @Override
     protected AbsListView createAbsListView() {
-        GridView grid = (GridView) LayoutInflater.from(getActivity()).inflate(R.layout.generic_gridview, null);
-        grid.setNumColumns(1); // Makes no sense to have more than 1 column in a list that shows a timetable
-        return grid;
+        return (GridView) LayoutInflater.from(getActivity()).inflate(R.layout.schedule_gridview, null);
     }
 
     @Override
