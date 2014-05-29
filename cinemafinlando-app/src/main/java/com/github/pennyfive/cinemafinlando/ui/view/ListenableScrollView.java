@@ -32,6 +32,14 @@ public class ListenableScrollView extends ScrollView {
     }
 
     @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        if (listener != null) {
+            listener.onScroll(getScrollY());
+        }
+    }
+
+    @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
         if (listener != null) {
