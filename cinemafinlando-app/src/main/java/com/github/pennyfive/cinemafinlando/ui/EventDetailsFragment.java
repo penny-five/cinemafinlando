@@ -1,6 +1,7 @@
 package com.github.pennyfive.cinemafinlando.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
@@ -27,12 +28,14 @@ import org.joda.time.format.DateTimeFormatter;
 
 import javax.inject.Inject;
 
+import it.sephiroth.android.library.widget.AdapterView;
+import it.sephiroth.android.library.widget.AdapterView.OnItemClickListener;
 import it.sephiroth.android.library.widget.HListView;
 
 /**
  *
  */
-public class EventDetailsFragment extends MultiStateFragment implements LoaderCallbacks<DetailedEventContainer> {
+public class EventDetailsFragment extends MultiStateFragment implements LoaderCallbacks<DetailedEventContainer>, OnItemClickListener {
     private static final DateTimeFormatter RELEASE_DATE_FORMATTER = DateTimeFormat.forPattern("dd.MM.yyyy");
 
     private class GalleryAdapter extends BinderAdapter<Image> {
@@ -54,6 +57,7 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
     }
 
     @Inject Picasso picasso;
+    private DetailedEvent event;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,11 +79,16 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
 
     @Override
     public void onLoadFinished(Loader<DetailedEventContainer> loader, DetailedEventContainer data) {
-        DetailedEvent event = data.getItems().get(0);
-        switchView(createEventDetailsView(event));
+        event = data.getItems().get(0);
+        switchView(createEventDetailsView());
     }
 
-    private View createEventDetailsView(DetailedEvent event) {
+    @Override
+    public void onLoaderReset(Loader<DetailedEventContainer> loader) {
+
+    }
+
+    private View createEventDetailsView() {
         View view = View.inflate(getActivity(), R.layout.fragment_event_details, null);
         ((TextView) view.findViewById(R.id.synopsis)).setText(event.getSynopsis());
         ((TextView) view.findViewById(R.id.release_date)).setText(event.getReleaseDate().toString(RELEASE_DATE_FORMATTER));
@@ -87,6 +96,7 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
 
         HListView galleryView = (HListView) view.findViewById(R.id.gallery);
         galleryView.setAdapter(new GalleryAdapter(getActivity(), event.getGallery()));
+        galleryView.setOnItemClickListener(this);
 
         ((TextView) view.findViewById(R.id.age_rating)).setText(String.valueOf(event.getAgeRating()));
 
@@ -102,7 +112,12 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
     }
 
     @Override
-    public void onLoaderReset(Loader<DetailedEventContainer> loader) {
-
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Intent intent = new Intent(CinemaFinlandoIntents.ACTION_VIEW_GALLERY);
+        intent.putExtra(CinemaFinlandoIntents.EXTRA_TITLE, event.getTitle());
+        intent.putExtra(CinemaFinlandoIntents.EXTRA_GALLERY, event.getGallery());
+        intent.putExtra(CinemaFinlandoIntents.EXTRA_POSITION, i);
+        getActivity().startActivity(intent);
+        getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

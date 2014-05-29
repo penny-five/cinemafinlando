@@ -18,4 +18,5 @@
 <resources>
     <dimen name="navigation_drawer_width">260dp</dimen>
     <item name="promo_image_aspect_ratio" type="dimen" format="float">2.68</item>
+    <dimen name="gallery_pager_margin">32dp</dimen>
 </resources>

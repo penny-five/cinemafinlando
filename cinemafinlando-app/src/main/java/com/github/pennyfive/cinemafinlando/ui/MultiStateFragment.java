@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 
 import com.github.pennyfive.cinemafinlando.R;
@@ -63,11 +62,5 @@ public abstract class MultiStateFragment extends Fragment {
             AnimatorSet set = new AnimatorSet();
             set.start();
         }
-    }
-
-    protected View inflateDefaultLoadingView() {
-        View view = View.inflate(getActivity(), R.layout.fragment_loading_layer, null);
-        view.findViewById(R.id.spinner).startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.spinner_spin_around));
-        return view;
     }
 }

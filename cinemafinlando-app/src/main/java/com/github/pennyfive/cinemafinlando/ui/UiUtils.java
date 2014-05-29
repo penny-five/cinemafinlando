@@ -24,6 +24,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import com.github.pennyfive.cinemafinlando.R;
@@ -46,9 +47,8 @@ public class UiUtils {
     }
 
     /**
-     * Inflates a layout and sets given text resource string to TextView with id R.id.text. Obviously this requires that the provided layout
-     * file
-     * contains a TextView with the id R.id.text.
+     * Inflates a layout and sets given text resource string to TextView with id R.id.text. Obviously this requires that the provided contains a
+     * TextView with the id R.id.text.
      *
      * @param context
      * @param viewResid
@@ -61,7 +61,6 @@ public class UiUtils {
 
     /**
      * Inflates a layout and sets given text resource string to TextView with id R.id.text. Obviously this requires that the provided layout
-     * file
      * contains a TextView with the id R.id.text.
      *
      * @param context
@@ -72,6 +71,19 @@ public class UiUtils {
     public static View inflateViewWithText(Context context, int viewResid, String text) {
         View view = LayoutInflater.from(context).inflate(viewResid, null);
         ((TextView) view.findViewById(R.id.text)).setText(text);
+        return view;
+    }
+
+    public static View inflateDefaultLoadingView(Context context) {
+        View view = View.inflate(context, R.layout.loading_layer, null);
+        view.findViewById(R.id.spinner).startAnimation(AnimationUtils.loadAnimation(context, R.anim.spinner_spin_around));
+        return view;
+    }
+
+    public static View inflateDefaultLoadingView(Context context, int backgroundResource) {
+        View view = View.inflate(context, R.layout.loading_layer, null);
+        view.setBackgroundResource(backgroundResource);
+        view.findViewById(R.id.spinner).startAnimation(AnimationUtils.loadAnimation(context, R.anim.spinner_spin_around));
         return view;
     }
 

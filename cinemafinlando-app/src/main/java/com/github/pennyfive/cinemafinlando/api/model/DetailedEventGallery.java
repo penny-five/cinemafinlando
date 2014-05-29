@@ -47,6 +47,14 @@ public class DetailedEventGallery implements Parcelable {
         return images;
     }
 
+    public Image getImage(int position) {
+        return images.get(position);
+    }
+
+    public int getImageCount() {
+        return images.size();
+    }
+
     @Override
     public int describeContents() {
         return 0;

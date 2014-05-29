@@ -87,7 +87,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
 
     @Override
     protected void onStateLayoutReady(Bundle savedInstanceState) {
-        switchView(inflateDefaultLoadingView());
+        switchView(UiUtils.inflateDefaultLoadingView(getActivity()));
     }
 
     @Override
@@ -140,7 +140,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
      * {@link #onCreateCommand()} will be called after.
      */
     protected void restart() {
-        switchView(inflateDefaultLoadingView());
+        switchView(UiUtils.inflateDefaultLoadingView(getActivity(), R.color.window_background));
         getLoaderManager().restartLoader(0, null, this);
     }
 
