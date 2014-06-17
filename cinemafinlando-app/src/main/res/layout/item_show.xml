@@ -25,7 +25,7 @@
             android:padding="8dp"
             android:textColor="@android:color/white"
             android:textSize="17sp"
-            app:customTypeface="roboto_condensed"
+            app:customTypeface="condensed"
             tools:text="20:00"/>
 
         <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
@@ -38,7 +38,7 @@
             android:padding="8dp"
             android:textColor="@android:color/white"
             android:textSize="17sp"
-            app:customTypeface="roboto_condensed"
+            app:customTypeface="condensed"
             tools:text="Hobitti - Smaugin autioittama maa (2D)"/>
 
         <ImageView
@@ -70,7 +70,7 @@
             android:padding="8dp"
             android:textColor="#868686"
             android:textSize="15sp"
-            app:customTypeface="roboto_condensed"
+            app:customTypeface="condensed"
             tools:text="22:15"/>
 
         <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
@@ -83,7 +83,7 @@
             android:padding="8dp"
             android:textColor="#868686"
             android:textSize="15sp"
-            app:customTypeface="roboto_condensed"
+            app:customTypeface="condensed"
             tools:text="Tennispalatsi 1, Helsinki"/>
     </LinearLayout>
 </LinearLayout>

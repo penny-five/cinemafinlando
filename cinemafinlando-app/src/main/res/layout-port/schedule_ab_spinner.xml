@@ -12,7 +12,7 @@
         style="@android:style/TextAppearance.DeviceDefault.Widget.ActionMode.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:customTypeface="roboto_light"
+        app:customTypeface="light"
         tools:text="Tennispalatsi"
         />
 

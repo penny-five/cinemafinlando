@@ -17,6 +17,7 @@
 package com.github.pennyfive.cinemafinlando.ui.view;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Typeface;
 import android.text.SpannableString;
@@ -49,7 +50,7 @@ public class CustomTypefaceTextView extends TextView {
 
     private void readCustomTypefaceFromAttributes(AttributeSet attrs) {
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.CustomTypefaceTextView);
-        int type = ta.getInt(R.styleable.CustomTypefaceTextView_customTypeface, -1);
+        int type = ta.getInt(R.styleable.CustomTypefaceTextView_customTypeface, CustomTypeface.REGULAR.type);
         for (CustomTypeface customTypeface : CustomTypeface.values()) {
             if (customTypeface.type == type) {
                 setCustomTypeface(customTypeface);
@@ -61,25 +62,37 @@ public class CustomTypefaceTextView extends TextView {
 
     public void setCustomTypeface(CustomTypeface typeface) {
         if (!isInEditMode()) {
-            setTypeface(Typeface.createFromAsset(getResources().getAssets(), typeface.filename));
+            setTypeface(typeface.create(getResources()));
         }
     }
 
     public enum CustomTypeface {
-        ROBOTO_LIGHT(0, "Roboto-Light.ttf"),
-        ROBOTO_CONDENSED(1, "RobotoCondensed-Regular.ttf");
+        LIGHT(0) {
+            @Override
+            protected Typeface create(Resources res) {
+                return Typeface.createFromAsset(res.getAssets(), "Roboto-Light.ttf");
+            }
+        },
+        CONDENSED(1) {
+            @Override
+            protected Typeface create(Resources res) {
+                return Typeface.createFromAsset(res.getAssets(), "RobotoCondensed-Regular.ttf");
+            }
+        },
+        REGULAR(2) {
+            @Override
+            protected Typeface create(Resources res) {
+                return Typeface.create("sans-serif", Typeface.NORMAL);
+            }
+        };
 
         private final int type;
-        private final String filename;
 
-        private CustomTypeface(int type, String filename) {
+        private CustomTypeface(int type) {
             this.type = type;
-            this.filename = filename;
         }
 
-        private String getFilename() {
-            return filename;
-        }
+        protected abstract Typeface create(Resources res);
 
         public SpannableString wrap(Context context, String src) {
             src = src != null ? src : "";
@@ -93,7 +106,7 @@ public class CustomTypefaceTextView extends TextView {
         private final Typeface typeface;
 
         public CustomTypefaceSpan(Context context, CustomTypeface typeface) {
-            this.typeface = Typeface.createFromAsset(context.getAssets(), typeface.getFilename());
+            this.typeface = typeface.create(context.getResources());
         }
 
         @Override

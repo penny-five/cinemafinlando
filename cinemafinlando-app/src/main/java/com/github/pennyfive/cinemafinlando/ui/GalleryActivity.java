@@ -46,7 +46,7 @@ public class GalleryActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        getActionBar().setTitle(CustomTypeface.ROBOTO_LIGHT.wrap(this, getIntent().getStringExtra(CinemaFinlandoIntents.EXTRA_TITLE)));
+        getActionBar().setTitle(CustomTypeface.LIGHT.wrap(this, getIntent().getStringExtra(CinemaFinlandoIntents.EXTRA_TITLE)));
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
 

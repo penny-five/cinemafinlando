@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:padding="12dp"
         android:textSize="14sp"
-        app:customTypeface="roboto_condensed"
+        app:customTypeface="condensed"
         tools:text="Lorem ipsum"/>
 
     <View

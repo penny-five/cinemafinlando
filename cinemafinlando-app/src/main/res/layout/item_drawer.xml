@@ -24,9 +24,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:minHeight="56dp"
+    android:minHeight="48dp"
     android:padding="8dp"
     android:textColor="@android:color/white"
-    android:textSize="18sp"
-    app:customTypeface="roboto_light"
+    android:textSize="17sp"
+    app:customTypeface="light"
     tools:text="Theatre area"/>

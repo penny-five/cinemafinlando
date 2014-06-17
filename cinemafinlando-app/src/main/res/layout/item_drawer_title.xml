@@ -29,21 +29,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingBottom="8dp"
+        android:paddingBottom="4dp"
         android:paddingLeft="8dp"
         android:paddingRight="16dp"
         android:paddingTop="8dp"
         android:textAllCaps="true"
         android:textColor="#fefefe"
         android:textSize="13sp"
-        app:customTypeface="roboto_light"
+        app:customTypeface="light"
         tools:text="Title"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:background="#fefefe"/>
+        android:layout_height="3dp"
+        android:background="#4a4a4a"/>
 
 </LinearLayout>

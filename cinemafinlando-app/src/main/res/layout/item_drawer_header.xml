@@ -16,16 +16,17 @@
   ~ limitations under the License.
   -->
 
-<GridView xmlns:android="http://schemas.android.com/apk/res/android"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:background="#111111"
-          android:clipToPadding="false"
-          android:drawSelectorOnTop="true"
-          android:horizontalSpacing="1dp"
-          android:listSelector="@drawable/list_selector"
-          android:padding="1dp"
-          android:scrollbarStyle="outsideOverlay"
-          android:verticalSpacing="1dp">
-
-</GridView>
+<com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+    android:id="@+id/text"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:minHeight="56dp"
+    android:padding="8dp"
+    android:textColor="@android:color/white"
+    android:textSize="18sp"
+    app:customTypeface="light"
+    tools:text="Theatre area"/>

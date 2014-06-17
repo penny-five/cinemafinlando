@@ -78,7 +78,7 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
 
         Bundle extras = getIntent().getExtras();
 
-        getActionBar().setTitle(CustomTypeface.ROBOTO_LIGHT.wrap(this, extras.getString(CinemaFinlandoIntents.EXTRA_TITLE)));
+        getActionBar().setTitle(CustomTypeface.LIGHT.wrap(this, extras.getString(CinemaFinlandoIntents.EXTRA_TITLE)));
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
 

@@ -30,4 +30,4 @@
     android:paddingRight="8dp"
     android:textColor="@android:color/white"
     android:textSize="18sp"
-    app:customTypeface="roboto_light"/>
+    app:customTypeface="light"/>
