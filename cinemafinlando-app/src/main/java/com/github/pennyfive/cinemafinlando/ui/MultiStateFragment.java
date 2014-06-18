@@ -19,6 +19,10 @@ import com.github.pennyfive.cinemafinlando.R;
  * transitions between different states.
  */
 public abstract class MultiStateFragment extends Fragment {
+    protected static final int STATE_LOADING = 0;
+    protected static final int STATE_CONTENT = 1;
+    protected static final int STATE_ERROR = 2;
+
     private FrameLayout rootLayout;
 
     @Override
@@ -30,20 +34,24 @@ public abstract class MultiStateFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        onStateLayoutReady(savedInstanceState);
-        if (rootLayout.getChildCount() == 0) {
-            throw new IllegalStateException("Subclass didn't set state in #onStateLayoutReady");
-        }
+        setState(getStartupState());
     }
 
-    /**
-     * Called when subclass should set the first state with {@link #switchView(android.view.View)}.
-     *
-     * @param savedInstanceState
-     */
-    protected abstract void onStateLayoutReady(Bundle savedInstanceState);
+    protected abstract View createStateView(int state);
 
-    protected final void switchView(View view) {
+    protected abstract int getStartupState();
+
+    protected final void setState(int state) {
+        View stateView = createStateView(state);
+        replaceStateView(stateView);
+        onStateChanged(state, stateView);
+    }
+
+    protected void onStateChanged(int state, View view) {
+
+    }
+
+    private void replaceStateView(View view) {
         if (rootLayout.getChildCount() > 0) {
             final View old = rootLayout.getChildAt(rootLayout.getChildCount() - 1);
             AnimatorSet set = (AnimatorSet) AnimatorInflater.loadAnimator(getActivity(), R.animator.state_in);

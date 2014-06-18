@@ -38,13 +38,24 @@ public class GalleryFragment extends MultiStateFragment implements Callback {
     }
 
     @Override
-    protected void onStateLayoutReady(Bundle savedInstanceState) {
-        switchView(UiUtils.inflateDefaultLoadingView(getActivity()));
+    protected int getStartupState() {
+        return STATE_LOADING;
+    }
+
+    @Override
+    protected View createStateView(int state) {
+        switch (state) {
+            case STATE_CONTENT:
+                return imageView;
+            case STATE_LOADING:
+                return UiUtils.inflateDefaultLoadingView(getActivity());
+        }
+        return null;
     }
 
     @Override
     public void onSuccess() {
-        switchView(imageView);
+        setState(STATE_CONTENT);
     }
 
     @Override

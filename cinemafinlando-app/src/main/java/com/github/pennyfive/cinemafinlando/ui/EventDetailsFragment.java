@@ -66,9 +66,32 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
     }
 
     @Override
-    protected void onStateLayoutReady(Bundle savedInstanceState) {
-        switchView(new View(getActivity()));
-        getLoaderManager().initLoader(0, savedInstanceState, this);
+    protected int getStartupState() {
+        return STATE_LOADING;
+    }
+
+    @Override
+    protected View createStateView(int state) {
+        switch (state) {
+            case STATE_LOADING:
+                return UiUtils.inflateDefaultLoadingView(getActivity());
+            case STATE_CONTENT:
+                return createEventDetailsView();
+            default:
+                throw new IllegalStateException("state: " + state);
+        }
+    }
+
+    @Override
+    protected void onStateChanged(int state, View view) {
+        super.onStateChanged(state, view);
+        switch (state) {
+            case STATE_LOADING:
+                getLoaderManager().restartLoader(0, null, this);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
@@ -80,7 +103,7 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
     @Override
     public void onLoadFinished(Loader<DetailedEventContainer> loader, DetailedEventContainer data) {
         event = data.getItems().get(0);
-        switchView(createEventDetailsView());
+        setState(STATE_CONTENT);
     }
 
     @Override

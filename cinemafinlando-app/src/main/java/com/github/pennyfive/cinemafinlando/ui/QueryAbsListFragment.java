@@ -86,14 +86,38 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     private boolean itemsClickable = true;
 
     @Override
-    protected void onStateLayoutReady(Bundle savedInstanceState) {
-        switchView(UiUtils.inflateDefaultLoadingView(getActivity()));
+    protected int getStartupState() {
+        return STATE_LOADING;
+    }
+
+    @Override
+    protected View createStateView(int state) {
+        switch (state) {
+            case STATE_LOADING:
+                return UiUtils.inflateDefaultLoadingView(getActivity());
+            case STATE_CONTENT:
+                return inflateContentListView(adapter);
+            case STATE_ERROR:
+            default:
+                throw new IllegalStateException("state: " + state);
+        }
+    }
+
+    @Override
+    protected void onStateChanged(int state, View view) {
+        super.onStateChanged(state, view);
+        switch (state) {
+            case STATE_LOADING:
+                getLoaderManager().restartLoader(0, null, this);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getLoaderManager().initLoader(0, savedInstanceState, this);
     }
 
     private View inflateContentListView(Adapter adapter) {
@@ -118,7 +142,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
             if (comparator != null) {
                 adapter.sort(comparator);
             }
-            switchView(inflateContentListView(adapter));
+            setState(STATE_CONTENT);
         } else {
             // TODO error handling
         }
@@ -140,8 +164,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
      * {@link #onCreateCommand()} will be called after.
      */
     protected void restart() {
-        switchView(UiUtils.inflateDefaultLoadingView(getActivity(), R.color.window_background));
-        getLoaderManager().restartLoader(0, null, this);
+        setState(STATE_LOADING);
     }
 
     protected void setItemsClickable(boolean itemsClickable) {
