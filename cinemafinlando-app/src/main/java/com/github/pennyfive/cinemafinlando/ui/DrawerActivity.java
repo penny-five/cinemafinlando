@@ -21,6 +21,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
 import android.view.Gravity;
@@ -75,7 +76,11 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
     }
 
     protected void setContentFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.content, fragment).commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .replace(R.id.content, fragment)
+                .commit();
     }
 
     protected final void setDrawerFragment(Fragment fragment) {
