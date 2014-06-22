@@ -8,14 +8,17 @@
               android:orientation="vertical"
               tools:context=".ui.EventActivity">
 
-    <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
-        android:id="@+id/synopsis"
+    <com.github.pennyfive.cinemafinlando.ui.view.ExpandableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp"
-        android:textSize="14sp"
-        app:customTypeface="condensed"
-        tools:text="Lorem ipsum"/>
+        android:padding="12dp">
+
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+            android:id="@+id/synopsis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"/>
+    </com.github.pennyfive.cinemafinlando.ui.view.ExpandableLayout>
 
     <View
         android:layout_width="match_parent"
