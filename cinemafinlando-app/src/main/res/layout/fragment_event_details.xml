@@ -8,7 +8,7 @@
               android:orientation="vertical"
               tools:context=".ui.EventActivity">
 
-    <com.github.pennyfive.cinemafinlando.ui.view.ExpandableLayout
+    <com.github.pennyfive.cinemafinlando.ui.view.ExpandableTextLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp">
@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"/>
-    </com.github.pennyfive.cinemafinlando.ui.view.ExpandableLayout>
+    </com.github.pennyfive.cinemafinlando.ui.view.ExpandableTextLayout>
 
     <View
         android:layout_width="match_parent"
