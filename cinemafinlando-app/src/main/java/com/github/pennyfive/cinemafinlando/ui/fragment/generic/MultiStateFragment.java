@@ -19,29 +19,48 @@ import com.github.pennyfive.cinemafinlando.R;
  * transitions between different states.
  */
 public abstract class MultiStateFragment extends Fragment {
+    private static final int STATE_NOT_SET = -1;
     protected static final int STATE_LOADING = 0;
     protected static final int STATE_CONTENT = 1;
     protected static final int STATE_ERROR = 2;
 
     private FrameLayout rootLayout;
+    private int state = STATE_NOT_SET;
 
     @Override
-    public final View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootLayout = new FrameLayout(getActivity());
-        return rootLayout;
-    }
+        if (state == STATE_NOT_SET) {
+            setState(getStartupState());
+        } else {
+            changeState();
+        }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        setState(getStartupState());
+        return rootLayout;
     }
 
     protected abstract View createStateView(int state);
 
+    /**
+     * Called before creating the first state <i>unless</i> {@link #setState(int)} was already called by the subclass.
+     *
+     * @return
+     */
     protected abstract int getStartupState();
 
     protected final void setState(int state) {
+        if (state == this.state) {
+            return;
+        }
+
+        this.state = state;
+
+        if (rootLayout != null) {
+            changeState();
+        }
+    }
+
+    private void changeState() {
         View stateView = createStateView(state);
         replaceStateView(stateView);
         onStateChanged(state, stateView);

@@ -1,7 +1,9 @@
 package com.github.pennyfive.cinemafinlando.ui.fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
@@ -19,14 +21,18 @@ public class GalleryItemFragment extends MultiStateFragment implements Callback 
     private ImageView imageView;
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         InjectUtils.injectMembers(this);
+    }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         imageView = new ImageView(getActivity());
-
         Image image = getArguments().getParcelable(CinemaFinlandoIntents.EXTRA_IMAGE);
         picasso.load(image.getUrl()).into(imageView, this);
+
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
