@@ -22,10 +22,10 @@
           android:background="#111111"
           android:clipToPadding="false"
           android:drawSelectorOnTop="true"
-          android:horizontalSpacing="1dp"
+          android:horizontalSpacing="2dp"
           android:listSelector="@drawable/list_selector"
-          android:padding="1dp"
+          android:padding="2dp"
           android:scrollbarStyle="outsideOverlay"
-          android:verticalSpacing="1dp">
+          android:verticalSpacing="2dp">
 
 </GridView>
