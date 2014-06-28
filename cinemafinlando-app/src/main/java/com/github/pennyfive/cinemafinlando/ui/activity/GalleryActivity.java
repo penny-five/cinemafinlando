@@ -6,7 +6,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.PageTransformer;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.R;
@@ -57,6 +59,7 @@ public class GalleryActivity extends FragmentActivity {
 
         ViewPager pager = ButterKnife.findById(this, R.id.pager);
         pager.setPageMargin(UiUtils.pixelsFromResource(this, R.dimen.gallery_activity_pager_margin));
+        pager.setPageTransformer(true, new GalleryPageTransformer());
         pager.setAdapter(adapter);
         pager.setCurrentItem(getIntent().getIntExtra(CinemaFinlandoIntents.EXTRA_POSITION, 0), false);
     }
@@ -77,5 +80,40 @@ public class GalleryActivity extends FragmentActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    /**
+     * Does depth transformation for pages
+     * (see <a href="http://developer.android.com/training/animation/screen-slide.html#pagetransformer">here</a>)
+     */
+    private static class GalleryPageTransformer implements PageTransformer {
+        private static final float MIN_SCALE = 0.75f;
+
+        private static final float DISMISS_MAX_ROTATION = 10;
+        private static final float DISMISS_MAX_X_TRANSFORMATION = 0.25f;
+
+        @Override
+        public void transformPage(View page, float position) {
+            if (position < -1) {
+                page.setAlpha(0);
+            } else if (position <= 0) {
+                /**
+                 * Add some rotation and x transformation when dismissing pages.
+                 */
+                page.setRotation(position * DISMISS_MAX_ROTATION);
+                page.setAlpha(1);
+                page.setTranslationX(position * page.getWidth() * DISMISS_MAX_X_TRANSFORMATION);
+                page.setScaleX(1);
+                page.setScaleY(1);
+            } else if (position <= 1) {
+                page.setAlpha(1 - position);
+                page.setTranslationX(page.getWidth() * -position);
+                float scale = MIN_SCALE + ((1 - position) * (1 - MIN_SCALE));
+                page.setScaleX(scale);
+                page.setScaleY(scale);
+            } else {
+                page.setAlpha(0);
+            }
+        }
     }
 }

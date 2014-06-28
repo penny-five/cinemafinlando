@@ -19,5 +19,4 @@
     <color name="window_background">#161616</color>
     <color name="event_window_background">#0d0d0d</color>
     <color name="gallery_window_background">#eb000000</color>
-    <color name="gallery_action_bar_background">#eb000000</color>
 </resources>

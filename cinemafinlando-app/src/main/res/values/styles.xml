@@ -52,7 +52,7 @@
 
     <style name="GalleryActivityTheme.ActionBar" parent="AppTheme.ActionBarStyle">
         <item name="android:titleTextStyle">@style/EventActivityTheme.ActionBar.TitleTextStyle</item>
-        <item name="android:background">@color/gallery_action_bar_background</item>
+        <item name="android:background">@android:color/transparent</item>
     </style>
 
 </resources>
