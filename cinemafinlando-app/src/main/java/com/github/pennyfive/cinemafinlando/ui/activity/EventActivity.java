@@ -104,8 +104,13 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
     @Override
     public void onScroll(int position) {
         float ratio = Math.max(0, Math.min(1, position / (float) eventImageView.getHeight()));
+
+        /* Adjust action bar background alpha when scrolled. */
         float interpolatedRatio = actionBarBackgroundAlphaInterpolator.getInterpolation(ratio);
         actionBarBackgroundDrawable.setAlpha((int) (interpolatedRatio * 255));
+
+        /* Adjust event image translation when scrolled to create parallax effect. */
+        eventImageView.setTranslationY(eventImageView.getHeight() * 0.4f * ratio);
     }
 
     /**

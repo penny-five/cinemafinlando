@@ -11,12 +11,13 @@
     <com.github.pennyfive.cinemafinlando.ui.view.ExpandableTextLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/event_window_background"
         android:paddingBottom="12dp"
         android:paddingLeft="@dimen/event_activity_side_padding"
         android:paddingRight="@dimen/event_activity_side_padding"
         android:paddingTop="12dp">
 
-    <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/synopsis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,7 +39,7 @@
         android:paddingRight="@dimen/event_activity_side_padding"
         android:paddingTop="12dp">
 
-    <TextView
+        <TextView
             android:id="@+id/release_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
