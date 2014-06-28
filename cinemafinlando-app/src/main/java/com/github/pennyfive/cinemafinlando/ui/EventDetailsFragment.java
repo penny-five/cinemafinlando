@@ -8,6 +8,7 @@ import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -74,7 +75,9 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
     protected View createStateView(int state) {
         switch (state) {
             case STATE_LOADING:
-                return UiUtils.inflateDefaultLoadingView(getActivity());
+                View view = UiUtils.inflateDefaultLoadingView(getActivity());
+                view.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+                return view;
             case STATE_CONTENT:
                 return createEventDetailsView();
             default:
