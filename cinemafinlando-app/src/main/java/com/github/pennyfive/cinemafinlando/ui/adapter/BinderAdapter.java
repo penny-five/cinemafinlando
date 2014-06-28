@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.cinemafinlando.ui.view.adapter;
+package com.github.pennyfive.cinemafinlando.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

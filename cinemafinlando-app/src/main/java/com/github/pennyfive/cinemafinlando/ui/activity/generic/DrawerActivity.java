@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.cinemafinlando.ui;
+package com.github.pennyfive.cinemafinlando.ui.activity.generic;
 
 import android.app.ActionBar;
 import android.os.Bundle;
@@ -87,14 +87,14 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
         getSupportFragmentManager().beginTransaction().replace(R.id.drawer_content, fragment).commit();
     }
 
-    protected final void setActionBarTitle(String title) {
+    public final void setActionBarTitle(String title) {
         actionBarTitle = title;
         if (drawer == null || !drawer.isDrawerOpen(Gravity.START)) {
             updateActionBarTitle(title);
         }
     }
 
-    protected final void setActionBarNavigationMode(int mode) {
+    public final void setActionBarNavigationMode(int mode) {
         navigationMode = mode;
         if (drawer == null || !drawer.isDrawerOpen(Gravity.START)) {
             getActionBar().setNavigationMode(mode);

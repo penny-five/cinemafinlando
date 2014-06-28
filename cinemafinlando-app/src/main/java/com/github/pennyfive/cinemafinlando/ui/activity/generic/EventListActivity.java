@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.cinemafinlando.ui;
+package com.github.pennyfive.cinemafinlando.ui.activity.generic;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,8 +23,15 @@ import android.support.v4.app.Fragment;
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.api.model.Event;
 import com.github.pennyfive.cinemafinlando.api.model.TheatreArea;
+import com.github.pennyfive.cinemafinlando.ui.EventCallbacks;
+import com.github.pennyfive.cinemafinlando.ui.UiUtils;
+import com.github.pennyfive.cinemafinlando.ui.fragment.ComingSoonListFragment;
+import com.github.pennyfive.cinemafinlando.ui.fragment.NavigationFragment;
+import com.github.pennyfive.cinemafinlando.ui.fragment.NavigationFragment.Callbacks;
+import com.github.pennyfive.cinemafinlando.ui.fragment.NowShowingListFragment;
+import com.github.pennyfive.cinemafinlando.ui.fragment.TheatreAreaScheduleFragment;
 
-public class EventListActivity extends DrawerActivity implements NavigationFragment.Callbacks, EventCallbacks {
+public class EventListActivity extends DrawerActivity implements Callbacks, EventCallbacks {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

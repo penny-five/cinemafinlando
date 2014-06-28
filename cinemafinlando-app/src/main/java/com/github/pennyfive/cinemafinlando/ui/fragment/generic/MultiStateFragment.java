@@ -1,4 +1,4 @@
-package com.github.pennyfive.cinemafinlando.ui;
+package com.github.pennyfive.cinemafinlando.ui.fragment.generic;
 
 import android.animation.Animator;
 import android.animation.AnimatorInflater;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.cinemafinlando.ui;
+package com.github.pennyfive.cinemafinlando.ui.activity;
 
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Drawable.Callback;
@@ -34,6 +34,8 @@ import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
 import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
+import com.github.pennyfive.cinemafinlando.ui.UiUtils;
+import com.github.pennyfive.cinemafinlando.ui.fragment.EventDetailsFragment;
 import com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView.CustomTypeface;
 import com.github.pennyfive.cinemafinlando.ui.view.ListenableScrollView;
 import com.github.pennyfive.cinemafinlando.ui.view.ListenableScrollView.OnScrollListener;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.cinemafinlando.ui;
+package com.github.pennyfive.cinemafinlando.ui.fragment.generic;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,6 +31,7 @@ import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
 import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
+import com.github.pennyfive.cinemafinlando.ui.EventCallbacks;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;

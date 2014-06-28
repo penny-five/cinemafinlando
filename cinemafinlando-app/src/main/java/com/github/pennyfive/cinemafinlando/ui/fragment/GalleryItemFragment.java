@@ -1,4 +1,4 @@
-package com.github.pennyfive.cinemafinlando.ui;
+package com.github.pennyfive.cinemafinlando.ui.fragment;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,15 +7,14 @@ import android.widget.ImageView;
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventGallery.Image;
+import com.github.pennyfive.cinemafinlando.ui.UiUtils;
+import com.github.pennyfive.cinemafinlando.ui.fragment.generic.MultiStateFragment;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import javax.inject.Inject;
 
-/**
- *
- */
-public class GalleryFragment extends MultiStateFragment implements Callback {
+public class GalleryItemFragment extends MultiStateFragment implements Callback {
     @Inject Picasso picasso;
     private ImageView imageView;
 

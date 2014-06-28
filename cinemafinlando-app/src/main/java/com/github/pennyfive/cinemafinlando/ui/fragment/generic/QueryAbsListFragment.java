@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.cinemafinlando.ui;
+package com.github.pennyfive.cinemafinlando.ui.fragment.generic;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -30,7 +30,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.Container;
 import com.github.pennyfive.cinemafinlando.api.service.Command;
-import com.github.pennyfive.cinemafinlando.ui.view.adapter.BinderAdapter;
+import com.github.pennyfive.cinemafinlando.ui.ApiQueryLoader;
+import com.github.pennyfive.cinemafinlando.ui.UiUtils;
+import com.github.pennyfive.cinemafinlando.ui.adapter.BinderAdapter;
 
 import java.util.Comparator;
 import java.util.List;
@@ -113,11 +115,6 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
             default:
                 break;
         }
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
     }
 
     private View inflateContentListView(Adapter adapter) {

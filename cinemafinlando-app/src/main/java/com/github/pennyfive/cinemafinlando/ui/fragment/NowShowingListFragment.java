@@ -1,4 +1,4 @@
-package com.github.pennyfive.cinemafinlando.ui;
+package com.github.pennyfive.cinemafinlando.ui.fragment;
 
 import android.app.ActionBar;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
 import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.api.service.GetEventsCommand;
+import com.github.pennyfive.cinemafinlando.ui.activity.generic.DrawerActivity;
+import com.github.pennyfive.cinemafinlando.ui.fragment.generic.EventListFragment;
 
 /**
  * Shows list of movies that are now shown in the selected theatre.

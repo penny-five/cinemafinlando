@@ -31,12 +31,16 @@ import retrofit.http.Query;
 public interface FinnkinoService {
 
     @GET("/events/?includeGallery=true")
-    public DetailedEventContainer getEvents(@Query("eventId") String eventId, @Query("listType") String listType,
-                                            @Query("area") String area) throws IOException;
+    public DetailedEventContainer getEvents(
+            @Query("eventId") String eventId,
+            @Query("listType") String listType,
+            @Query("area") String area) throws IOException;
 
     @GET("/theatreAreas")
     public TheatreAreaContainer getTheatreAreas() throws IOException;
 
     @GET("/Schedule")
-    public Schedule getSchedule(@Query("area") String theatreAreaId, @Query("dt") String date) throws IOException;
+    public Schedule getSchedule(
+            @Query("area") String theatreAreaId,
+            @Query("dt") String date) throws IOException;
 }

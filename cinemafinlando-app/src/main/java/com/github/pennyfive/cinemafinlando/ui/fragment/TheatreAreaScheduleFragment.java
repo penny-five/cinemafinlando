@@ -1,4 +1,4 @@
-package com.github.pennyfive.cinemafinlando.ui;
+package com.github.pennyfive.cinemafinlando.ui.fragment;
 
 import android.app.ActionBar;
 import android.app.ActionBar.OnNavigationListener;
@@ -26,7 +26,10 @@ import com.github.pennyfive.cinemafinlando.api.model.Show;
 import com.github.pennyfive.cinemafinlando.api.model.TheatreArea;
 import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.api.service.GetScheduleCommand;
-import com.github.pennyfive.cinemafinlando.ui.view.adapter.BinderAdapter;
+import com.github.pennyfive.cinemafinlando.ui.EventCallbacks;
+import com.github.pennyfive.cinemafinlando.ui.activity.generic.DrawerActivity;
+import com.github.pennyfive.cinemafinlando.ui.adapter.BinderAdapter;
+import com.github.pennyfive.cinemafinlando.ui.fragment.generic.QueryAbsListFragment;
 
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;

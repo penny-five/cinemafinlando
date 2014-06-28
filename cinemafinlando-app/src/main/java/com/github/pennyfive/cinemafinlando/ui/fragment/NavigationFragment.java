@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.cinemafinlando.ui;
+package com.github.pennyfive.cinemafinlando.ui.fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +29,8 @@ import com.github.pennyfive.cinemafinlando.api.model.TheatreArea;
 import com.github.pennyfive.cinemafinlando.api.model.TheatreAreaContainer;
 import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.api.service.GetTheatreAreasCommand;
+import com.github.pennyfive.cinemafinlando.ui.UiUtils;
+import com.github.pennyfive.cinemafinlando.ui.fragment.generic.QueryAbsListFragment;
 
 /**
  * Contents for navigation drawer. Contains following options:
@@ -74,17 +76,6 @@ public class NavigationFragment extends QueryAbsListFragment<TheatreArea, Theatr
     @Override
     protected void bindView(View view, TheatreArea item, int position) {
         ((TextView) view.findViewById(R.id.text)).setText(item.getName());
-    }
-
-    @Override
-    protected int getViewTypeCount() {
-        /* Uses different views for normal theatre areas and child theatre areas */
-        return 2;
-    }
-
-    @Override
-    protected int getItemViewType(int position) {
-        return getItem(position).isChildArea() ? 1 : 0;
     }
 
     @Override

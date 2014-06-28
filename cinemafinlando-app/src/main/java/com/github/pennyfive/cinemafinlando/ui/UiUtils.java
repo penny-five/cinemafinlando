@@ -75,13 +75,13 @@ public class UiUtils {
     }
 
     public static View inflateDefaultLoadingView(Context context) {
-        View view = View.inflate(context, R.layout.loading_layer, null);
+        View view = View.inflate(context, R.layout.loading_placeholder, null);
         view.findViewById(R.id.spinner).startAnimation(AnimationUtils.loadAnimation(context, R.anim.spinner_spin_around));
         return view;
     }
 
     public static View inflateDefaultLoadingView(Context context, int backgroundResource) {
-        View view = View.inflate(context, R.layout.loading_layer, null);
+        View view = View.inflate(context, R.layout.loading_placeholder, null);
         view.setBackgroundResource(backgroundResource);
         view.findViewById(R.id.spinner).startAnimation(AnimationUtils.loadAnimation(context, R.anim.spinner_spin_around));
         return view;

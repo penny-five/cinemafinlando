@@ -1,4 +1,4 @@
-package com.github.pennyfive.cinemafinlando.ui;
+package com.github.pennyfive.cinemafinlando.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,12 +11,14 @@ import android.view.MenuItem;
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventGallery;
+import com.github.pennyfive.cinemafinlando.ui.UiUtils;
+import com.github.pennyfive.cinemafinlando.ui.fragment.GalleryItemFragment;
 import com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView.CustomTypeface;
 
 import butterknife.ButterKnife;
 
 /**
- *
+ * Shows an image gallery associated to an event.
  */
 public class GalleryActivity extends FragmentActivity {
 
@@ -32,7 +34,7 @@ public class GalleryActivity extends FragmentActivity {
         public Fragment getItem(int position) {
             Bundle args = new Bundle();
             args.putParcelable(CinemaFinlandoIntents.EXTRA_IMAGE, gallery.getImage(position));
-            return UiUtils.instantiateWithArgs(GalleryFragment.class, args);
+            return UiUtils.instantiateWithArgs(GalleryItemFragment.class, args);
         }
 
         @Override
