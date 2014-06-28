@@ -16,10 +16,6 @@
   -->
 
 <resources>
-    <dimen name="navigation_drawer_width">260dp</dimen>
-    <item name="promo_image_aspect_ratio" type="dimen" format="float">2.68</item>
-    <item name="event_activity_header_image_aspect_ratio" type="dimen" format="float">@dimen/promo_image_aspect_ratio</item>
-    <dimen name="event_activity_side_padding">12dp</dimen>
-    <dimen name="gallery_activity_pager_margin">32dp</dimen>
-    <dimen name="schedule_activity_grid_horizontal_padding">12dp</dimen>
+    <item name="event_activity_header_image_aspect_ratio" type="dimen" format="float">4.5</item>
+    <dimen name="event_activity_side_padding">48dp</dimen>
 </resources>

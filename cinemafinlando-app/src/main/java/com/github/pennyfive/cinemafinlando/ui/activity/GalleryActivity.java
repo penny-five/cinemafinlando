@@ -56,7 +56,7 @@ public class GalleryActivity extends FragmentActivity {
         GalleryAdapter adapter = new GalleryAdapter(getSupportFragmentManager(), gallery);
 
         ViewPager pager = ButterKnife.findById(this, R.id.pager);
-        pager.setPageMargin(UiUtils.pixelsFromResource(this, R.dimen.gallery_pager_margin));
+        pager.setPageMargin(UiUtils.pixelsFromResource(this, R.dimen.gallery_activity_pager_margin));
         pager.setAdapter(adapter);
         pager.setCurrentItem(getIntent().getIntExtra(CinemaFinlandoIntents.EXTRA_POSITION, 0), false);
     }
