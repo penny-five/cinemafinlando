@@ -93,8 +93,8 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
         getActionBar().setBackgroundDrawable(actionBarBackgroundDrawable);
 
         EventGallery eventImageGallery = extras.getParcelable(CinemaFinlandoIntents.EXTRA_IMAGES);
-        picasso.load(eventImageGallery.getUrl(EventGallery.SIZE_LANDSCAPE_LARGE)).into(eventImageView);
-        picasso.load(eventImageGallery.getUrl(EventGallery.SIZE_PORTRAIT_LARGE)).into(posterImageView);
+        picasso.load(eventImageGallery.getUrl(EventGallery.SIZE_LANDSCAPE_LARGE)).placeholder(R.drawable.event_promo_placeholder).into(eventImageView);
+        picasso.load(eventImageGallery.getUrl(EventGallery.SIZE_PORTRAIT_LARGE)).placeholder(R.drawable.event_poster_placeholder).into(posterImageView);
 
         nameTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_ORIGINAL_TITLE));
         genreTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_GENRES));

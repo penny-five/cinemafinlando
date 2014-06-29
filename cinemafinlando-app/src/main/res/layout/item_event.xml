@@ -28,8 +28,9 @@
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:scaleType="fitXY"
         app:aspectRatio="@dimen/promo_image_aspect_ratio"
-        tools:src="@drawable/event_placeholder"/>
+        tools:src="@drawable/event_item_placeholder"/>
 
     <LinearLayout
         android:id="@+id/bottom_frame"

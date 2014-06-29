@@ -67,7 +67,7 @@ public abstract class EventListFragment extends QueryAbsListFragment<DetailedEve
         ((TextView) view.findViewById(R.id.text)).setText(event.getTitle());
         ImageView target = (ImageView) view.findViewById(R.id.image);
         String url = event.getImages().getUrl(EventGallery.SIZE_LANDSCAPE_LARGE);
-        picasso.load(url).placeholder(R.drawable.event_placeholder).into(target);
+        picasso.load(url).placeholder(R.drawable.event_item_placeholder).into(target);
         onViewBound(view, event);
     }
 
