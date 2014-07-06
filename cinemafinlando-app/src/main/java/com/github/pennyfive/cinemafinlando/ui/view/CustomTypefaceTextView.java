@@ -82,7 +82,7 @@ public class CustomTypefaceTextView extends TextView {
         REGULAR(2) {
             @Override
             protected Typeface create(Resources res) {
-                return Typeface.create("sans-serif", Typeface.NORMAL);
+                return Typeface.createFromAsset(res.getAssets(), "Roboto-Regular.ttf");
             }
         };
 

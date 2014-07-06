@@ -39,7 +39,7 @@
         android:paddingRight="@dimen/event_activity_side_padding"
         android:paddingTop="12dp">
 
-        <TextView
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/release_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"/>
 
-        <TextView
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/production_year"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"/>
 
-        <TextView
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/age_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
