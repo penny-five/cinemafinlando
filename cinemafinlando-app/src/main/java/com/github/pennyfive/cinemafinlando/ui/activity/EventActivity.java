@@ -27,6 +27,7 @@ import android.view.MenuItem;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
@@ -93,7 +94,20 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
         getActionBar().setBackgroundDrawable(actionBarBackgroundDrawable);
 
         EventGallery eventImageGallery = extras.getParcelable(CinemaFinlandoIntents.EXTRA_IMAGES);
-        picasso.load(eventImageGallery.getUrl(EventGallery.SIZE_LANDSCAPE_LARGE)).placeholder(R.drawable.event_promo_placeholder).into(eventImageView);
+        picasso.load(eventImageGallery.getUrl(EventGallery.SIZE_LANDSCAPE_LARGE)).placeholder(R.drawable.event_promo_placeholder).into(eventImageView,
+                new com.squareup.picasso.Callback() {
+                    @Override
+                    public void onSuccess() {
+                        /* Use CENTER_CROP for actual images instead of FIT_XY that is used for the placeholder */
+                        eventImageView.setScaleType(ScaleType.CENTER_CROP);
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                }
+        );
         picasso.load(eventImageGallery.getUrl(EventGallery.SIZE_PORTRAIT_LARGE)).placeholder(R.drawable.event_poster_placeholder).into(posterImageView);
 
         nameTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_ORIGINAL_TITLE));
