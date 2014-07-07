@@ -42,6 +42,10 @@ public abstract class Event {
     private EventGallery images;
     @Element(name = "Rating")
     private String ageRating;
+    @Element(name = "EventType")
+    private String eventType;
+
+    public static final String TYPE_MOVIE = "Movie";
 
     public abstract String getEventId();
 
@@ -75,5 +79,9 @@ public abstract class Event {
 
     public String getAgeRating() {
         return ageRating;
+    }
+
+    public String getEventType() {
+        return eventType;
     }
 }

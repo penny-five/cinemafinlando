@@ -135,7 +135,9 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     @Override
     public final void onLoadFinished(Loader<S> loader, S data) {
         if (data != null) {
-            adapter = new Adapter(getActivity(), data.getItems());
+            List<T> items = data.getItems();
+            onFilterResults(items);
+            adapter = new Adapter(getActivity(), items);
             if (comparator != null) {
                 adapter.sort(comparator);
             }
@@ -143,6 +145,10 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
         } else {
             // TODO error handling
         }
+    }
+
+    protected void onFilterResults(List<T> items) {
+
     }
 
     @Override

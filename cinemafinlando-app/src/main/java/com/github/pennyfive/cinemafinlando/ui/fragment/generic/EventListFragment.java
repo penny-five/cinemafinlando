@@ -30,9 +30,12 @@ import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
+import com.github.pennyfive.cinemafinlando.api.model.Event;
 import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
 import com.github.pennyfive.cinemafinlando.ui.EventCallbacks;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -69,6 +72,18 @@ public abstract class EventListFragment extends QueryAbsListFragment<DetailedEve
         String url = event.getImages().getUrl(EventGallery.SIZE_LANDSCAPE_LARGE);
         picasso.load(url).placeholder(R.drawable.event_item_placeholder).into(target);
         onViewBound(view, event);
+    }
+
+    @Override
+    protected final void onFilterResults(List<DetailedEvent> items) {
+        super.onFilterResults(items);
+        /* Remove items that are not movies (e.g. theatre productions). Might add support for showing those later but right now this app is
+        about movies only. */
+        for (int i = items.size() - 1; i > 0; i--) {
+            if (!items.get(i).getEventType().equals(Event.TYPE_MOVIE)) {
+                items.remove(i);
+            }
+        }
     }
 
     protected abstract void onNewView(View view);
