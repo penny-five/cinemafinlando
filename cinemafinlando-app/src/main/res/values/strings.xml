@@ -39,6 +39,9 @@
     <string name="sort_by_name">Sort by name</string>
     <string name="sort_by_date">Sort by release date</string>
 
+    <string name="state_error_button_text">Try Again</string>
+    <string name="state_error_description_text">Connection error</string>
+
     <string-array name="week_days">
         <item>Monday</item>
         <item>Tuesday</item>

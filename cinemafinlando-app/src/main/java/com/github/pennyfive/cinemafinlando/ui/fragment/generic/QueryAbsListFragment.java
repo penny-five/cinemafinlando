@@ -22,6 +22,7 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -100,6 +101,12 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
             case STATE_CONTENT:
                 return inflateContentListView(adapter);
             case STATE_ERROR:
+                return UiUtils.inflateDefaultConnectionErrorView(getActivity(), new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setState(STATE_LOADING);
+                    }
+                });
             default:
                 throw new IllegalStateException("state: " + state);
         }
@@ -143,7 +150,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
             }
             setState(STATE_CONTENT);
         } else {
-            // TODO error handling
+            setState(STATE_ERROR);
         }
     }
 

@@ -7,6 +7,7 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.Loader;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
@@ -83,6 +84,13 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
                 return view;
             case STATE_CONTENT:
                 return createEventDetailsView();
+            case STATE_ERROR:
+                return UiUtils.inflateDefaultConnectionErrorView(getActivity(), new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setState(STATE_LOADING);
+                    }
+                });
             default:
                 throw new IllegalStateException("state: " + state);
         }
@@ -108,8 +116,12 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
 
     @Override
     public void onLoadFinished(Loader<DetailedEventContainer> loader, DetailedEventContainer data) {
-        event = data.getItems().get(0);
-        setState(STATE_CONTENT);
+        if (data != null) {
+            event = data.getItems().get(0);
+            setState(STATE_CONTENT);
+        } else {
+            setState(STATE_ERROR);
+        }
     }
 
     @Override

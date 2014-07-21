@@ -24,6 +24,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
@@ -75,15 +76,21 @@ public class UiUtils {
     }
 
     public static View inflateDefaultLoadingView(Context context) {
-        View view = View.inflate(context, R.layout.loading_placeholder, null);
+        View view = View.inflate(context, R.layout.state_loading, null);
         view.findViewById(R.id.spinner).startAnimation(AnimationUtils.loadAnimation(context, R.anim.spinner_spin_around));
         return view;
     }
 
     public static View inflateDefaultLoadingView(Context context, int backgroundResource) {
-        View view = View.inflate(context, R.layout.loading_placeholder, null);
+        View view = View.inflate(context, R.layout.state_loading, null);
         view.setBackgroundResource(backgroundResource);
         view.findViewById(R.id.spinner).startAnimation(AnimationUtils.loadAnimation(context, R.anim.spinner_spin_around));
+        return view;
+    }
+
+    public static View inflateDefaultConnectionErrorView(Context context, OnClickListener errorButtonClickListener) {
+        View view = View.inflate(context, R.layout.state_error, null);
+        view.findViewById(R.id.button).setOnClickListener(errorButtonClickListener);
         return view;
     }
 
