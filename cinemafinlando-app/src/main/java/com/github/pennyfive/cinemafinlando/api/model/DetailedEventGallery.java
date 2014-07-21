@@ -87,7 +87,7 @@ public class DetailedEventGallery implements Parcelable {
         private String title;
         @Element(name = "Location")
         private String url;
-        @Element(name = "ThumbnailLocation")
+        @Element(name = "ThumbnailLocation", required = false)
         private String thumbnailUrl;
 
         public Image() {
