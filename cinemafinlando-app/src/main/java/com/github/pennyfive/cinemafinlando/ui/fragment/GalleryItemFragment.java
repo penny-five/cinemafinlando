@@ -48,7 +48,7 @@ public class GalleryItemFragment extends MultiStateFragment implements Callback 
     }
 
     @Override
-    protected View createStateView(int state) {
+    protected View onCreateStateView(int state) {
         switch (state) {
             case STATE_CONTENT:
                 return imageView;

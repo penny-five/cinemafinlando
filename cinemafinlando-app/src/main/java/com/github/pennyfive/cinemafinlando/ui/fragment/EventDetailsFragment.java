@@ -64,10 +64,13 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
     @Inject Picasso picasso;
     private DetailedEvent event;
 
+    private View eventDetailsView;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         InjectUtils.injectMembers(this);
+        getLoaderManager().initLoader(0, savedInstanceState, this);
     }
 
     @Override
@@ -76,14 +79,15 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
     }
 
     @Override
-    protected View createStateView(int state) {
+    protected View onCreateStateView(int state) {
         switch (state) {
             case STATE_LOADING:
                 View view = UiUtils.inflateDefaultLoadingView(getActivity());
                 view.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
                 return view;
             case STATE_CONTENT:
-                return createEventDetailsView();
+                ensureEventDetailsView();
+                return eventDetailsView;
             case STATE_ERROR:
                 return UiUtils.inflateDefaultConnectionErrorView(getActivity(), new OnClickListener() {
                     @Override
@@ -118,6 +122,7 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
     public void onLoadFinished(Loader<DetailedEventContainer> loader, DetailedEventContainer data) {
         if (data != null) {
             event = data.getItems().get(0);
+            fillEventDetailsView();
             setState(STATE_CONTENT);
         } else {
             setState(STATE_ERROR);
@@ -129,27 +134,32 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
 
     }
 
-    private View createEventDetailsView() {
-        View view = View.inflate(getActivity(), R.layout.fragment_event_details, null);
-        ((TextView) view.findViewById(R.id.synopsis)).setText(event.getSynopsis());
-        ((TextView) view.findViewById(R.id.release_date)).setText(event.getReleaseDate().toString(RELEASE_DATE_FORMATTER));
-        ((TextView) view.findViewById(R.id.production_year)).setText(String.valueOf(event.getProductionYear()));
+    private void ensureEventDetailsView() {
+        if (eventDetailsView == null) {
+            eventDetailsView = View.inflate(getActivity(), R.layout.fragment_event_details, null);
+        }
+    }
 
-        HListView galleryView = (HListView) view.findViewById(R.id.gallery);
+    private void fillEventDetailsView() {
+        ensureEventDetailsView();
+
+        ((TextView) eventDetailsView.findViewById(R.id.synopsis)).setText(event.getSynopsis());
+        ((TextView) eventDetailsView.findViewById(R.id.release_date)).setText(event.getReleaseDate().toString(RELEASE_DATE_FORMATTER));
+        ((TextView) eventDetailsView.findViewById(R.id.production_year)).setText(String.valueOf(event.getProductionYear()));
+
+        HListView galleryView = (HListView) eventDetailsView.findViewById(R.id.gallery);
         galleryView.setAdapter(new GalleryAdapter(getActivity(), event.getGallery()));
         galleryView.setOnItemClickListener(this);
 
-        ((TextView) view.findViewById(R.id.age_rating)).setText(String.valueOf(event.getAgeRating()));
+        ((TextView) eventDetailsView.findViewById(R.id.age_rating)).setText(String.valueOf(event.getAgeRating()));
 
-        ViewGroup descriptorIconLayout = (ViewGroup) view.findViewById(R.id.descriptor_icons);
+        ViewGroup descriptorIconLayout = (ViewGroup) eventDetailsView.findViewById(R.id.descriptor_icons);
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         for (ContentDescriptor descriptor : event.getContentDescriptors().getItems()) {
             ImageView descriptorIconView = (ImageView) inflater.inflate(R.layout.descriptor_icon, descriptorIconLayout, false);
             descriptorIconLayout.addView(descriptorIconView);
             picasso.load(descriptor.getImageUrl()).into(descriptorIconView);
         }
-
-        return view;
     }
 
     @Override

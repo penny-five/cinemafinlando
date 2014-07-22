@@ -35,6 +35,7 @@ import com.github.pennyfive.cinemafinlando.ui.ApiQueryLoader;
 import com.github.pennyfive.cinemafinlando.ui.UiUtils;
 import com.github.pennyfive.cinemafinlando.ui.adapter.BinderAdapter;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -49,8 +50,8 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
 
     private class Adapter extends BinderAdapter<T> {
 
-        public Adapter(Context context, List<T> items) {
-            super(context, items);
+        public Adapter(Context context) {
+            super(context, new ArrayList<T>());
         }
 
         @Override
@@ -89,12 +90,19 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     private boolean itemsClickable = true;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        adapter = new Adapter(getActivity());
+        getLoaderManager().initLoader(0, savedInstanceState, this);
+    }
+
+    @Override
     protected int getStartupState() {
         return STATE_LOADING;
     }
 
     @Override
-    protected View createStateView(int state) {
+    protected View onCreateStateView(int state) {
         switch (state) {
             case STATE_LOADING:
                 return UiUtils.inflateDefaultLoadingView(getActivity());
@@ -134,6 +142,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
 
     @Override
     public final Loader<S> onCreateLoader(int id, Bundle args) {
+        setState(STATE_LOADING);
         return new ApiQueryLoader<>(getActivity(), onCreateCommand());
     }
 
@@ -144,7 +153,8 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
         if (data != null) {
             List<T> items = data.getItems();
             onFilterResults(items);
-            adapter = new Adapter(getActivity(), items);
+            adapter.clear();
+            adapter.addAll(items);
             if (comparator != null) {
                 adapter.sort(comparator);
             }

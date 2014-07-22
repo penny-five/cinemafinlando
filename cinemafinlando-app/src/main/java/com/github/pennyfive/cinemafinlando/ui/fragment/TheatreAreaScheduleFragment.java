@@ -90,11 +90,11 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ((DrawerActivity) getActivity()).setActionBarNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-
         theatreArea = getArguments().getParcelable(CinemaFinlandoIntents.EXTRA_THEATRE_AREA);
 
+        super.onCreate(savedInstanceState);
+
+        ((DrawerActivity) getActivity()).setActionBarNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         setItemsClickable(false);
 
         adapter = new DateAdapter(getActivity(), getDaysForNextWeek());

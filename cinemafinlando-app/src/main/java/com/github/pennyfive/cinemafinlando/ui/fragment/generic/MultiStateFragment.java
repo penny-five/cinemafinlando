@@ -19,6 +19,7 @@ import com.github.pennyfive.cinemafinlando.R;
  * transitions between different states.
  */
 public abstract class MultiStateFragment extends Fragment {
+    private static final String BUNDLE_KEY_STATE = "state";
     private static final int STATE_NOT_SET = -1;
     protected static final int STATE_LOADING = 0;
     protected static final int STATE_CONTENT = 1;
@@ -28,18 +29,32 @@ public abstract class MultiStateFragment extends Fragment {
     private int state = STATE_NOT_SET;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            state = savedInstanceState.getInt(BUNDLE_KEY_STATE, STATE_NOT_SET);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(BUNDLE_KEY_STATE, state);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootLayout = new FrameLayout(getActivity());
+        rootLayout.setId(android.R.id.content);
         if (state == STATE_NOT_SET) {
             setState(getStartupState());
         } else {
             changeState();
         }
-
         return rootLayout;
     }
 
-    protected abstract View createStateView(int state);
+    protected abstract View onCreateStateView(int state);
 
     /**
      * Called before creating the first state <i>unless</i> {@link #setState(int)} was already called by the subclass.
@@ -49,19 +64,17 @@ public abstract class MultiStateFragment extends Fragment {
     protected abstract int getStartupState();
 
     protected final void setState(int state) {
-        if (state == this.state) {
+        if (this.state == state) {
             return;
         }
-
         this.state = state;
-
         if (rootLayout != null) {
             changeState();
         }
     }
 
     private void changeState() {
-        View stateView = createStateView(state);
+        View stateView = onCreateStateView(state);
         replaceStateView(stateView);
         onStateChanged(state, stateView);
     }
@@ -85,8 +98,6 @@ public abstract class MultiStateFragment extends Fragment {
             set.start();
         } else {
             rootLayout.addView(view);
-            AnimatorSet set = new AnimatorSet();
-            set.start();
         }
     }
 }
