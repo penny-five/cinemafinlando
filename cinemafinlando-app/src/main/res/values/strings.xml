@@ -21,7 +21,9 @@
     <string name="app_name">Cinema Finlando</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="minutes"> %s min</string>
+
+    <string name="event_duration_unknown_text">Duration is not known yet</string>
+    <string name="event_duration_minutes"> %s min</string>
 
     <string name="now_showing">Now Showing</string>
     <string name="coming_soon">Coming Soon</string>

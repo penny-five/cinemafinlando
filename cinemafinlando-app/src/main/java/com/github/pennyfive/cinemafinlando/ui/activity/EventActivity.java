@@ -112,7 +112,13 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
 
         nameTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_ORIGINAL_TITLE));
         genreTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_GENRES));
-        durationTextView.setText(getString(R.string.minutes, extras.getInt(CinemaFinlandoIntents.EXTRA_LENGTH)));
+
+        int durationInMinutes = extras.getInt(CinemaFinlandoIntents.EXTRA_LENGTH);
+        if (durationInMinutes > 0) {
+            durationTextView.setText(getString(R.string.event_duration_minutes, durationInMinutes));
+        } else {
+            durationTextView.setText(R.string.event_duration_unknown_text);
+        }
     }
 
     @Override

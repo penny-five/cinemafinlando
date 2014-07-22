@@ -28,6 +28,7 @@ import retrofit.http.Query;
 /**
  *
  */
+@SuppressWarnings("RedundantThrows")
 public interface FinnkinoService {
 
     @GET("/events/?includeGallery=true")

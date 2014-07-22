@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Cinema Finlando</string>
-    <string name="minutes"> %s min</string>
+
+    <string name="event_duration_unknown_text">Elokuvan kesto ei tiedossa</string>
+    <string name="event_duration_minutes"> %s min</string>
 
     <string name="now_showing">Ohjelmistossa nyt</string>
     <string name="coming_soon">Tulossa pian</string>
