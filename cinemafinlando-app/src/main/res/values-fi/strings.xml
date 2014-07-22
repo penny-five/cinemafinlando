@@ -2,24 +2,24 @@
 <resources>
     <string name="app_name">Cinema Finlando</string>
 
-    <string name="event_duration_unknown_text">Elokuvan kesto ei tiedossa</string>
-    <string name="event_duration_minutes"> %s min</string>
-
-    <string name="now_showing">Ohjelmistossa nyt</string>
-    <string name="coming_soon">Tulossa pian</string>
-
-    <string name="drawer_divider_cinemas">Teatterit</string>
-
-    <string name="menu_view_event">Näytä tiedot</string>
-    <string name="menu_add_to_calendar">Lisää kalenteriin</string>
-    <string name="menu_reserve_tickets">Osta lippuja</string>
-
     <string name="today">Tänään</string>
     <string name="tomorrow">Huomenna</string>
 
-    <string name="sort_order">Lajittelujärjestys</string>
-    <string name="sort_by_name">Lajittele nimen mukaan</string>
-    <string name="sort_by_date">Lajittele ensi-illan mukaan</string>
+    <string name="event_duration_unknown_text">Elokuvan kesto ei tiedossa</string>
+    <string name="event_duration_minutes"> %s min</string>
+
+    <string name="nav_drawer_title_now_showing">Ohjelmistossa nyt</string>
+    <string name="nav_drawer_title_coming_soon">Tulossa pian</string>
+
+    <string name="nav_drawer_divider_cinemas">Teatterit</string>
+
+    <string name="event_menu_view_event">Näytä tiedot</string>
+    <string name="event_menu_add_to_calendar">Lisää kalenteriin</string>
+    <string name="event_menu_reserve_tickets">Osta lippuja</string>
+
+    <string name="ab_sort_order">Lajittelujärjestys</string>
+    <string name="ab_sort_by_name">Lajittele nimen mukaan</string>
+    <string name="ab_sort_by_date">Lajittele ensi-illan mukaan</string>
 
     <string name="state_error_button_text">Yritä uudelleen</string>
     <string name="state_error_description_text">Virhe verkkoyhteydessä</string>

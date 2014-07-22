@@ -21,7 +21,7 @@ public class NowShowingListFragment extends EventListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ((DrawerActivity) getActivity()).setActionBarNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        ((DrawerActivity) getActivity()).setActionBarTitle(getString(R.string.now_showing));
+        ((DrawerActivity) getActivity()).setActionBarTitle(getString(R.string.nav_drawer_title_now_showing));
     }
 
     @Override

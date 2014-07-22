@@ -47,7 +47,7 @@ public class ComingSoonListFragment extends EventListFragment {
         setHasOptionsMenu(true);
         sort(DATE_COMPARATOR);
         ((DrawerActivity) getActivity()).setActionBarNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        ((DrawerActivity) getActivity()).setActionBarTitle(getString(R.string.coming_soon));
+        ((DrawerActivity) getActivity()).setActionBarTitle(getString(R.string.nav_drawer_title_coming_soon));
     }
 
     @Override
