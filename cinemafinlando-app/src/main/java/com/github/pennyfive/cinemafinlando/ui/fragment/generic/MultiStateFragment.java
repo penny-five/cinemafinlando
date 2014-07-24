@@ -24,6 +24,7 @@ public abstract class MultiStateFragment extends Fragment {
     protected static final int STATE_LOADING = 0;
     protected static final int STATE_CONTENT = 1;
     protected static final int STATE_ERROR = 2;
+    protected static final int STATE_EMPTY = 3;
 
     private FrameLayout rootLayout;
     private int state = STATE_NOT_SET;

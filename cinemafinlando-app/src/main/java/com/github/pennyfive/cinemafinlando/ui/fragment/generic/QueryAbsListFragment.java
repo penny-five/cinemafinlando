@@ -115,9 +115,16 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
                         setState(STATE_LOADING);
                     }
                 });
+            case STATE_EMPTY:
+                return UiUtils.inflateDefaultEmptyView(getActivity(), getEmptyText());
+
             default:
                 throw new IllegalStateException("state: " + state);
         }
+    }
+
+    protected String getEmptyText() {
+        return getString(R.string.state_empty_default_text);
     }
 
     @Override
@@ -152,13 +159,17 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     public final void onLoadFinished(Loader<S> loader, S data) {
         if (data != null) {
             List<T> items = data.getItems();
-            onFilterResults(items);
-            adapter.clear();
-            adapter.addAll(items);
-            if (comparator != null) {
-                adapter.sort(comparator);
+            if (items.isEmpty()) {
+                setState(STATE_EMPTY);
+            } else {
+                onFilterResults(items);
+                adapter.clear();
+                adapter.addAll(items);
+                if (comparator != null) {
+                    adapter.sort(comparator);
+                }
+                setState(STATE_CONTENT);
             }
-            setState(STATE_CONTENT);
         } else {
             setState(STATE_ERROR);
         }

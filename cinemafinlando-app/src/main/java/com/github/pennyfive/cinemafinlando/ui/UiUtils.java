@@ -94,6 +94,14 @@ public class UiUtils {
         return view;
     }
 
+    public static View inflateDefaultEmptyView(Context context, int textResid) {
+        return inflateDefaultEmptyView(context, context.getString(textResid));
+    }
+
+    public static View inflateDefaultEmptyView(Context context, String text) {
+        return inflateViewWithText(context, R.layout.state_empty, text);
+    }
+
     public static <T extends Fragment> T instantiateWithIntent(Class<T> clazz, Intent intent) {
         return instantiateWithArgs(clazz, intentToArgs(intent));
     }

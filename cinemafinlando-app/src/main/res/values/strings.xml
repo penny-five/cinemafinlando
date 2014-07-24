@@ -42,6 +42,7 @@
 
     <string name="state_error_button_text">Try Again</string>
     <string name="state_error_description_text">Connection error</string>
+    <string name="state_empty_default_text">No content</string>
 
     <string-array name="week_days">
         <item>Monday</item>
