@@ -17,7 +17,10 @@
 package com.github.pennyfive.cinemafinlando.ui.view;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,6 +35,8 @@ import com.github.pennyfive.cinemafinlando.R;
  * switches between expanded/collapsed states.
  */
 public class ExpandableTextLayout extends LinearLayout implements OnClickListener {
+    private static final String BUNDLE_KEY_COLLAPSED = "collapsed";
+    private static final String BUNDLE_KEY_PARENT_STATE = "parent_state";
     private static final int STATE_UNMEASURED = 0;
     private static final int STATE_COLLAPSIBLE = 1;
     private static final int STATE_UNCOLLAPSIBLE = 2;
@@ -68,6 +73,23 @@ public class ExpandableTextLayout extends LinearLayout implements OnClickListene
     }
 
     @Override
+    protected Parcelable onSaveInstanceState() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(BUNDLE_KEY_PARENT_STATE, super.onSaveInstanceState());
+        bundle.putBoolean(BUNDLE_KEY_COLLAPSED, isCollapsed);
+        Log.i("Layouts", "store collapsed: " + isCollapsed);
+        return bundle;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        Bundle bundle = (Bundle) state;
+        super.onRestoreInstanceState(bundle.getParcelable(BUNDLE_KEY_PARENT_STATE));
+        isCollapsed = bundle.getBoolean(BUNDLE_KEY_COLLAPSED, true);
+        Log.i("Layouts", "restore collapsed: " + isCollapsed);
+    }
+
+    @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         if (!(getChildCount() == 1 && getChildAt(0) instanceof TextView)) {
@@ -89,6 +111,11 @@ public class ExpandableTextLayout extends LinearLayout implements OnClickListene
         state = shouldCollapseTextView(widthMeasureSpec) ? STATE_COLLAPSIBLE : STATE_UNCOLLAPSIBLE;
         if (state == STATE_COLLAPSIBLE) {
             makeCollapsible();
+            if (isCollapsed) {
+                collapse();
+            } else {
+                expand();
+            }
         }
         setClickable(state == STATE_COLLAPSIBLE);
     }
@@ -101,8 +128,6 @@ public class ExpandableTextLayout extends LinearLayout implements OnClickListene
         addView(iconView, params);
 
         setPadding(getPaddingLeft(), getPaddingTop(), getPaddingRight(), 0); // Remove bottom padding when icon view is shown.
-
-        collapse();
     }
 
     private boolean shouldCollapseTextView(int widthMeasureSpec) {
