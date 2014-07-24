@@ -89,20 +89,12 @@ public class GalleryActivity extends FragmentActivity {
     private static class GalleryPageTransformer implements PageTransformer {
         private static final float MIN_SCALE = 0.75f;
 
-        private static final float DISMISS_MAX_ROTATION = 10;
-        private static final float DISMISS_MAX_X_TRANSFORMATION = 0.25f;
-
         @Override
         public void transformPage(View page, float position) {
             if (position < -1) {
                 page.setAlpha(0);
             } else if (position <= 0) {
-                /**
-                 * Add some rotation and x transformation when dismissing pages.
-                 */
-                page.setRotation(position * DISMISS_MAX_ROTATION);
                 page.setAlpha(1);
-                page.setTranslationX(position * page.getWidth() * DISMISS_MAX_X_TRANSFORMATION);
                 page.setScaleX(1);
                 page.setScaleY(1);
             } else if (position <= 1) {
