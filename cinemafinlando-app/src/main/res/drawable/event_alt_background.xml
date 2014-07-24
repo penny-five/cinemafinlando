@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ Copyright 2014 Joonas Lehtonen
   ~
@@ -15,9 +16,17 @@
   ~ limitations under the License.
   -->
 
-<resources>
-    <dimen name="navigation_drawer_width">260dp</dimen>
-    <dimen name="gallery_activity_pager_margin">32dp</dimen>
-    <dimen name="schedule_activity_grid_horizontal_padding">196dp</dimen>
-    <dimen name="event_activity_side_padding">128dp</dimen>
-</resources>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <solid android:color="@android:color/black"/>
+        </shape>
+    </item>
+    <item
+        android:top="1dp"
+        android:bottom="1dp">
+        <shape>
+            <solid android:color="#161616"/>
+        </shape>
+    </item>
+</layer-list>

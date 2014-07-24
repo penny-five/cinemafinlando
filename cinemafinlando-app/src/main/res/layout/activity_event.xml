@@ -23,11 +23,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".ui.EventActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical">
 
         <com.github.pennyfive.cinemafinlando.ui.view.FixedAspectRatioImageView
             android:id="@+id/image"
@@ -44,74 +47,95 @@
             android:layout_height="?android:attr/actionBarSize"
             android:src="@drawable/ab_background_fade"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/details"
-            android:layout_alignTop="@+id/details"
-            android:background="@drawable/details_background"/>
-
-        <LinearLayout
-            android:id="@+id/details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/image"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="@dimen/event_activity_side_padding"
-            android:layout_toRightOf="@+id/poster"
-            android:minHeight="114dp"
-            android:orientation="vertical"
-            android:paddingBottom="12dp"
-            android:paddingTop="12dp">
-
-            <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@android:color/white"
-                android:textStyle="italic"
-                tools:text="Movie name"/>
-
-            <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
-                android:id="@+id/genres"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="#5674b9"
-                tools:text="List of genres"/>
-
-            <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
-                android:id="@+id/length"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="#5674b9"
-                tools:text="Duration in minutes"/>
-        </LinearLayout>
-
-        <ImageView
-            android:id="@id/poster"
-            android:layout_width="81dp"
-            android:layout_height="120dp"
-            android:layout_below="@id/image"
-            android:layout_marginLeft="@dimen/event_activity_side_padding"
-            android:layout_marginTop="-20dp"
-            android:background="@drawable/event_poster_background"
-            android:scaleType="fitXY"
-            tools:src="@drawable/event_poster_placeholder"
-            />
-
         <FrameLayout
-            android:id="@+id/container"
+            android:id="@+id/content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/details"
-            tools:layout="@layout/fragment_event_details"/>
+            android:layout_height="match_parent"
+            android:layout_below="@+id/image"
+            android:layout_marginTop="-20dp"
+            android:background="@drawable/event_activity_background"
+            android:clipToPadding="false"
+            android:paddingTop="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/event_activity_side_padding"
+                android:layout_marginRight="@dimen/event_activity_side_padding"
+                android:layout_marginTop="-21dp"
+                android:background="@drawable/event_activity_content_background">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_alignBottom="@+id/details"
+                    android:layout_alignTop="@+id/details"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@drawable/event_alt_background"/>
+
+                <LinearLayout
+                    android:id="@+id/details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@+id/poster"
+                    android:minHeight="114dp"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:paddingRight="12dp">
+
+                    <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="@android:color/white"
+                        android:textStyle="italic"
+                        tools:text="Movie name"/>
+
+                    <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+                        android:id="@+id/genres"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="#5674b9"
+                        tools:text="List of genres"/>
+
+                    <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+                        android:id="@+id/length"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="#5674b9"
+                        tools:text="Duration in minutes"/>
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/poster"
+                    android:layout_width="81dp"
+                    android:layout_height="120dp"
+                    android:layout_marginLeft="12dp"
+                    android:background="@drawable/event_poster_background"
+                    android:scaleType="fitXY"
+                    tools:src="@drawable/event_poster_placeholder"
+                    />
+
+                <FrameLayout
+                    android:id="@+id/container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/details"
+                    android:layout_marginLeft="1dp"
+                    android:layout_marginRight="1dp"
+                    tools:layout="@layout/fragment_event_details"/>
+            </RelativeLayout>
+        </FrameLayout>
     </RelativeLayout>
 </com.github.pennyfive.cinemafinlando.ui.view.ListenableScrollView>

@@ -17,5 +17,4 @@
 
 <resources>
     <item name="event_activity_header_image_aspect_ratio" type="dimen" format="float">4.5</item>
-    <dimen name="event_activity_side_padding">48dp</dimen>
 </resources>
