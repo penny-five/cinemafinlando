@@ -31,6 +31,7 @@ import com.github.pennyfive.cinemafinlando.ui.activity.generic.DrawerActivity;
 import com.github.pennyfive.cinemafinlando.ui.adapter.BinderAdapter;
 import com.github.pennyfive.cinemafinlando.ui.fragment.generic.QueryAbsListFragment;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -39,6 +40,7 @@ import org.joda.time.format.DateTimeFormatter;
  * Shows schedule for a Theatre area for the selected date. User can pick the date from a spinner in the action bar.
  */
 public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Schedule> implements OnNavigationListener, OnClickListener {
+    private static final String BUNDLE_KEY_DATE = "date";
     private static final DateTimeFormatter SHOW_TIME_FORMATTER = DateTimeFormat.forPattern("HH:mm");
     private static final DateTimeFormatter SPINNER_DAY_FORMATTER = DateTimeFormat.forPattern("dd.MM.yyyy");
 
@@ -92,6 +94,10 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
     public void onCreate(Bundle savedInstanceState) {
         theatreArea = getArguments().getParcelable(CinemaFinlandoIntents.EXTRA_THEATRE_AREA);
 
+        if (savedInstanceState != null) {
+            date = LocalDate.parse(savedInstanceState.getString(BUNDLE_KEY_DATE, DateTime.now().toString()));
+        }
+
         super.onCreate(savedInstanceState);
 
         ((DrawerActivity) getActivity()).setActionBarNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
@@ -99,6 +105,12 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
 
         adapter = new DateAdapter(getActivity(), getDaysForNextWeek());
         getActivity().getActionBar().setListNavigationCallbacks(adapter, this);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(BUNDLE_KEY_DATE, date.toString());
     }
 
     @Override
