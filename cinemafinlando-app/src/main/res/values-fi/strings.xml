@@ -25,6 +25,8 @@
     <string name="state_error_description_text">Virhe verkkoyhteydessä</string>
     <string name="state_empty_default_text">Ei sisältöä</string>
 
+    <string name="theatre_area_schedule_empty_text">Valitulle päivälle ei löytynyt ohjelmatietoja.</string>
+
     <string-array name="week_days">
         <item>Maanantai</item>
         <item>Tiistai</item>

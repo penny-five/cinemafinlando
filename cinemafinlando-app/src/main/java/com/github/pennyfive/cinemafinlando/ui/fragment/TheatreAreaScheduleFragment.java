@@ -140,6 +140,11 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
     }
 
     @Override
+    protected String getEmptyText() {
+        return getString(R.string.theatre_area_schedule_empty_text);
+    }
+
+    @Override
     public boolean onNavigationItemSelected(int itemPosition, long itemId) {
         LocalDate selectedDate = adapter.getItem(itemPosition);
         if (!selectedDate.equals(date)) {

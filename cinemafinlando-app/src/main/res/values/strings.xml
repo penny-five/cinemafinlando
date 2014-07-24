@@ -44,6 +44,8 @@
     <string name="state_error_description_text">Connection error</string>
     <string name="state_empty_default_text">No content</string>
 
+    <string name="theatre_area_schedule_empty_text">No schedule found for selected date.</string>
+
     <string-array name="week_days">
         <item>Monday</item>
         <item>Tuesday</item>
