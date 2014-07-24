@@ -227,4 +227,8 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
             adapter.notifyDataSetChanged();
         }
     }
+
+    protected final Comparator<T> getSortComparator() {
+        return comparator;
+    }
 }

@@ -25,6 +25,8 @@ import java.util.Comparator;
  * Shows list of movies that are coming soon to cinemas.
  */
 public class ComingSoonListFragment extends EventListFragment {
+    private static final String BUNDLE_KEY_SORT_BY_NAME = "sort_by_name";
+
     private static final DateTimeFormatter RELEASE_DATE_FORMATTER = DateTimeFormat.forPattern("dd.MM.yyyy");
     private static final Comparator NAME_COMPARATOR = new Comparator<DetailedEvent>() {
 
@@ -45,9 +47,20 @@ public class ComingSoonListFragment extends EventListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        sort(DATE_COMPARATOR);
+        if (savedInstanceState != null && savedInstanceState.getBoolean(BUNDLE_KEY_SORT_BY_NAME, false)) {
+            sort(NAME_COMPARATOR);
+        } else {
+            sort(DATE_COMPARATOR);
+        }
+
         ((DrawerActivity) getActivity()).setActionBarNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         ((DrawerActivity) getActivity()).setActionBarTitle(getString(R.string.nav_drawer_title_coming_soon));
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(BUNDLE_KEY_SORT_BY_NAME, getSortComparator() == NAME_COMPARATOR);
     }
 
     @Override
