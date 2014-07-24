@@ -159,7 +159,7 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
             public boolean onMenuItemClick(MenuItem item) {
                 Show show = getItem(position);
                 switch (item.getItemId()) {
-                    case R.id.menu_view_event:
+                    case R.id.menu_view_movie_details:
                         viewEvent(show);
                         break;
                     case R.id.menu_add_to_calendar:

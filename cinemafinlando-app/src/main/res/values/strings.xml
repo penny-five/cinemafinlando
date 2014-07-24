@@ -32,7 +32,7 @@
     <string name="nav_drawer_title_coming_soon">Coming Soon</string>
     <string name="nav_drawer_divider_cinemas">Cinemas</string>
 
-    <string name="event_menu_view_event">View event</string>
+    <string name="event_menu_view_movie_details">View movie details</string>
     <string name="event_menu_reserve_tickets">Buy tickets</string>
     <string name="event_menu_add_to_calendar">Add to calendar</string>
 

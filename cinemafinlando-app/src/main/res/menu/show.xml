@@ -2,8 +2,8 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_view_event"
-        android:title="@string/event_menu_view_event"/>
+        android:id="@+id/menu_view_movie_details"
+        android:title="@string/event_menu_view_movie_details"/>
     <item
         android:id="@+id/menu_add_to_calendar"
         android:title="@string/event_menu_add_to_calendar"/>

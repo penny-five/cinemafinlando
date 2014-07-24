@@ -13,7 +13,7 @@
 
     <string name="nav_drawer_divider_cinemas">Teatterit</string>
 
-    <string name="event_menu_view_event">Näytä tiedot</string>
+    <string name="event_menu_view_movie_details">Elokuvan tiedot</string>
     <string name="event_menu_add_to_calendar">Lisää kalenteriin</string>
     <string name="event_menu_reserve_tickets">Osta lippuja</string>
 
