@@ -14,24 +14,14 @@
  * limitations under the License.
  */
 
-package com.github.pennyfive.cinemafinlando.api.service;
-
-import com.github.pennyfive.cinemafinlando.api.model.TheatreAreaContainer;
-
-import java.io.IOException;
+package com.github.pennyfive.cinemafinlando;
 
 /**
  *
  */
-public class GetTheatreAreasCommand implements Command<TheatreAreaContainer> {
-    private final String language;
+public class QueryLanguagePreferenceChangedEvent {
 
-    public GetTheatreAreasCommand(String language) {
-        this.language = language;
-    }
+    QueryLanguagePreferenceChangedEvent() {
 
-    @Override
-    public TheatreAreaContainer execute(FinnkinoService service) throws IOException {
-        return service.getTheatreAreas(language);
     }
 }

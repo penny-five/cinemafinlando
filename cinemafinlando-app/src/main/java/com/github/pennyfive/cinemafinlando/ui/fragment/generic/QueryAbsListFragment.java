@@ -28,16 +28,22 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
+import com.github.pennyfive.cinemafinlando.QueryLanguagePreferenceChangedEvent;
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.Container;
 import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.ui.ApiQueryLoader;
 import com.github.pennyfive.cinemafinlando.ui.UiUtils;
 import com.github.pennyfive.cinemafinlando.ui.adapter.BinderAdapter;
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import javax.inject.Inject;
 
 /**
  * Base class for Fragments that get their data from Finnkino REST service. Takes care of instantiating queries, handling IO errors etc.
@@ -83,8 +89,26 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
         public int getItemViewType(int position) {
             return QueryAbsListFragment.this.getItemViewType(position);
         }
+
+        void replaceAll(List<T> items) {
+            clear();
+            addAll(items);
+        }
     }
 
+    /*
+    Need this inner class because Otto doesn't traverse class hierarchies.
+     */
+    private class EventReceiver {
+        @Subscribe
+        public void onDataLanguagePreferenceChanged(QueryLanguagePreferenceChangedEvent event) {
+            adapter.clear();
+            setState(STATE_LOADING);
+        }
+    }
+
+    @Inject Bus bus;
+    private EventReceiver receiver;
     private Adapter adapter;
     private Comparator<T> comparator;
     private boolean itemsClickable = true;
@@ -92,8 +116,20 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        InjectUtils.injectMembers(this);
+
+        receiver = new EventReceiver();
+        bus.register(receiver);
+
         adapter = new Adapter(getActivity());
         getLoaderManager().initLoader(0, savedInstanceState, this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        bus.unregister(receiver);
     }
 
     @Override
@@ -163,8 +199,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
                 setState(STATE_EMPTY);
             } else {
                 onFilterResults(items);
-                adapter.clear();
-                adapter.addAll(items);
+                adapter.replaceAll(items);
                 if (comparator != null) {
                     adapter.sort(comparator);
                 }
@@ -203,6 +238,10 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
     }
 
     protected abstract AbsListView createAbsListView();
+
+    protected final int getItemCount() {
+        return adapter.getCount();
+    }
 
     protected final T getItem(int position) {
         return adapter.getItem(position);

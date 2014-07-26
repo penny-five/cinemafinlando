@@ -22,6 +22,7 @@ import com.github.pennyfive.cinemafinlando.api.service.FinnkinoService;
 import com.github.pennyfive.cinemafinlando.api.xml.Serializers;
 import com.github.pennyfive.cinemafinlando.ui.ApiQueryLoader;
 import com.github.pennyfive.cinemafinlando.ui.activity.EventActivity;
+import com.github.pennyfive.cinemafinlando.ui.activity.SettingsActivity;
 import com.github.pennyfive.cinemafinlando.ui.activity.generic.EventListActivity;
 import com.github.pennyfive.cinemafinlando.ui.fragment.ComingSoonListFragment;
 import com.github.pennyfive.cinemafinlando.ui.fragment.EventDetailsFragment;
@@ -30,6 +31,7 @@ import com.github.pennyfive.cinemafinlando.ui.fragment.NavigationFragment;
 import com.github.pennyfive.cinemafinlando.ui.fragment.NowShowingListFragment;
 import com.github.pennyfive.cinemafinlando.ui.fragment.TheatreAreaScheduleFragment;
 import com.github.pennyfive.cinemafinlando.ui.fragment.generic.EventListFragment;
+import com.squareup.otto.Bus;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -60,7 +62,8 @@ import retrofit.converter.SimpleXMLConverter;
                 TheatreAreaScheduleFragment.class,
                 EventActivity.class,
                 EventDetailsFragment.class,
-                GalleryItemFragment.class
+                GalleryItemFragment.class,
+                SettingsActivity.class
         }
 )
 public class CinemaFinlandoModule {
@@ -78,9 +81,15 @@ public class CinemaFinlandoModule {
 
     @Provides
     @Singleton
+    Bus provideBus() {
+        return new Bus();
+    }
+
+    @Provides
+    @Singleton
     FinnkinoService provideFinnkinoService() {
         Builder builder = new Builder();
-        builder.setEndpoint("http://www.finnkino.fi/xml/");
+        builder.setEndpoint("http://www.finnkino.fi");
         builder.setConverter(new SimpleXMLConverter(Serializers.DEFAULT));
         builder.setLogLevel(LogLevel.BASIC);
         builder.setErrorHandler(new ErrorHandler() {

@@ -27,6 +27,7 @@ import com.github.pennyfive.cinemafinlando.api.model.TheatreArea;
 import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.api.service.GetScheduleCommand;
 import com.github.pennyfive.cinemafinlando.ui.EventCallbacks;
+import com.github.pennyfive.cinemafinlando.ui.UiUtils;
 import com.github.pennyfive.cinemafinlando.ui.activity.generic.DrawerActivity;
 import com.github.pennyfive.cinemafinlando.ui.adapter.BinderAdapter;
 import com.github.pennyfive.cinemafinlando.ui.fragment.generic.QueryAbsListFragment;
@@ -115,7 +116,7 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
 
     @Override
     protected Command<Schedule> onCreateCommand() {
-        return GetScheduleCommand.forTheatreArea(theatreArea, date);
+        return GetScheduleCommand.forTheatreArea(UiUtils.getQueryLanguage(getActivity()), theatreArea, date);
     }
 
     @Override

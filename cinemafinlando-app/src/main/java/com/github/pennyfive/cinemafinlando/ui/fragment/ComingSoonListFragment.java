@@ -13,6 +13,7 @@ import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
 import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.api.service.GetEventsCommand;
+import com.github.pennyfive.cinemafinlando.ui.UiUtils;
 import com.github.pennyfive.cinemafinlando.ui.activity.generic.DrawerActivity;
 import com.github.pennyfive.cinemafinlando.ui.fragment.generic.EventListFragment;
 
@@ -84,7 +85,7 @@ public class ComingSoonListFragment extends EventListFragment {
 
     @Override
     protected Command<DetailedEventContainer> onCreateCommand() {
-        return GetEventsCommand.comingSoon();
+        return GetEventsCommand.comingSoon(UiUtils.getQueryLanguage(getActivity()));
     }
 
     @Override

@@ -27,6 +27,16 @@
 
     <string name="theatre_area_schedule_empty_text">Valitulle päivälle ei löytynyt ohjelmatietoja.</string>
 
+    <string name="settings_ab_title">Asetukset</string>
+
+    <string name="pref_query_language_title">Elokuvatietojen kieli</string>
+
+    <string-array name="pref_query_language_entries">
+        <item>Automaattinen</item>
+        <item>Suomi</item>
+        <item>Englanti</item>
+    </string-array>
+
     <string-array name="week_days">
         <item>Maanantai</item>
         <item>Tiistai</item>

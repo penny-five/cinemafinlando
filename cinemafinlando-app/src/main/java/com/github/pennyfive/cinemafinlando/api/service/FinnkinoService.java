@@ -23,6 +23,7 @@ import com.github.pennyfive.cinemafinlando.api.model.TheatreAreaContainer;
 import java.io.IOException;
 
 import retrofit.http.GET;
+import retrofit.http.Path;
 import retrofit.http.Query;
 
 /**
@@ -31,17 +32,23 @@ import retrofit.http.Query;
 @SuppressWarnings("RedundantThrows")
 public interface FinnkinoService {
 
-    @GET("/events/?includeGallery=true")
+    @GET("/{lang}/xml/events/?includeGallery=true")
     public DetailedEventContainer getEvents(
+            @Path("lang") String language,
             @Query("eventId") String eventId,
             @Query("listType") String listType,
-            @Query("area") String area) throws IOException;
+            @Query("area") String area
+    ) throws IOException;
 
-    @GET("/theatreAreas")
-    public TheatreAreaContainer getTheatreAreas() throws IOException;
+    @GET("/{lang}/xml/theatreAreas")
+    public TheatreAreaContainer getTheatreAreas(
+            @Path("lang") String language
+    ) throws IOException;
 
-    @GET("/Schedule")
+    @GET("/{lang}/xml/Schedule")
     public Schedule getSchedule(
+            @Path("lang") String language,
             @Query("area") String theatreAreaId,
-            @Query("dt") String date) throws IOException;
+            @Query("dt") String date
+    ) throws IOException;
 }

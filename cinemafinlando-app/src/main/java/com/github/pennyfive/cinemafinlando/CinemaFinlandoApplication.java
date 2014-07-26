@@ -18,7 +18,14 @@ package com.github.pennyfive.cinemafinlando;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.preference.PreferenceManager;
 import android.view.View;
+
+import com.squareup.otto.Bus;
+
+import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import dagger.ObjectGraph;
@@ -26,24 +33,39 @@ import dagger.ObjectGraph;
 /**
  *
  */
-public class CinemaFinlandoApplication extends Application {
+public class CinemaFinlandoApplication extends Application implements OnSharedPreferenceChangeListener {
     private static CinemaFinlandoApplication instance;
 
     private ObjectGraph objectGraph;
+    @Inject Bus bus;
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
         createObjectGraph();
+        registerPreferenceListener();
     }
 
     private void createObjectGraph() {
         objectGraph = ObjectGraph.create(new CinemaFinlandoModule(this));
+        objectGraph.inject(this);
+    }
+
+    private void registerPreferenceListener() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs.registerOnSharedPreferenceChangeListener(this);
     }
 
     private void inject(Object o) {
         objectGraph.inject(o);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals(getString(R.string.pref_query_language_key))) {
+            bus.post(new QueryLanguagePreferenceChangedEvent());
+        }
     }
 
     public static class InjectUtils {
@@ -56,13 +78,7 @@ public class CinemaFinlandoApplication extends Application {
             ButterKnife.inject(o, view);
         }
 
-        public static void injectAll(Object o, View view) {
-            injectMembers(o);
-            injectViews(o, view);
-        }
-
-        public static void injectAll(Activity activity) {
-            instance.inject(activity);
+        public static void injectViews(Activity activity) {
             ButterKnife.inject(activity);
         }
     }

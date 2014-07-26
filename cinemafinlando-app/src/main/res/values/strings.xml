@@ -46,6 +46,16 @@
 
     <string name="theatre_area_schedule_empty_text">No schedule found for selected date.</string>
 
+    <string name="settings_ab_title">Settings</string>
+
+    <string name="pref_query_language_title">Data language</string>
+
+    <string-array name="pref_query_language_entries">
+        <item>Automatic</item>
+        <item>Finnish</item>
+        <item>English</item>
+    </string-array>
+
     <string-array name="week_days">
         <item>Monday</item>
         <item>Tuesday</item>

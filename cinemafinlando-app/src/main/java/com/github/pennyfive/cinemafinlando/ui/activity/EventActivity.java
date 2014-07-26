@@ -72,7 +72,9 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-        InjectUtils.injectAll(this);
+
+        InjectUtils.injectMembers(this);
+        InjectUtils.injectViews(this);
 
         if (savedInstanceState == null) {
             Fragment detailsFragment = UiUtils.instantiateWithIntent(EventDetailsFragment.class, getIntent());

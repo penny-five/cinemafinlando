@@ -20,7 +20,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -77,7 +76,6 @@ public class ExpandableTextLayout extends LinearLayout implements OnClickListene
         Bundle bundle = new Bundle();
         bundle.putParcelable(BUNDLE_KEY_PARENT_STATE, super.onSaveInstanceState());
         bundle.putBoolean(BUNDLE_KEY_COLLAPSED, isCollapsed);
-        Log.i("Layouts", "store collapsed: " + isCollapsed);
         return bundle;
     }
 
@@ -86,7 +84,6 @@ public class ExpandableTextLayout extends LinearLayout implements OnClickListene
         Bundle bundle = (Bundle) state;
         super.onRestoreInstanceState(bundle.getParcelable(BUNDLE_KEY_PARENT_STATE));
         isCollapsed = bundle.getBoolean(BUNDLE_KEY_COLLAPSED, true);
-        Log.i("Layouts", "restore collapsed: " + isCollapsed);
     }
 
     @Override

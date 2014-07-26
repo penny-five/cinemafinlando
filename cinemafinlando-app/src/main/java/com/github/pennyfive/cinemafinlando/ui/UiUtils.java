@@ -19,6 +19,7 @@ package com.github.pennyfive.cinemafinlando.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -30,13 +31,16 @@ import android.widget.TextView;
 
 import com.github.pennyfive.cinemafinlando.R;
 
+import java.util.Locale;
+
 /**
  *
  */
 @SuppressWarnings("UnusedDeclaration")
 public class UiUtils {
 
-    private UiUtils() {}
+    private UiUtils() {
+    }
 
     public static int pixelsFromDip(Context context, int dip) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
@@ -100,6 +104,27 @@ public class UiUtils {
 
     public static View inflateDefaultEmptyView(Context context, String text) {
         return inflateViewWithText(context, R.layout.state_empty, text);
+    }
+
+    /**
+     * Get language that the API queries should be returned in.
+     *
+     * @param context
+     * @return "fin" for Finnish or "eng" for English. Returned value depends on what is selected from app settings.
+     */
+    public static String getQueryLanguage(Context context) {
+        String key = context.getString(R.string.pref_query_language_key);
+        String auto = context.getString(R.string.pref_query_language_value_auto);
+        String language = PreferenceManager.getDefaultSharedPreferences(context).getString(key, auto);
+        if (language.equals(auto)) {
+            String locale = Locale.getDefault().getLanguage();
+            if (locale.equals("fi")) {
+                language = context.getString(R.string.pref_query_language_value_fi);
+            } else {
+                language = context.getString(R.string.pref_query_language_value_en);
+            }
+        }
+        return language;
     }
 
     public static <T extends Fragment> T instantiateWithIntent(Class<T> clazz, Intent intent) {

@@ -16,6 +16,7 @@
 
 package com.github.pennyfive.cinemafinlando.ui.fragment;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ import com.github.pennyfive.cinemafinlando.api.model.TheatreAreaContainer;
 import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.api.service.GetTheatreAreasCommand;
 import com.github.pennyfive.cinemafinlando.ui.UiUtils;
+import com.github.pennyfive.cinemafinlando.ui.activity.SettingsActivity;
 import com.github.pennyfive.cinemafinlando.ui.fragment.generic.QueryAbsListFragment;
 
 /**
@@ -38,6 +40,7 @@ import com.github.pennyfive.cinemafinlando.ui.fragment.generic.QueryAbsListFragm
  * <li>View movies that are now playing in cinemas</li>
  * <li>View movies that are coming soon to cinemas</li>
  * <li>View movies for cities or individual theatres</li>
+ * <li>Open Settings menu</li>
  * </ul>
  */
 public class NavigationFragment extends QueryAbsListFragment<TheatreArea, TheatreAreaContainer> {
@@ -53,7 +56,7 @@ public class NavigationFragment extends QueryAbsListFragment<TheatreArea, Theatr
 
     @Override
     protected Command<TheatreAreaContainer> onCreateCommand() {
-        return new GetTheatreAreasCommand();
+        return new GetTheatreAreasCommand(UiUtils.getQueryLanguage(getActivity()));
     }
 
     @Override
@@ -65,6 +68,7 @@ public class NavigationFragment extends QueryAbsListFragment<TheatreArea, Theatr
         view.addHeaderView(UiUtils.inflateWithText(getActivity(), R.layout.item_drawer_header, R.string.nav_drawer_title_now_showing));
         view.addHeaderView(UiUtils.inflateWithText(getActivity(), R.layout.item_drawer_header, R.string.nav_drawer_title_coming_soon));
         view.addHeaderView(UiUtils.inflateWithText(getActivity(), R.layout.item_drawer_title, R.string.nav_drawer_divider_cinemas), null, false);
+        view.addFooterView(View.inflate(getActivity(), R.layout.footer_drawer_settings, null));
         return view;
     }
 
@@ -82,6 +86,8 @@ public class NavigationFragment extends QueryAbsListFragment<TheatreArea, Theatr
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (position < NUM_HEADERS) {
             onHeaderClick(position);
+        } else if (position == NUM_HEADERS + getItemCount()) {
+            onFooterClick();
         } else {
             onItemClick(position - NUM_HEADERS);
         }
@@ -98,6 +104,10 @@ public class NavigationFragment extends QueryAbsListFragment<TheatreArea, Theatr
             default:
                 throw new IllegalStateException("pos: " + position);
         }
+    }
+
+    private void onFooterClick() {
+        startActivity(new Intent(getActivity(), SettingsActivity.class));
     }
 
     private void onItemClick(int position) {

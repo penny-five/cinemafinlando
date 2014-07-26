@@ -28,11 +28,13 @@ public class GetEventsCommand implements Command<DetailedEventContainer> {
     private static final String TYPE_COMING_SOON = "ComingSoon";
     private static final String TYPE_NOW_IN_THEATRES = "NowInTheatres";
 
+    private final String language;
     private final String eventId;
     private final String listType;
     private final String area;
 
-    private GetEventsCommand(String eventId, String listType, String area) {
+    private GetEventsCommand(String language, String eventId, String listType, String area) {
+        this.language = language;
         this.eventId = eventId;
         this.listType = listType;
         this.area = area;
@@ -40,22 +42,22 @@ public class GetEventsCommand implements Command<DetailedEventContainer> {
 
     @Override
     public DetailedEventContainer execute(FinnkinoService service) throws IOException {
-        return service.getEvents(eventId, listType, area);
+        return service.getEvents(language, eventId, listType, area);
     }
 
-    public static GetEventsCommand comingSoon() {
-        return new GetEventsCommand(null, TYPE_COMING_SOON, null);
+    public static GetEventsCommand comingSoon(String language) {
+        return new GetEventsCommand(language, null, TYPE_COMING_SOON, null);
     }
 
-    public static GetEventsCommand nowInTheatres() {
-        return new GetEventsCommand(null, TYPE_NOW_IN_THEATRES, null);
+    public static GetEventsCommand nowInTheatres(String language) {
+        return new GetEventsCommand(language, null, TYPE_NOW_IN_THEATRES, null);
     }
 
-    public static GetEventsCommand nowInTheatres(TheatreArea area) {
-        return new GetEventsCommand(null, TYPE_NOW_IN_THEATRES, area.getId());
+    public static GetEventsCommand nowInTheatres(String language, TheatreArea area) {
+        return new GetEventsCommand(language, null, TYPE_NOW_IN_THEATRES, area.getId());
     }
 
-    public static GetEventsCommand forEvent(String eventId) {
-        return new GetEventsCommand(eventId, null, null);
+    public static GetEventsCommand forEvent(String language, String eventId) {
+        return new GetEventsCommand(language, eventId, null, null);
     }
 }
