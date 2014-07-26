@@ -7,6 +7,10 @@ buildscript {
     }
 }
 
+def versionMajor = 1
+def versionMinor = 0
+def versionPatch = 0;
+
 apply plugin: 'com.android.application'
 
 repositories {
@@ -20,6 +24,10 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 19
+
+        versionCode versionMajor * 100 + versionMinor * 10 + versionPatch
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+
         testInstrumentationRunner "com.google.android.apps.common.testing.testrunner.GoogleInstrumentationTestRunner"
     }
 

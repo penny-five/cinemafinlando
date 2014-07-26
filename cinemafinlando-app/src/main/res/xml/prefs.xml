@@ -23,10 +23,8 @@
         android:entryValues="@array/pref_query_language_values"
         android:defaultValue="@string/pref_query_language_default"
         android:title="@string/pref_query_language_title"/>
-    <PreferenceCategory android:title="About">
-        <Preference
-            android:summary="1.0"
-            android:title="Application version"/>
-        <Preference android:title="Open source licenses"/>
+    <PreferenceCategory android:title="@string/pref_title_about">
+        <com.github.pennyfive.cinemafinlando.ui.activity.VersionPreference/>
+        <Preference android:title="@string/pref_title_open_source_licenses"/>
     </PreferenceCategory>
 </PreferenceScreen>
