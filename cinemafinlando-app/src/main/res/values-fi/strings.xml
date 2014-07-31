@@ -30,9 +30,11 @@
     <string name="settings_ab_title">Asetukset</string>
 
     <string name="pref_query_language_title">Elokuvatietojen kieli</string>
-    <string name="pref_title_application_version">Sovelluksen versio</string>
-    <string name="pref_title_open_source_licenses">Avoimen lähdekoodin lisenssit</string>
-    <string name="pref_title_about">Tietoja</string>
+    <string name="pref_title_about">Tietoja sovelluksesta</string>
+
+    <string name="about_finnkino_api_description">Tämä sovellus käyttää Finnkinon avointa rajapintaa</string>
+    <string name="about_email_description">Kehitysehdotukset ja faniposti</string>
+    <string name="about_open_source_licenses_text">Avoimen lähdekoodin lisenssit</string>
 
     <string-array name="pref_query_language_entries">
         <item>Automaattinen</item>

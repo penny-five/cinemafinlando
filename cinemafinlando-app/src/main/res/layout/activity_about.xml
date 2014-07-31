@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
+        android:paddingLeft="@dimen/about_activity_side_padding"
+        android:paddingRight="@dimen/about_activity_side_padding"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/placeholder_logo_large"/>
+
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="#e3e3e3"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
+
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+            android:id="@+id/version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#9e9e9e"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            tools:text="1.0.0"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="18dp"
+            android:background="#757575"/>
+
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal"
+            android:text="@string/about_finnkino_api_description"
+            android:textColor="#e3e3e3"
+            android:textSize="15sp"
+            app:customTypeface="condensed"/>
+
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+            android:id="@+id/api_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/about_finnkino_api_url"
+            android:textColor="#46619e"
+            android:textSize="15sp"
+            app:customTypeface="condensed"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="18dp"
+            android:background="#757575"/>
+
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal"
+            android:text="@string/about_email_description"
+            android:textColor="#e3e3e3"
+            android:textSize="15sp"
+            app:customTypeface="condensed"/>
+
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#46619e"
+            android:textSize="15sp"
+            app:customTypeface="condensed"
+            tools:text="foo@bar.com"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="18dp"
+            android:background="#757575"/>
+
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+            android:id="@+id/open_source_licenses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/about_open_source_licenses_text"
+            android:textColor="#46619e"
+            android:textSize="15sp"
+            app:customTypeface="condensed"/>
+
+    </LinearLayout>
+</ScrollView>

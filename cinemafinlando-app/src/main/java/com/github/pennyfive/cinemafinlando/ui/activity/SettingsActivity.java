@@ -16,14 +16,18 @@
 
 package com.github.pennyfive.cinemafinlando.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.ListPreference;
+import android.preference.Preference;
+import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
 
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
 import com.github.pennyfive.cinemafinlando.QueryLanguagePreferenceChangedEvent;
 import com.github.pennyfive.cinemafinlando.R;
+import com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView.CustomTypeface;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
@@ -42,10 +46,18 @@ public class SettingsActivity extends PreferenceActivity {
         InjectUtils.injectMembers(this);
         bus.register(this);
 
-        getActionBar().setTitle(getString(R.string.settings_ab_title));
+        getActionBar().setTitle(CustomTypeface.LIGHT.wrap(this, R.string.settings_ab_title));
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         addPreferencesFromResource(R.xml.prefs);
+
+        findPreference(getString(R.string.pref_about_key)).setOnPreferenceClickListener(new OnPreferenceClickListener() {
+            @Override
+            public boolean onPreferenceClick(Preference preference) {
+                startActivity(new Intent(SettingsActivity.this, AboutActivity.class));
+                return true;
+            }
+        });
 
         refreshQueryLanguagePreference();
     }
@@ -78,5 +90,4 @@ public class SettingsActivity extends PreferenceActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }

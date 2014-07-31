@@ -24,4 +24,5 @@
     <dimen name="event_activity_side_padding">0dp</dimen>
     <dimen name="gallery_activity_pager_margin">32dp</dimen>
     <dimen name="schedule_activity_grid_horizontal_padding">12dp</dimen>
+    <dimen name="about_activity_side_padding">16dp</dimen>
 </resources>

@@ -49,39 +49,48 @@ public class CustomTypefaceTextView extends TextView {
     }
 
     private void readCustomTypefaceFromAttributes(AttributeSet attrs) {
+        if (isInEditMode()) {
+            return;
+        }
+
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.CustomTypefaceTextView);
         int type = ta.getInt(R.styleable.CustomTypefaceTextView_customTypeface, CustomTypeface.REGULAR.type);
+
         for (CustomTypeface customTypeface : CustomTypeface.values()) {
             if (customTypeface.type == type) {
-                setCustomTypeface(customTypeface);
+                int style = attrs.getAttributeIntValue("http://schemas.android.com/apk/res/android", "textStyle", Typeface.NORMAL);
+                setCustomTypeface(customTypeface, style);
                 break;
             }
         }
         ta.recycle();
     }
 
-    public void setCustomTypeface(CustomTypeface typeface) {
+    public void setCustomTypeface(CustomTypeface typeface, int style) {
         if (!isInEditMode()) {
-            setTypeface(typeface.create(getResources()));
+            setTypeface(typeface.create(getResources(), style));
         }
     }
 
     public enum CustomTypeface {
         LIGHT(0) {
             @Override
-            protected Typeface create(Resources res) {
+            protected Typeface create(Resources res, int style) {
                 return Typeface.createFromAsset(res.getAssets(), "Roboto-Light.ttf");
             }
         },
         CONDENSED(1) {
             @Override
-            protected Typeface create(Resources res) {
+            protected Typeface create(Resources res, int style) {
                 return Typeface.createFromAsset(res.getAssets(), "RobotoCondensed-Regular.ttf");
             }
         },
         REGULAR(2) {
             @Override
-            protected Typeface create(Resources res) {
+            protected Typeface create(Resources res, int style) {
+                if (style == Typeface.BOLD) {
+                    return Typeface.createFromAsset(res.getAssets(), "Roboto-Bold.ttf");
+                }
                 return Typeface.createFromAsset(res.getAssets(), "Roboto-Regular.ttf");
             }
         };
@@ -92,7 +101,11 @@ public class CustomTypefaceTextView extends TextView {
             this.type = type;
         }
 
-        protected abstract Typeface create(Resources res);
+        protected abstract Typeface create(Resources res, int style);
+
+        public SpannableString wrap(Context context, int resid) {
+            return wrap(context, context.getString(resid));
+        }
 
         public SpannableString wrap(Context context, String src) {
             src = src != null ? src : "";
@@ -106,7 +119,7 @@ public class CustomTypefaceTextView extends TextView {
         private final Typeface typeface;
 
         public CustomTypefaceSpan(Context context, CustomTypeface typeface) {
-            this.typeface = typeface.create(context.getResources());
+            this.typeface = typeface.create(context.getResources(), Typeface.NORMAL);
         }
 
         @Override
