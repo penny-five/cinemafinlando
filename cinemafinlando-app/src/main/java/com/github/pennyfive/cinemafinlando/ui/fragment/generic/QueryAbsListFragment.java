@@ -230,7 +230,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
      * {@link #onCreateCommand()} will be called after.
      */
     protected void restart() {
-        setState(STATE_LOADING);
+        setStateForced(STATE_LOADING);
     }
 
     protected void setItemsClickable(boolean itemsClickable) {

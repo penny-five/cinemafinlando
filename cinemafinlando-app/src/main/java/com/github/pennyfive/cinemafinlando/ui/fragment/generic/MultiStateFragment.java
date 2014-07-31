@@ -74,6 +74,13 @@ public abstract class MultiStateFragment extends Fragment {
         }
     }
 
+    protected final void setStateForced(int state) {
+        this.state = state;
+        if (rootLayout != null) {
+            changeState();
+        }
+    }
+
     private void changeState() {
         View stateView = onCreateStateView(state);
         replaceStateView(stateView);
