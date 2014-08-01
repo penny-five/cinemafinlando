@@ -67,7 +67,6 @@ public class ExpandableTextLayout extends LinearLayout implements OnClickListene
 
     private void initialize() {
         setOrientation(VERTICAL);
-        setBackgroundResource(R.drawable.list_selector);
         setOnClickListener(this);
     }
 

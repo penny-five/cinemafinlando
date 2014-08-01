@@ -7,7 +7,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#1f1f21"
     android:orientation="vertical">
 
     <LinearLayout
@@ -44,11 +43,11 @@
         <ImageView
             android:id="@+id/overflow"
             android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/list_selector"
             android:minWidth="40dp"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_item_overflow"
-            android:layout_height="match_parent"/>
+            android:src="@drawable/ic_item_overflow"/>
     </LinearLayout>
 
     <View
@@ -59,6 +58,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#1f1f21"
         android:orientation="horizontal">
 
         <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView

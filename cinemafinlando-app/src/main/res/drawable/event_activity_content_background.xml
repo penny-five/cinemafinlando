@@ -17,15 +17,7 @@
   -->
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:top="20dp">
-        <shape>
-            <solid android:color="@android:color/black"/>
-        </shape>
-    </item>
-    <item
-        android:top="20dp"
-        android:left="1dp"
-        android:right="1dp">
+    <item>
         <shape>
             <solid android:color="#0d0d0d"/>
         </shape>

@@ -71,6 +71,8 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
         setContentView(R.layout.activity_event);
 
         InjectUtils.injectMembers(this);

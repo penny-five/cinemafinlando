@@ -9,6 +9,7 @@
         android:id="@+id/image"
         android:layout_width="108dp"
         android:scaleType="fitCenter"
+        android:background="@drawable/image_frame_black"
         android:layout_height="match_parent"/>
 
 </LinearLayout>

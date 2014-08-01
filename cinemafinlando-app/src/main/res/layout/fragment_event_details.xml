@@ -12,10 +12,10 @@
         android:id="@+id/synopsis_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/event_window_background"
+        android:background="@drawable/event_synopsis_selector"
         android:padding="12dp">
 
-    <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/synopsis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
         android:orientation="horizontal"
         android:padding="12dp">
 
-    <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+        <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/release_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,6 +51,9 @@
         android:id="@+id/gallery"
         android:layout_width="match_parent"
         android:layout_height="96dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:background="#0d0d0d"
         android:clipToPadding="false"
         android:drawSelectorOnTop="true"
         android:listSelector="@drawable/list_selector"
