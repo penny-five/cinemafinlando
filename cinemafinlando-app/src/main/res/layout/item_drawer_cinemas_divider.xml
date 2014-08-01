@@ -16,17 +16,31 @@
   ~ limitations under the License.
   -->
 
-<com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
-    android:id="@+id/text"
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:minHeight="48dp"
-    android:padding="12dp"
-    android:textColor="@android:color/white"
-    android:textSize="17sp"
-    app:customTypeface="light"
-    tools:text="Theatre area"/>
+    android:orientation="vertical">
+
+    <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="4dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:text="@string/nav_drawer_divider_cinemas"
+        android:textAllCaps="true"
+        android:textColor="#fefefe"
+        android:textSize="13sp"
+        app:customTypeface="light"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#4a4a4a"/>
+
+</LinearLayout>
