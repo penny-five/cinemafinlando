@@ -49,6 +49,7 @@ import retrofit.converter.SimpleXMLConverter;
 /**
  *
  */
+@SuppressWarnings("MethodMayBeStatic")
 @Module(
         complete = true,
         injects = {

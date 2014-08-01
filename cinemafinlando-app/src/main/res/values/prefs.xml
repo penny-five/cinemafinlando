@@ -15,7 +15,7 @@
   ~ limitations under the License.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="pref_query_language_key">query_language</string>
     <string name="pref_query_language_default">auto</string>
     <array name="pref_query_language_values">

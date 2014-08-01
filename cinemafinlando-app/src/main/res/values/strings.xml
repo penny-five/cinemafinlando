@@ -16,7 +16,7 @@
 ~ limitations under the License.
 -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name">Cinema Finlando</string>
     <string name="drawer_open">Open navigation drawer</string>
@@ -52,7 +52,7 @@
     <string name="pref_title_about">About Application</string>
 
     <string name="about_finnkino_api_description">This application uses Finnkino public API</string>
-    <string name="about_finnkino_api_url">http://www.finnkino.fi/xml</string>
+    <string name="about_finnkino_api_url" tools:ignore="MissingTranslation">http://www.finnkino.fi/xml</string>
     <string name="about_email_description">Improvement ideas &amp; fan mail</string>
     <string name="about_open_source_licenses_text">Open Source licenses</string>
 
