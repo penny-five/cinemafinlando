@@ -52,6 +52,7 @@ public class GalleryActivity extends FragmentActivity {
 
         getActionBar().setTitle(CustomTypeface.LIGHT.wrap(this, getIntent().getStringExtra(CinemaFinlandoIntents.EXTRA_TITLE)));
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayShowTitleEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
 
         DetailedEventGallery gallery = getIntent().getParcelableExtra(CinemaFinlandoIntents.EXTRA_GALLERY);

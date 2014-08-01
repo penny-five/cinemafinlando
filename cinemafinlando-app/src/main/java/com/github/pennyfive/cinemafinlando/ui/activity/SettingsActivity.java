@@ -47,6 +47,7 @@ public class SettingsActivity extends PreferenceActivity {
         bus.register(this);
 
         getActionBar().setTitle(CustomTypeface.LIGHT.wrap(this, R.string.settings_ab_title));
+        getActionBar().setDisplayShowTitleEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         addPreferencesFromResource(R.xml.prefs);

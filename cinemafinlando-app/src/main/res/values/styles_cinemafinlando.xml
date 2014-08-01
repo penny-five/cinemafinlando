@@ -36,6 +36,7 @@
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_cinemafinlando</item>
         <item name="android:backgroundSplit">@drawable/ab_bottom_solid_cinemafinlando</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Cinemafinlando</item>
+        <item name="android:displayOptions">useLogo|showHome</item>
     </style>
 
     <style name="ActionBar.Transparent.Cinemafinlando" parent="@android:style/Widget.Holo.ActionBar">

@@ -87,6 +87,7 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
 
         getActionBar().setTitle(CustomTypeface.LIGHT.wrap(this, extras.getString(CinemaFinlandoIntents.EXTRA_TITLE)));
         getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayShowTitleEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
 
         scrollView.setOnScrollListener(this);

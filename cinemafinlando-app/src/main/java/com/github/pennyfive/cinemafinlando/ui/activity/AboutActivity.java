@@ -31,6 +31,7 @@ public class AboutActivity extends FragmentActivity {
         InjectUtils.injectViews(this);
 
         getActionBar().setTitle(CustomTypeface.LIGHT.wrap(this, R.string.pref_title_about));
+        getActionBar().setDisplayShowTitleEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
 
         versionTextView.setText(BuildConfig.VERSION_NAME);
