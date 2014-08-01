@@ -23,6 +23,11 @@
         android:entryValues="@array/pref_query_language_values"
         android:defaultValue="@string/pref_query_language_default"
         android:title="@string/pref_query_language_title"/>
+    <CheckBoxPreference
+        android:key="@string/pref_analytics_key"
+        android:title="@string/pref_analytics_title"
+        android:summary="@string/pref_analytics_summary"
+        android:defaultValue="true"/>
     <Preference
         android:title="@string/pref_title_about"
         android:key="@string/pref_about_key"/>

@@ -34,6 +34,9 @@
     <string name="pref_query_language_title">Elokuvatietojen kieli</string>
     <string name="pref_title_about">Tietoa sovelluksesta</string>
 
+    <string name="pref_analytics_title">Lähetä virheraportteja</string>
+    <string name="pref_analytics_summary">Salli sovelluksen lähettää anonyymisti raportteja virhetilanteiden tapahtuessa</string>
+
     <string name="about_finnkino_api_description">Tämä sovellus käyttää Finnkinon avointa rajapintaa</string>
     <string name="about_email_description">Kehitysehdotukset ja faniposti</string>
     <string name="about_open_source_licenses_text">Avoimen lähdekoodin lisenssit</string>

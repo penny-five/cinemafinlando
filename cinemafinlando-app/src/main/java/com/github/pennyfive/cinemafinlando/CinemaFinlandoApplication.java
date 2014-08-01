@@ -43,8 +43,18 @@ public class CinemaFinlandoApplication extends Application implements OnSharedPr
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+        if (userHasAllowedAnalyticsUsage()) {
+            Analytics.start(this);
+        }
+
         createObjectGraph();
         registerPreferenceListener();
+    }
+
+    private boolean userHasAllowedAnalyticsUsage() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        return prefs.getBoolean(getString(R.string.pref_analytics_key), true);
     }
 
     private void createObjectGraph() {
