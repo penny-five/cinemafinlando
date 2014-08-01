@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Cinema Finlando</string>
+    <string name="drawer_open">Avaa navigointivalikko</string>
+    <string name="drawer_close">Sulje navigointivalikko</string>
 
     <string name="today">Tänään</string>
     <string name="tomorrow">Huomenna</string>
