@@ -92,7 +92,7 @@ public class CinemaFinlandoModule {
         Builder builder = new Builder();
         builder.setEndpoint("http://www.finnkino.fi");
         builder.setConverter(new SimpleXMLConverter(Serializers.DEFAULT));
-        builder.setLogLevel(LogLevel.BASIC);
+        builder.setLogLevel(BuildConfig.DEBUG ? LogLevel.BASIC : LogLevel.NONE);
         builder.setErrorHandler(new ErrorHandler() {
             @Override
             public Throwable handleError(RetrofitError cause) {
