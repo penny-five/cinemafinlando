@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/about_finnkino_api_url"
-            android:textColor="#46619e"
+            android:textColor="@color/about_link_color"
             android:textSize="15sp"
             app:customTypeface="condensed"/>
 
@@ -85,7 +85,7 @@
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#46619e"
+            android:textColor="@color/about_link_color"
             android:textSize="15sp"
             app:customTypeface="condensed"
             tools:text="foo@bar.com"/>
@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/about_open_source_licenses_text"
-            android:textColor="#46619e"
+            android:textColor="@color/about_link_color"
             android:textSize="15sp"
             app:customTypeface="condensed"/>
 

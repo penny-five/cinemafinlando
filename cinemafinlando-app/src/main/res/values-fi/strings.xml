@@ -30,7 +30,7 @@
     <string name="settings_ab_title">Asetukset</string>
 
     <string name="pref_query_language_title">Elokuvatietojen kieli</string>
-    <string name="pref_title_about">Tietoja sovelluksesta</string>
+    <string name="pref_title_about">Tietoa sovelluksesta</string>
 
     <string name="about_finnkino_api_description">Tämä sovellus käyttää Finnkinon avointa rajapintaa</string>
     <string name="about_email_description">Kehitysehdotukset ja faniposti</string>

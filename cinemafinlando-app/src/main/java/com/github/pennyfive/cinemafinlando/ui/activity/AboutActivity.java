@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.github.pennyfive.cinemafinlando.BuildConfig;
@@ -53,5 +54,16 @@ public class AboutActivity extends FragmentActivity {
     @OnClick(R.id.open_source_licenses)
     public void onOpenSourceLicensesClicked() {
         new OpenSourceLicensesDialogFragment().show(getSupportFragmentManager(), null);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
