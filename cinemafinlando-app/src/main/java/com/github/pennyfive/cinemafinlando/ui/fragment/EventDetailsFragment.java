@@ -114,6 +114,7 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
 
     @Override
     public Loader<DetailedEventContainer> onCreateLoader(int id, Bundle args) {
+        setState(STATE_LOADING);
         String eventId = getArguments().getString(CinemaFinlandoIntents.EXTRA_EVENT_ID);
         GetEventsCommand command = GetEventsCommand.forEvent(UiUtils.getQueryLanguage(getActivity()), eventId);
         return new ApiQueryLoader<>(getActivity(), command);
