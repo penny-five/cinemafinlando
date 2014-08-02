@@ -54,6 +54,7 @@ public abstract class EventListFragment extends QueryAbsListFragment<DetailedEve
     @Override
     protected AbsListView createAbsListView() {
         GridView grid = (GridView) LayoutInflater.from(getActivity()).inflate(R.layout.generic_gridview, null);
+        grid.setSelector(R.drawable.list_framed_selector);
         grid.setNumColumns(getResources().getInteger(R.integer.event_list_columns));
         return grid;
     }

@@ -56,7 +56,7 @@
         android:background="#0d0d0d"
         android:clipToPadding="false"
         android:drawSelectorOnTop="true"
-        android:listSelector="@drawable/list_selector"
+        android:listSelector="@drawable/list_framed_selector"
         android:overScrollMode="never"
         android:padding="12dp"
         app:hlv_dividerWidth="12dp"/>
