@@ -22,7 +22,7 @@
             <gradient
                 android:startColor="#b4000000"
                 android:angle="-90"
-                android:centerY="0.7"
+                android:centerY="60%"
                 android:endColor="@android:color/transparent"/>
         </shape>
     </item>

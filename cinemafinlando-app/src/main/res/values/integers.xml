@@ -17,4 +17,6 @@
 
 <resources>
     <integer name="event_list_columns">1</integer>
+    <integer name="event_text_shadow_radius">4</integer>
+    <integer name="event_text_shadow_max_alpha">160</integer>
 </resources>

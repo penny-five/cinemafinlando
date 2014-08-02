@@ -31,16 +31,7 @@
     <style name="EventActivityTheme" parent="AppTheme">
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:actionBarStyle">@style/EventActivityTheme.ActionBar</item>
         <item name="android:windowBackground">@color/event_window_background</item>
-    </style>
-
-    <style name="EventActivityTheme.ActionBar" parent="AppTheme.ActionBarStyle">
-        <item name="android:titleTextStyle">@style/EventActivityTheme.ActionBar.TitleTextStyle</item>
-    </style>
-
-    <style name="EventActivityTheme.ActionBar.TitleTextStyle" parent="android:TextAppearance.Holo.Widget.ActionBar.Title">
-        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="GalleryActivityTheme" parent="AppTheme">
@@ -51,7 +42,6 @@
     </style>
 
     <style name="GalleryActivityTheme.ActionBar" parent="AppTheme.ActionBarStyle">
-        <item name="android:titleTextStyle">@style/EventActivityTheme.ActionBar.TitleTextStyle</item>
         <item name="android:background">@android:color/transparent</item>
     </style>
 

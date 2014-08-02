@@ -40,8 +40,8 @@
         android:background="@drawable/event_bottom_frame_background"
         android:gravity="center_vertical"
         android:orientation="horizontal"
+        android:paddingBottom="5dp"
         android:paddingLeft="8dp"
-        android:paddingBottom="8dp"
         android:paddingRight="8dp"
         android:paddingTop="16dp">
 
@@ -71,9 +71,14 @@
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:maxLines="1"
+            android:padding="2dp"
+            android:shadowColor="#a0000000"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="@integer/event_text_shadow_radius"
             android:textColor="@android:color/white"
             android:textSize="16.5sp"
-            app:customTypeface="condensed"
+            app:customTypeface="light"
             tools:text="Name of the movie"/>
     </LinearLayout>
 </FrameLayout>

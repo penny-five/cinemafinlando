@@ -16,6 +16,7 @@
 
 package com.github.pennyfive.cinemafinlando.ui.activity;
 
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Drawable.Callback;
 import android.os.Build.VERSION;
@@ -23,6 +24,7 @@ import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
@@ -37,7 +39,6 @@ import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
 import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
 import com.github.pennyfive.cinemafinlando.ui.UiUtils;
 import com.github.pennyfive.cinemafinlando.ui.fragment.EventDetailsFragment;
-import com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView.CustomTypeface;
 import com.github.pennyfive.cinemafinlando.ui.view.ListenableScrollView;
 import com.github.pennyfive.cinemafinlando.ui.view.ListenableScrollView.OnScrollListener;
 import com.squareup.picasso.Picasso;
@@ -68,6 +69,10 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
     private Drawable actionBarBackgroundDrawable;
     private Interpolator actionBarBackgroundAlphaInterpolator = new DecelerateInterpolator();
 
+    private TextView actionBarCustomTextView;
+    private int actionBarTitleShadowRadius;
+    private int actionBarTitleMaxShadowAlpha;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,11 +88,17 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
             getSupportFragmentManager().beginTransaction().replace(R.id.container, detailsFragment).commit();
         }
 
+        actionBarTitleShadowRadius = getResources().getInteger(R.integer.event_text_shadow_radius);
+        actionBarTitleMaxShadowAlpha = getResources().getInteger(R.integer.event_text_shadow_max_alpha);
+
         Bundle extras = getIntent().getExtras();
 
-        getActionBar().setTitle(CustomTypeface.LIGHT.wrap(this, extras.getString(CinemaFinlandoIntents.EXTRA_TITLE)));
+        actionBarCustomTextView = (TextView) LayoutInflater.from(this).inflate(R.layout.event_activity_ab_title, null);
+        actionBarCustomTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_TITLE));
+
+        getActionBar().setCustomView(actionBarCustomTextView);
+        getActionBar().setDisplayShowCustomEnabled(true);
         getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setDisplayShowTitleEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
 
         scrollView.setOnScrollListener(this);
@@ -136,6 +147,10 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
 
         /* Adjust event image translation when scrolled to create parallax effect. */
         eventImageView.setTranslationY(eventImageView.getHeight() * 0.4f * ratio);
+
+        /* Hide action bar title shadow as the action bar background becomes visible */
+        int shadowColor = Color.argb(255 - (int) (ratio * actionBarTitleMaxShadowAlpha), 0, 0, 0);
+        actionBarCustomTextView.setShadowLayer(actionBarTitleShadowRadius, 0, 0, shadowColor);
     }
 
     /**
