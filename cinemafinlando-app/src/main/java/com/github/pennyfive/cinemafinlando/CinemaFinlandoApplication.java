@@ -23,6 +23,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.preference.PreferenceManager;
 import android.view.View;
 
+import com.github.pennyfive.cinemafinlando.ui.UiUtils;
 import com.squareup.otto.Bus;
 
 import javax.inject.Inject;
@@ -35,6 +36,7 @@ import dagger.ObjectGraph;
  */
 public class CinemaFinlandoApplication extends Application implements OnSharedPreferenceChangeListener {
     private static CinemaFinlandoApplication instance;
+    private String queryLanguage;
 
     private ObjectGraph objectGraph;
     @Inject Bus bus;
@@ -43,6 +45,8 @@ public class CinemaFinlandoApplication extends Application implements OnSharedPr
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+        queryLanguage = UiUtils.getQueryLanguage(this);
 
         if (userHasAllowedAnalyticsUsage()) {
             Analytics.start(this);
@@ -74,7 +78,12 @@ public class CinemaFinlandoApplication extends Application implements OnSharedPr
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if (key.equals(getString(R.string.pref_query_language_key))) {
-            bus.post(new QueryLanguagePreferenceChangedEvent());
+            // Check that query language actually changed before posting the event
+            String newQueryLanguage = UiUtils.getQueryLanguage(this);
+            if (!queryLanguage.equals(newQueryLanguage)) {
+                queryLanguage = newQueryLanguage;
+                bus.post(new QueryLanguagePreferenceChangedEvent());
+            }
         }
     }
 
