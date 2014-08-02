@@ -23,7 +23,7 @@
           android:clipToPadding="false"
           android:drawSelectorOnTop="true"
           android:horizontalSpacing="2dp"
-          android:listSelector="@drawable/list_selector"
+          android:listSelector="@drawable/selector"
           android:padding="2dp"
           android:scrollbarStyle="outsideOverlay"
           android:verticalSpacing="2dp">

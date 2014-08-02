@@ -23,7 +23,7 @@
           android:clipToPadding="false"
           android:drawSelectorOnTop="true"
           android:horizontalSpacing="12dp"
-          android:listSelector="@drawable/list_selector"
+          android:listSelector="@drawable/selector"
           android:paddingBottom="12dp"
           android:paddingLeft="@dimen/schedule_activity_grid_horizontal_padding"
           android:paddingRight="@dimen/schedule_activity_grid_horizontal_padding"

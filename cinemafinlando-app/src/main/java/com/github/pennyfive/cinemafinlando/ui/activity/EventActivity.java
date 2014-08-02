@@ -26,6 +26,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.ImageView;
@@ -93,13 +95,21 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
 
         Bundle extras = getIntent().getExtras();
 
-        actionBarCustomTextView = (TextView) LayoutInflater.from(this).inflate(R.layout.event_activity_ab_title, null);
-        actionBarCustomTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_TITLE));
-
-        getActionBar().setCustomView(actionBarCustomTextView);
         getActionBar().setDisplayShowCustomEnabled(true);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setDisplayShowHomeEnabled(false);
+
+        View customView = LayoutInflater.from(this).inflate(R.layout.event_activity_ab_title, null);
+        customView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        getActionBar().setCustomView(customView);
+
+        actionBarCustomTextView = (TextView) customView.findViewById(R.id.text);
+        actionBarCustomTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_TITLE));
 
         scrollView.setOnScrollListener(this);
         actionBarBackgroundDrawable = getResources().getDrawable(R.drawable.ab_solid_cinemafinlando);

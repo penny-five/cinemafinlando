@@ -62,7 +62,7 @@ public class NavigationFragment extends QueryAbsListFragment<TheatreArea, Theatr
     @Override
     protected AbsListView createAbsListView() {
         ListView view = new ListView(getActivity());
-        view.setSelector(R.drawable.list_selector);
+        view.setSelector(R.drawable.selector);
         view.setDrawSelectorOnTop(true);
         view.setDividerHeight(0);
         view.addHeaderView(View.inflate(getActivity(), R.layout.item_drawer_now_showing, null));
