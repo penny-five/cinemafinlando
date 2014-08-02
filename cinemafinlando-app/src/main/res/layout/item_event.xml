@@ -76,6 +76,7 @@
             android:shadowDx="0"
             android:shadowDy="0"
             android:shadowRadius="@integer/event_text_shadow_radius"
+            android:singleLine="true"
             android:textColor="@android:color/white"
             android:textSize="16.5sp"
             app:customTypeface="light"

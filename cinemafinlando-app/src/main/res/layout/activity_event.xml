@@ -86,6 +86,7 @@
                             android:layout_marginBottom="8dp"
                             android:ellipsize="end"
                             android:maxLines="1"
+                            android:singleLine="true"
                             android:textColor="@android:color/white"
                             android:textStyle="italic"
                             tools:text="Movie name"/>
@@ -97,6 +98,7 @@
                             android:layout_marginBottom="8dp"
                             android:ellipsize="end"
                             android:maxLines="1"
+                            android:singleLine="true"
                             android:textColor="#5674b9"
                             tools:text="List of genres"/>
 

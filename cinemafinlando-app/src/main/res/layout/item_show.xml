@@ -23,7 +23,7 @@
             android:minWidth="70dp"
             android:padding="8dp"
             android:textColor="@android:color/white"
-            android:textSize="17sp"
+            android:textSize="16sp"
             app:customTypeface="condensed"
             tools:text="20:00"/>
 
@@ -35,9 +35,10 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:padding="8dp"
+            android:singleLine="true"
             android:textColor="@android:color/white"
             android:textSize="17sp"
-            app:customTypeface="condensed"
+            app:customTypeface="light"
             tools:text="Hobitti - Smaugin autioittama maa (2D)"/>
 
         <ImageView
