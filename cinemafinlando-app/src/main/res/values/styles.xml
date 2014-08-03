@@ -19,30 +19,30 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.Cinemafinlando">
+    <style name="CinemaFinlando.Theme.Global" parent="Theme.Cinemafinlando">
         <item name="android:windowBackground">@color/window_background</item>
-        <item name="android:actionBarStyle">@style/AppTheme.ActionBarStyle</item>
+        <item name="android:actionBarStyle">@style/CinemaFinlando.Theme.Global.ActionBarStyle</item>
     </style>
 
-    <style name="AppTheme.ActionBarStyle" parent="ActionBar.Solid.Cinemafinlando">
-        <item name="android:icon">@drawable/ic_ab_home</item>
+    <style name="CinemaFinlando.Theme.Global.ActionBarStyle" parent="ActionBar.Solid.Cinemafinlando">
+    <item name="android:icon">@drawable/ic_ab_home</item>
     </style>
 
-    <style name="EventActivityTheme" parent="AppTheme">
-        <item name="android:windowActionBarOverlay">true</item>
+    <style name="CinemaFinlando.EventActivityTheme" parent="CinemaFinlando.Theme.Global">
+    <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowBackground">@color/event_window_background</item>
     </style>
 
-    <style name="GalleryActivityTheme" parent="AppTheme">
-        <item name="android:actionBarStyle">@style/GalleryActivityTheme.ActionBar</item>
+    <style name="CinemaFinlando.GalleryActivityTheme" parent="CinemaFinlando.Theme.Global">
+        <item name="android:actionBarStyle">@style/CinemaFinlando.GalleryActivityTheme.ActionBar</item>
         <item name="android:windowBackground">@color/gallery_window_background</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
-    <style name="GalleryActivityTheme.ActionBar" parent="AppTheme.ActionBarStyle">
-        <item name="android:background">@android:color/transparent</item>
+    <style name="CinemaFinlando.GalleryActivityTheme.ActionBar" parent="CinemaFinlando.Theme.Global.ActionBarStyle">
+    <item name="android:background">@android:color/transparent</item>
     </style>
 
 </resources>

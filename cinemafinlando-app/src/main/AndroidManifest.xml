@@ -26,7 +26,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:name=".CinemaFinlandoApplication"
-        android:theme="@style/AppTheme">
+        android:theme="@style/CinemaFinlando.Theme.Global">
         <activity
             android:name=".ui.activity.generic.EventListActivity"
             android:label="@string/app_name">
@@ -37,16 +37,16 @@
         </activity>
         <activity
             android:name=".ui.activity.EventActivity"
-            android:theme="@style/EventActivityTheme">
-            <intent-filter>
+            android:theme="@style/CinemaFinlando.EventActivityTheme">
+        <intent-filter>
                 <action android:name="com.pennyfive.cinemafinlando.ACTION_VIEW_EVENT"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.activity.GalleryActivity"
-            android:theme="@style/GalleryActivityTheme">
-            <intent-filter>
+            android:theme="@style/CinemaFinlando.GalleryActivityTheme">
+        <intent-filter>
                 <action android:name="com.pennyfive.cinemafinlando.ACTION_VIEW_GALLERY"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
