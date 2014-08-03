@@ -10,11 +10,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:paddingTop="24dp"
+        android:orientation="vertical"
         android:paddingBottom="24dp"
         android:paddingLeft="@dimen/about_activity_side_padding"
         android:paddingRight="@dimen/about_activity_side_padding"
-        android:orientation="vertical">
+        android:paddingTop="24dp">
 
         <ImageView
             android:layout_width="wrap_content"

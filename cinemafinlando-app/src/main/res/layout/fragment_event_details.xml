@@ -32,9 +32,9 @@
         <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/release_date"
             android:layout_width="wrap_content"
-            app:customTypeface="condensed"
-            android:textSize="15sp"
             android:layout_height="wrap_content"
+            android:textSize="15sp"
+            app:customTypeface="condensed"
             tools:text="20.30.2014"/>
 
         <Space
@@ -44,11 +44,11 @@
 
         <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/production_year"
-            app:customTypeface="condensed"
-
-            android:textSize="15sp"
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
+            android:textSize="15sp"
+            app:customTypeface="condensed"
             tools:text="2013"/>
     </LinearLayout>
 
@@ -93,8 +93,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="6dp"
-            android:textSize="15sp"
             android:paddingTop="6dp"
+            android:textSize="15sp"
             app:customTypeface="condensed"
             tools:text="16"/>
     </LinearLayout>

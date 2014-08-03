@@ -38,8 +38,8 @@
         android:id="@+id/button"
         style="@android:style/Widget.Holo.Button"
         android:layout_width="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="@string/state_error_button_text"/>
 
 </LinearLayout>

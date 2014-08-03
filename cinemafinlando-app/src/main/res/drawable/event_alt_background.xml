@@ -20,13 +20,13 @@
     <item>
         <shape>
             <stroke
-                android:color="@android:color/black"
-                android:width="1dp"/>
+                android:width="1dp"
+                android:color="@android:color/black"/>
         </shape>
     </item>
     <item
-        android:top="1dp"
-        android:bottom="1dp">
+        android:bottom="1dp"
+        android:top="1dp">
         <shape>
             <solid android:color="#161616"/>
         </shape>

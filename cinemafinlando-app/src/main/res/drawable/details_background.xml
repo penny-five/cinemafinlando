@@ -23,8 +23,8 @@
         </shape>
     </item>
     <item
-        android:top="1dp"
-        android:bottom="1dp">
+        android:bottom="1dp"
+        android:top="1dp">
         <shape>
             <solid android:color="#161616"/>
         </shape>
