@@ -67,7 +67,7 @@ public class NavigationFragment extends QueryAbsListFragment<TheatreArea, Theatr
         view.setDividerHeight(0);
         view.addHeaderView(View.inflate(getActivity(), R.layout.item_drawer_now_showing, null));
         view.addHeaderView(View.inflate(getActivity(), R.layout.item_drawer_coming_soon, null));
-        view.addHeaderView(View.inflate(getActivity(), R.layout.item_drawer_cinemas_divider, null));
+        view.addHeaderView(View.inflate(getActivity(), R.layout.item_drawer_cinemas_divider, null), null, false);
         view.addFooterView(View.inflate(getActivity(), R.layout.footer_drawer_settings, null));
         return view;
     }
