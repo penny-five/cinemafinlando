@@ -88,10 +88,14 @@ public class CustomTypefaceTextView extends TextView {
         REGULAR(2) {
             @Override
             protected Typeface create(Resources res, int style) {
-                if (style == Typeface.BOLD) {
-                    return Typeface.createFromAsset(res.getAssets(), "Roboto-Bold.ttf");
+                switch (style) {
+                    case Typeface.BOLD:
+                        return Typeface.createFromAsset(res.getAssets(), "Roboto-Bold.ttf");
+                    case Typeface.ITALIC:
+                        return Typeface.createFromAsset(res.getAssets(), "Roboto-Italic.ttf");
+                    default:
+                        return Typeface.createFromAsset(res.getAssets(), "Roboto-Regular.ttf");
                 }
-                return Typeface.createFromAsset(res.getAssets(), "Roboto-Regular.ttf");
             }
         };
 
