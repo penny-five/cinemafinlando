@@ -259,7 +259,7 @@ public abstract class QueryAbsListFragment<T, S extends Container<T>> extends Mu
         return 0;
     }
 
-    protected final void sort(Comparator<T> comparator) {
+    protected void sort(Comparator<T> comparator) {
         this.comparator = comparator;
         if (adapter != null) {
             adapter.sort(comparator);

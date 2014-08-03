@@ -44,15 +44,19 @@ public class ComingSoonListFragment extends EventListFragment {
         }
     };
 
+    private boolean isSortedByName;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+
         if (savedInstanceState != null && savedInstanceState.getBoolean(BUNDLE_KEY_SORT_BY_NAME, false)) {
             sort(NAME_COMPARATOR);
         } else {
             sort(DATE_COMPARATOR);
         }
+
+        setHasOptionsMenu(true);
 
         ((DrawerActivity) getActivity()).setActionBarNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         ((DrawerActivity) getActivity()).setActionBarTitle(getString(R.string.nav_drawer_title_coming_soon));
@@ -67,16 +71,23 @@ public class ComingSoonListFragment extends EventListFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.coming_soon, menu);
+        if (isSortedByName) {
+            menu.findItem(R.id.menu_order_by_name).setChecked(true);
+        } else {
+            menu.findItem(R.id.menu_order_by_date).setChecked(true);
+        }
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.sort_by_date:
+            case R.id.menu_order_by_date:
                 sort(DATE_COMPARATOR);
+                item.setChecked(true);
                 return true;
-            case R.id.sort_by_name:
+            case R.id.menu_order_by_name:
                 sort(NAME_COMPARATOR);
+                item.setChecked(true);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -86,6 +97,12 @@ public class ComingSoonListFragment extends EventListFragment {
     @Override
     protected Command<DetailedEventContainer> onCreateCommand() {
         return GetEventsCommand.comingSoon(UiUtils.getQueryLanguage(getActivity()));
+    }
+
+    @Override
+    protected void sort(Comparator<DetailedEvent> comparator) {
+        super.sort(comparator);
+        isSortedByName = comparator == NAME_COMPARATOR;
     }
 
     @Override

@@ -20,8 +20,8 @@
     <string name="event_menu_reserve_tickets">Osta lippuja</string>
 
     <string name="ab_sort_order">Lajittelujärjestys</string>
-    <string name="ab_sort_by_name">Lajittele nimen mukaan</string>
-    <string name="ab_sort_by_date">Lajittele ensi-illan mukaan</string>
+    <string name="ab_order_by_name">Järjestä nimen mukaan</string>
+    <string name="ab_order_by_date">Järjestä ensi-illan mukaan</string>
 
     <string name="state_error_button_text">Yritä uudelleen</string>
     <string name="state_error_description_text">Virhe verkkoyhteydessä</string>
