@@ -159,7 +159,7 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
         eventImageView.setTranslationY(eventImageView.getHeight() * 0.4f * ratio);
 
         /* Hide action bar title shadow as the action bar background becomes visible */
-        int shadowColor = Color.argb(255 - (int) (ratio * actionBarTitleMaxShadowAlpha), 0, 0, 0);
+        int shadowColor = Color.argb((int) ((1 - ratio) * actionBarTitleMaxShadowAlpha), 0, 0, 0);
         actionBarCustomTextView.setShadowLayer(actionBarTitleShadowRadius, 0, 0, shadowColor);
     }
 
