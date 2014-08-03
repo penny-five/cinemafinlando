@@ -22,6 +22,7 @@
           android:clipToPadding="false"
           android:drawSelectorOnTop="true"
           android:horizontalSpacing="2dp"
+          android:layoutAnimation="@anim/grid_layout_animation"
           android:listSelector="@drawable/selector"
           android:padding="2dp"
           android:scrollbarStyle="outsideOverlay"

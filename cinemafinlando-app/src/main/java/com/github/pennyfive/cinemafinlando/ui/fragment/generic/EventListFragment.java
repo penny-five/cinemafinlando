@@ -43,12 +43,24 @@ import javax.inject.Inject;
  *
  */
 public abstract class EventListFragment extends QueryAbsListFragment<DetailedEvent, DetailedEventContainer> {
+    private static final String BUNDLE_KEY_CONTENT_SHOWN = "content_shown";
+    private boolean contentShown = false;
+
     @Inject Picasso picasso;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         InjectUtils.injectMembers(this);
+        if (savedInstanceState != null) {
+            contentShown = savedInstanceState.getBoolean(BUNDLE_KEY_CONTENT_SHOWN);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(BUNDLE_KEY_CONTENT_SHOWN, contentShown);
     }
 
     @Override
@@ -56,6 +68,10 @@ public abstract class EventListFragment extends QueryAbsListFragment<DetailedEve
         GridView grid = (GridView) LayoutInflater.from(getActivity()).inflate(R.layout.generic_gridview, null);
         grid.setSelector(R.drawable.list_framed_selector);
         grid.setNumColumns(getResources().getInteger(R.integer.event_list_columns));
+        if (contentShown) {
+            // Make sure that layout animation is not shown if the GridView is re-created (e.g. orientation change)
+            grid.setLayoutAnimation(null);
+        }
         return grid;
     }
 
@@ -64,6 +80,16 @@ public abstract class EventListFragment extends QueryAbsListFragment<DetailedEve
         View view = inflater.inflate(R.layout.item_event, parent, false);
         onNewView(view);
         return view;
+    }
+
+    @Override
+    protected void onStateChanged(int state, View view) {
+        super.onStateChanged(state, view);
+        if (state == STATE_LOADING) {
+            contentShown = false;
+        } else if (state == STATE_CONTENT) {
+            contentShown = true;
+        }
     }
 
     @Override
