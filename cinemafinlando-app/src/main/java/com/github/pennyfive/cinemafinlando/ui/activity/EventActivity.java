@@ -30,6 +30,10 @@ import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.R;
@@ -40,9 +44,6 @@ import com.github.pennyfive.cinemafinlando.ui.activity.generic.ToolbarActivity;
 import com.github.pennyfive.cinemafinlando.ui.fragment.EventDetailsFragment;
 import com.github.pennyfive.cinemafinlando.ui.view.ListenableScrollView;
 import com.github.pennyfive.cinemafinlando.ui.view.ListenableScrollView.OnScrollListener;
-import com.squareup.picasso.Picasso;
-
-import javax.inject.Inject;
 
 import butterknife.InjectView;
 
@@ -56,8 +57,6 @@ import butterknife.InjectView;
  * </p>
  */
 public class EventActivity extends ToolbarActivity implements OnScrollListener {
-    @Inject Picasso picasso;
-
     @InjectView(R.id.toolbar) Toolbar toolbar;
     @InjectView(R.id.scrollview) ListenableScrollView scrollView;
     @InjectView(R.id.poster) ImageView posterImageView;
@@ -78,7 +77,6 @@ public class EventActivity extends ToolbarActivity implements OnScrollListener {
 
         setToolbarOverlay(true);
 
-        InjectUtils.injectMembers(this);
         InjectUtils.injectViews(this);
 
         if (savedInstanceState == null) {
@@ -99,21 +97,29 @@ public class EventActivity extends ToolbarActivity implements OnScrollListener {
         getToolbar().setBackgroundDrawable(toolbarBackgroundDrawable);
 
         EventGallery eventImageGallery = extras.getParcelable(CinemaFinlandoIntents.EXTRA_IMAGES);
-        picasso.load(eventImageGallery.getUrl(EventGallery.SIZE_LANDSCAPE_LARGE)).placeholder(R.drawable.event_promo_placeholder).into(eventImageView,
-                new com.squareup.picasso.Callback() {
+        Glide.with(this)
+                .load(eventImageGallery.getUrl(EventGallery.SIZE_LANDSCAPE_LARGE))
+                .placeholder(R.drawable.event_promo_placeholder)
+                .listener(new RequestListener<String, GlideDrawable>() {
                     @Override
-                    public void onSuccess() {
-                        /* Use CENTER_CROP for actual images instead of FIT_XY that is used for the placeholder */
-                        eventImageView.setScaleType(ScaleType.CENTER_CROP);
+                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                        return false;
                     }
 
                     @Override
-                    public void onError() {
-
+                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        if (!isFirstResource) {
+                            eventImageView.setScaleType(ScaleType.CENTER_CROP);
+                        }
+                        return false;
                     }
-                }
-        );
-        picasso.load(eventImageGallery.getUrl(EventGallery.SIZE_PORTRAIT_LARGE)).placeholder(R.drawable.event_poster_placeholder).into(posterImageView);
+                })
+                .into(eventImageView);
+
+        Glide.with(this)
+                .load(eventImageGallery.getUrl(EventGallery.SIZE_PORTRAIT_LARGE))
+                .placeholder(R.drawable.event_poster_placeholder)
+                .into(posterImageView);
 
         nameTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_ORIGINAL_TITLE));
         genreTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_GENRES));

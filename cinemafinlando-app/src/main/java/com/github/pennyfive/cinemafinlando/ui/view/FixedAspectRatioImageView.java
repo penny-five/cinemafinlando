@@ -44,6 +44,9 @@ public class FixedAspectRatioImageView extends ImageView {
     }
 
     private void readAspectRatioFromAttributes(AttributeSet attrs) {
+        if (isInEditMode()) {
+            return;
+        }
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.FixedAspectRatioImageView);
         aspectRatio = ta.getFloat(R.styleable.FixedAspectRatioImageView_aspectRatio, 1f);
         ta.recycle();

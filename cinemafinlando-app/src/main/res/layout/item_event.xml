@@ -16,13 +16,13 @@
   ~ limitations under the License.
   -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:background="@drawable/event_item_background"
-             android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@android:color/black"
+              android:orientation="vertical">
 
     <com.github.pennyfive.cinemafinlando.ui.view.FixedAspectRatioImageView
         android:id="@+id/image"
@@ -33,29 +33,16 @@
         tools:src="@drawable/event_item_placeholder"/>
 
     <LinearLayout
-        android:id="@+id/bottom_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@drawable/event_bottom_frame_background"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="16dp">
+        android:orientation="horizontal">
 
         <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:background="@drawable/event_item_date_background"
-            android:includeFontPadding="false"
-            android:paddingBottom="2dp"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:paddingTop="2dp"
+            android:padding="16dp"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             android:visibility="gone"
@@ -71,15 +58,11 @@
             android:ellipsize="end"
             android:includeFontPadding="false"
             android:maxLines="1"
-            android:padding="2dp"
-            android:shadowColor="#a0000000"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="@integer/event_text_shadow_radius"
+            android:padding="16dp"
             android:singleLine="true"
             android:textColor="@android:color/white"
-            android:textSize="16.5sp"
+            android:textSize="16sp"
             app:customTypeface="light"
             tools:text="Name of the movie"/>
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>

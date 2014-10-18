@@ -26,18 +26,15 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
+import com.bumptech.glide.Glide;
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
 import com.github.pennyfive.cinemafinlando.api.model.Event;
 import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
 import com.github.pennyfive.cinemafinlando.ui.EventCallbacks;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import javax.inject.Inject;
 
 /**
  *
@@ -46,12 +43,9 @@ public abstract class EventListFragment extends QueryAbsListFragment<DetailedEve
     private static final String BUNDLE_KEY_CONTENT_SHOWN = "content_shown";
     private boolean contentShown = false;
 
-    @Inject Picasso picasso;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        InjectUtils.injectMembers(this);
         if (savedInstanceState != null) {
             contentShown = savedInstanceState.getBoolean(BUNDLE_KEY_CONTENT_SHOWN);
         }
@@ -97,7 +91,7 @@ public abstract class EventListFragment extends QueryAbsListFragment<DetailedEve
         ((TextView) view.findViewById(R.id.text)).setText(event.getTitle());
         ImageView target = (ImageView) view.findViewById(R.id.image);
         String url = event.getImages().getUrl(EventGallery.SIZE_LANDSCAPE_LARGE);
-        picasso.load(url).placeholder(R.drawable.event_item_placeholder).into(target);
+        Glide.with(this).load(url).placeholder(R.drawable.event_item_placeholder).into(target);
         onViewBound(view, event);
     }
 

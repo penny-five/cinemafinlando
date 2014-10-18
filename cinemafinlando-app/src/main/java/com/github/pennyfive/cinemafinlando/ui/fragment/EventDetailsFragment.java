@@ -13,7 +13,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
+import com.bumptech.glide.Glide;
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.ContentDescriptor;
@@ -26,12 +26,9 @@ import com.github.pennyfive.cinemafinlando.ui.ApiQueryLoader;
 import com.github.pennyfive.cinemafinlando.ui.UiUtils;
 import com.github.pennyfive.cinemafinlando.ui.adapter.BinderAdapter;
 import com.github.pennyfive.cinemafinlando.ui.fragment.generic.MultiStateFragment;
-import com.squareup.picasso.Picasso;
 
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
-
-import javax.inject.Inject;
 
 import it.sephiroth.android.library.widget.AdapterView;
 import it.sephiroth.android.library.widget.AdapterView.OnItemClickListener;
@@ -57,11 +54,10 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
         @Override
         protected void bindView(View view, Image item, int position) {
             ImageView target = (ImageView) view.findViewById(R.id.image);
-            Picasso.with(getContext()).load(item.getThumbnailUrl()).placeholder(android.R.color.black).into(target);
+            Glide.with(getContext()).load(item.getThumbnailUrl()).placeholder(android.R.color.black).into(target);
         }
     }
 
-    @Inject Picasso picasso;
     private DetailedEvent event;
 
     private View eventDetailsView;
@@ -69,7 +65,6 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        InjectUtils.injectMembers(this);
         getLoaderManager().initLoader(0, savedInstanceState, this);
     }
 
@@ -160,7 +155,7 @@ public class EventDetailsFragment extends MultiStateFragment implements LoaderCa
         for (ContentDescriptor descriptor : event.getContentDescriptors().getItems()) {
             ImageView descriptorIconView = (ImageView) inflater.inflate(R.layout.descriptor_icon, descriptorIconLayout, false);
             descriptorIconLayout.addView(descriptorIconView);
-            picasso.load(descriptor.getImageUrl()).into(descriptorIconView);
+            Glide.with(this).load(descriptor.getImageUrl()).into(descriptorIconView);
         }
     }
 

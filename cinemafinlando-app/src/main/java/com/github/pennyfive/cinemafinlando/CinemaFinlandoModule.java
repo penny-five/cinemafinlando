@@ -22,17 +22,12 @@ import com.github.pennyfive.cinemafinlando.api.service.FinnkinoService;
 import com.github.pennyfive.cinemafinlando.api.xml.Serializers;
 import com.github.pennyfive.cinemafinlando.ui.ApiQueryLoader;
 import com.github.pennyfive.cinemafinlando.ui.activity.EventActivity;
-import com.github.pennyfive.cinemafinlando.ui.activity.generic.EventListActivity;
 import com.github.pennyfive.cinemafinlando.ui.fragment.ComingSoonListFragment;
-import com.github.pennyfive.cinemafinlando.ui.fragment.EventDetailsFragment;
-import com.github.pennyfive.cinemafinlando.ui.fragment.GalleryItemFragment;
 import com.github.pennyfive.cinemafinlando.ui.fragment.NavigationFragment;
 import com.github.pennyfive.cinemafinlando.ui.fragment.NowShowingListFragment;
 import com.github.pennyfive.cinemafinlando.ui.fragment.SettingsFragment;
 import com.github.pennyfive.cinemafinlando.ui.fragment.TheatreAreaScheduleFragment;
-import com.github.pennyfive.cinemafinlando.ui.fragment.generic.EventListFragment;
 import com.squareup.otto.Bus;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -56,14 +51,10 @@ import retrofit.converter.SimpleXMLConverter;
                 CinemaFinlandoApplication.class,
                 ApiQueryLoader.class,
                 NavigationFragment.class,
-                EventListActivity.class,
-                EventListFragment.class,
                 ComingSoonListFragment.class,
                 NowShowingListFragment.class,
                 TheatreAreaScheduleFragment.class,
                 EventActivity.class,
-                EventDetailsFragment.class,
-                GalleryItemFragment.class,
                 SettingsFragment.class
         }
 )
@@ -72,12 +63,6 @@ public class CinemaFinlandoModule {
 
     CinemaFinlandoModule(Context context) {
         this.context = context.getApplicationContext();
-    }
-
-    @Provides
-    @Singleton
-    Picasso providePicasso() {
-        return Picasso.with(context);
     }
 
     @Provides
