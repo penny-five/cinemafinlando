@@ -4,7 +4,7 @@ buildscript {
         maven { url 'http://download.crashlytics.com/maven' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.12.+'
+        classpath 'com.android.tools.build:gradle:0.13.2'
         classpath 'com.crashlytics.tools.gradle:crashlytics-gradle:1.+'
     }
 }
@@ -25,11 +25,11 @@ repositories {
 }
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '20.0'
+    compileSdkVersion 21
+    buildToolsVersion '21.0.1'
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 19
+        targetSdkVersion 21
 
         versionCode versionMajor * 100 + versionMinor * 10 + versionPatch
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
@@ -65,7 +65,7 @@ android {
 
 dependencies {
     releaseCompile 'com.crashlytics.android:crashlytics:1.+'
-    compile 'com.android.support:support-v4:20.0.0'
+    compile 'com.android.support:support-v4:21.0.0'
     compile 'it.sephiroth.android.library.horizontallistview:library:+'
     compile 'joda-time:joda-time:2.3'
     compile 'com.jakewharton:butterknife:5.1.1'
