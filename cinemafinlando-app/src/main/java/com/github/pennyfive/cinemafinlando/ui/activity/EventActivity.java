@@ -16,18 +16,14 @@
 
 package com.github.pennyfive.cinemafinlando.ui.activity;
 
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.Drawable.Callback;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.ImageView;
@@ -40,6 +36,7 @@ import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEvent;
 import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
 import com.github.pennyfive.cinemafinlando.ui.UiUtils;
+import com.github.pennyfive.cinemafinlando.ui.activity.generic.ToolbarActivity;
 import com.github.pennyfive.cinemafinlando.ui.fragment.EventDetailsFragment;
 import com.github.pennyfive.cinemafinlando.ui.view.ListenableScrollView;
 import com.github.pennyfive.cinemafinlando.ui.view.ListenableScrollView.OnScrollListener;
@@ -58,9 +55,10 @@ import butterknife.InjectView;
  * post</a>.
  * </p>
  */
-public class EventActivity extends FragmentActivity implements OnScrollListener {
+public class EventActivity extends ToolbarActivity implements OnScrollListener {
     @Inject Picasso picasso;
 
+    @InjectView(R.id.toolbar) Toolbar toolbar;
     @InjectView(R.id.scrollview) ListenableScrollView scrollView;
     @InjectView(R.id.poster) ImageView posterImageView;
     @InjectView(R.id.image) ImageView eventImageView;
@@ -68,12 +66,8 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
     @InjectView(R.id.genres) TextView genreTextView;
     @InjectView(R.id.length) TextView durationTextView;
 
-    private Drawable actionBarBackgroundDrawable;
-    private Interpolator actionBarBackgroundAlphaInterpolator = new DecelerateInterpolator();
-
-    private TextView actionBarCustomTextView;
-    private int actionBarTitleShadowRadius;
-    private int actionBarTitleMaxShadowAlpha;
+    private Drawable toolbarBackgroundDrawable;
+    private Interpolator toolbarBackgroundAlphaInterpolator = new DecelerateInterpolator();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +75,8 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
         getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
         setContentView(R.layout.activity_event);
+
+        setToolbarOverlay(true);
 
         InjectUtils.injectMembers(this);
         InjectUtils.injectViews(this);
@@ -90,34 +86,17 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
             getSupportFragmentManager().beginTransaction().replace(R.id.container, detailsFragment).commit();
         }
 
-        actionBarTitleShadowRadius = getResources().getInteger(R.integer.event_text_shadow_radius);
-        actionBarTitleMaxShadowAlpha = getResources().getInteger(R.integer.event_text_shadow_max_alpha);
-
         Bundle extras = getIntent().getExtras();
 
-        getActionBar().setDisplayShowCustomEnabled(true);
-        getActionBar().setDisplayShowHomeEnabled(false);
-
-        View customView = LayoutInflater.from(this).inflate(R.layout.event_activity_ab_title, null);
-        customView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        getActionBar().setCustomView(customView);
-
-        actionBarCustomTextView = (TextView) customView.findViewById(R.id.text);
-        actionBarCustomTextView.setText(extras.getString(CinemaFinlandoIntents.EXTRA_TITLE));
+        getToolbar().setTitle(extras.getString(CinemaFinlandoIntents.EXTRA_TITLE));
 
         scrollView.setOnScrollListener(this);
-        actionBarBackgroundDrawable = getResources().getDrawable(R.drawable.ab_solid_cinemafinlando);
-        actionBarBackgroundDrawable.setAlpha(0);
+        toolbarBackgroundDrawable = getResources().getDrawable(R.drawable.ab_solid_cinemafinlando);
+        toolbarBackgroundDrawable.setAlpha(0);
         if (VERSION.SDK_INT <= VERSION_CODES.JELLY_BEAN_MR1) {
-            actionBarBackgroundDrawable.setCallback(actionBarBackgroundCallback);
+            toolbarBackgroundDrawable.setCallback(toolbarBackgroundCallback);
         }
-        getActionBar().setBackgroundDrawable(actionBarBackgroundDrawable);
+        getToolbar().setBackgroundDrawable(toolbarBackgroundDrawable);
 
         EventGallery eventImageGallery = extras.getParcelable(CinemaFinlandoIntents.EXTRA_IMAGES);
         picasso.load(eventImageGallery.getUrl(EventGallery.SIZE_LANDSCAPE_LARGE)).placeholder(R.drawable.event_promo_placeholder).into(eventImageView,
@@ -148,28 +127,30 @@ public class EventActivity extends FragmentActivity implements OnScrollListener 
     }
 
     @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        getToolbar().setTitle(getIntent().getExtras().getString(CinemaFinlandoIntents.EXTRA_TITLE));
+    }
+
+    @Override
     public void onScroll(int position) {
         float ratio = Math.max(0, Math.min(1, position / (float) eventImageView.getHeight()));
 
         /* Adjust action bar background alpha when scrolled. */
-        float interpolatedRatio = actionBarBackgroundAlphaInterpolator.getInterpolation(ratio);
-        actionBarBackgroundDrawable.setAlpha((int) (interpolatedRatio * 255));
+        float interpolatedRatio = toolbarBackgroundAlphaInterpolator.getInterpolation(ratio);
+        toolbarBackgroundDrawable.setAlpha((int) (interpolatedRatio * 255));
 
         /* Adjust event image translation when scrolled to create parallax effect. */
         eventImageView.setTranslationY(eventImageView.getHeight() * 0.4f * ratio);
-
-        /* Hide action bar title shadow as the action bar background becomes visible */
-        int shadowColor = Color.argb(255 - (int) (ratio * actionBarTitleMaxShadowAlpha), 0, 0, 0);
-        actionBarCustomTextView.setShadowLayer(actionBarTitleShadowRadius, 0, 0, shadowColor);
     }
 
     /**
      * Devices older than JELLY_BEAN_MR2 require some extra work for the fading action bar to work.
      */
-    private final Callback actionBarBackgroundCallback = new Callback() {
+    private final Callback toolbarBackgroundCallback = new Callback() {
         @Override
         public void invalidateDrawable(Drawable who) {
-            getActionBar().setBackgroundDrawable(who);
+            getToolbar().setBackgroundDrawable(who);
         }
 
         @Override

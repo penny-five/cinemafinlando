@@ -16,63 +16,46 @@
 
 package com.github.pennyfive.cinemafinlando.ui.activity.generic;
 
-import android.app.ActionBar;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.DrawerLayout.DrawerListener;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.github.pennyfive.cinemafinlando.R;
-import com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView.CustomTypeface;
 
 /**
  * Base class for Activities that use {@link android.support.v4.widget.DrawerLayout}.
  */
-public abstract class DrawerActivity extends FragmentActivity implements DrawerListener {
-    private static final String BUNDLE_ACTION_BAR_TITLE = "ab title";
-
+public abstract class DrawerActivity extends ToolbarActivity implements DrawerListener {
     private DrawerLayout drawer;
     private ActionBarDrawerToggle drawerToggle;
-
-    private String actionBarTitle;
-    private int navigationMode = ActionBar.NAVIGATION_MODE_STANDARD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
+
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         initializeDrawerToggle();
-        if (savedInstanceState != null) {
-            setActionBarTitle(savedInstanceState.getString(BUNDLE_ACTION_BAR_TITLE));
-        }
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString(BUNDLE_ACTION_BAR_TITLE, actionBarTitle);
     }
 
     private void initializeDrawerToggle() {
         drawerToggle = new ActionBarDrawerToggle(
                 this,
                 drawer,
-                R.drawable.cinemafinlando_ic_navigation_drawer,
+                getToolbar(),
                 R.string.drawer_open,
                 R.string.drawer_close
         );
+
         drawer.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
         drawer.setDrawerListener(this);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
     }
 
     protected void setContentFragment(Fragment fragment) {
@@ -87,34 +70,10 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
         getSupportFragmentManager().beginTransaction().replace(R.id.drawer_content, fragment).commit();
     }
 
-    public final void setActionBarTitle(String title) {
-        actionBarTitle = title;
-        if (drawer == null || !drawer.isDrawerOpen(Gravity.START)) {
-            updateActionBarTitle(title);
-        }
-    }
-
-    public final void setActionBarNavigationMode(int mode) {
-        navigationMode = mode;
-        if (drawer == null || !drawer.isDrawerOpen(Gravity.START)) {
-            getActionBar().setNavigationMode(mode);
-        }
-    }
-
-    private void updateActionBarTitle(String title) {
-        getActionBar().setTitle(CustomTypeface.LIGHT.wrap(this, title));
-    }
-
-    protected void updateNavigationMode(int mode) {
-        getActionBar().setNavigationMode(mode);
-        getActionBar().setDisplayShowTitleEnabled(mode == ActionBar.NAVIGATION_MODE_STANDARD);
-    }
-
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         drawerToggle.syncState();
-        updateNavigationMode(navigationMode);
     }
 
     @Override
@@ -125,16 +84,12 @@ public abstract class DrawerActivity extends FragmentActivity implements DrawerL
     @Override
     public void onDrawerOpened(View drawerView) {
         drawerToggle.onDrawerOpened(drawerView);
-        updateNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-        updateActionBarTitle(getString(R.string.app_name));
         invalidateOptionsMenu();
     }
 
     @Override
     public void onDrawerClosed(View drawerView) {
         drawerToggle.onDrawerClosed(drawerView);
-        updateNavigationMode(navigationMode);
-        updateActionBarTitle(actionBarTitle);
         invalidateOptionsMenu();
     }
 

@@ -36,6 +36,7 @@ public class EventListActivity extends DrawerActivity implements Callbacks, Even
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setToolbarOverlay(true);
         if (savedInstanceState == null) {
             setContentFragment(new NowShowingListFragment());
             setDrawerFragment(new NavigationFragment());

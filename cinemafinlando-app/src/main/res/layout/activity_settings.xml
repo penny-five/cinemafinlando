@@ -15,10 +15,15 @@
   ~ limitations under the License.
   -->
 
-<resources>
-    <color name="app_primary">#5674b9</color>
-    <color name="window_background">#161616</color>
-    <color name="event_window_background">#0d0d0d</color>
-    <color name="gallery_window_background">#f3000000</color>
-    <color name="placeholder_background">#FF333333</color>
-</resources>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/settings"
+        class="com.github.pennyfive.cinemafinlando.ui.fragment.SettingsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</FrameLayout>

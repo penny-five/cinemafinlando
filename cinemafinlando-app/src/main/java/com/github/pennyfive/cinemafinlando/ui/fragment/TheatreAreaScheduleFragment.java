@@ -1,6 +1,5 @@
 package com.github.pennyfive.cinemafinlando.ui.fragment;
 
-import android.app.ActionBar;
 import android.app.ActionBar.OnNavigationListener;
 import android.content.Context;
 import android.content.Intent;
@@ -28,7 +27,6 @@ import com.github.pennyfive.cinemafinlando.api.service.Command;
 import com.github.pennyfive.cinemafinlando.api.service.GetScheduleCommand;
 import com.github.pennyfive.cinemafinlando.ui.EventCallbacks;
 import com.github.pennyfive.cinemafinlando.ui.UiUtils;
-import com.github.pennyfive.cinemafinlando.ui.activity.generic.DrawerActivity;
 import com.github.pennyfive.cinemafinlando.ui.adapter.BinderAdapter;
 import com.github.pennyfive.cinemafinlando.ui.fragment.generic.QueryAbsListFragment;
 
@@ -101,11 +99,11 @@ public class TheatreAreaScheduleFragment extends QueryAbsListFragment<Show, Sche
 
         super.onCreate(savedInstanceState);
 
-        ((DrawerActivity) getActivity()).setActionBarNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        //((DrawerActivity) getActivity()).setActionBarNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         setItemsClickable(false);
 
         adapter = new DateAdapter(getActivity(), getDaysForNextWeek());
-        getActivity().getActionBar().setListNavigationCallbacks(adapter, this);
+        //getActivity().getActionBar().setListNavigationCallbacks(adapter, this);
     }
 
     @Override

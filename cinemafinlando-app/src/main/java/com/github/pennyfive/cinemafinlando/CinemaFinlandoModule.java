@@ -22,13 +22,13 @@ import com.github.pennyfive.cinemafinlando.api.service.FinnkinoService;
 import com.github.pennyfive.cinemafinlando.api.xml.Serializers;
 import com.github.pennyfive.cinemafinlando.ui.ApiQueryLoader;
 import com.github.pennyfive.cinemafinlando.ui.activity.EventActivity;
-import com.github.pennyfive.cinemafinlando.ui.activity.SettingsActivity;
 import com.github.pennyfive.cinemafinlando.ui.activity.generic.EventListActivity;
 import com.github.pennyfive.cinemafinlando.ui.fragment.ComingSoonListFragment;
 import com.github.pennyfive.cinemafinlando.ui.fragment.EventDetailsFragment;
 import com.github.pennyfive.cinemafinlando.ui.fragment.GalleryItemFragment;
 import com.github.pennyfive.cinemafinlando.ui.fragment.NavigationFragment;
 import com.github.pennyfive.cinemafinlando.ui.fragment.NowShowingListFragment;
+import com.github.pennyfive.cinemafinlando.ui.fragment.SettingsFragment;
 import com.github.pennyfive.cinemafinlando.ui.fragment.TheatreAreaScheduleFragment;
 import com.github.pennyfive.cinemafinlando.ui.fragment.generic.EventListFragment;
 import com.squareup.otto.Bus;
@@ -64,7 +64,7 @@ import retrofit.converter.SimpleXMLConverter;
                 EventActivity.class,
                 EventDetailsFragment.class,
                 GalleryItemFragment.class,
-                SettingsActivity.class
+                SettingsFragment.class
         }
 )
 public class CinemaFinlandoModule {

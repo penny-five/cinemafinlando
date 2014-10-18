@@ -2,7 +2,6 @@ package com.github.pennyfive.cinemafinlando.ui.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -14,15 +13,15 @@ import com.github.pennyfive.cinemafinlando.CinemaFinlandoIntents;
 import com.github.pennyfive.cinemafinlando.R;
 import com.github.pennyfive.cinemafinlando.api.model.DetailedEventGallery;
 import com.github.pennyfive.cinemafinlando.ui.UiUtils;
+import com.github.pennyfive.cinemafinlando.ui.activity.generic.ToolbarActivity;
 import com.github.pennyfive.cinemafinlando.ui.fragment.GalleryItemFragment;
-import com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView.CustomTypeface;
 
 import butterknife.ButterKnife;
 
 /**
  * Shows an image gallery associated to an event.
  */
-public class GalleryActivity extends FragmentActivity {
+public class GalleryActivity extends ToolbarActivity {
 
     private static class GalleryAdapter extends FragmentPagerAdapter {
         private final DetailedEventGallery gallery;
@@ -50,11 +49,6 @@ public class GalleryActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        getActionBar().setTitle(CustomTypeface.LIGHT.wrap(this, getIntent().getStringExtra(CinemaFinlandoIntents.EXTRA_TITLE)));
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setDisplayShowTitleEnabled(true);
-        getActionBar().setDisplayShowHomeEnabled(false);
-
         DetailedEventGallery gallery = getIntent().getParcelableExtra(CinemaFinlandoIntents.EXTRA_GALLERY);
         GalleryAdapter adapter = new GalleryAdapter(getSupportFragmentManager(), gallery);
 
@@ -63,6 +57,12 @@ public class GalleryActivity extends FragmentActivity {
         pager.setPageTransformer(true, new GalleryPageTransformer());
         pager.setAdapter(adapter);
         pager.setCurrentItem(getIntent().getIntExtra(CinemaFinlandoIntents.EXTRA_POSITION, 0), false);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        getToolbar().setTitle(getIntent().getStringExtra(CinemaFinlandoIntents.EXTRA_TITLE));
     }
 
     @Override

@@ -3,15 +3,14 @@ package com.github.pennyfive.cinemafinlando.ui.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.github.pennyfive.cinemafinlando.BuildConfig;
 import com.github.pennyfive.cinemafinlando.CinemaFinlandoApplication.InjectUtils;
 import com.github.pennyfive.cinemafinlando.R;
+import com.github.pennyfive.cinemafinlando.ui.activity.generic.ToolbarActivity;
 import com.github.pennyfive.cinemafinlando.ui.fragment.OpenSourceLicensesDialogFragment;
-import com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView.CustomTypeface;
 
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -19,7 +18,7 @@ import butterknife.OnClick;
 /**
  *
  */
-public class AboutActivity extends FragmentActivity {
+public class AboutActivity extends ToolbarActivity {
     @InjectView(R.id.version) TextView versionTextView;
     @InjectView(R.id.email) TextView emailTextView;
 
@@ -30,12 +29,14 @@ public class AboutActivity extends FragmentActivity {
 
         InjectUtils.injectViews(this);
 
-        getActionBar().setTitle(CustomTypeface.LIGHT.wrap(this, R.string.pref_title_about));
-        getActionBar().setDisplayShowTitleEnabled(true);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-
         versionTextView.setText(BuildConfig.VERSION_NAME);
         emailTextView.setText(BuildConfig.CONTACT_EMAIL);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        getToolbar().setTitle(R.string.pref_title_about);
     }
 
     @OnClick(R.id.api_url)
