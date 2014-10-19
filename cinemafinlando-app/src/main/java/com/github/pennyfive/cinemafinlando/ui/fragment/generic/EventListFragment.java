@@ -33,6 +33,7 @@ import com.github.pennyfive.cinemafinlando.api.model.DetailedEventContainer;
 import com.github.pennyfive.cinemafinlando.api.model.Event;
 import com.github.pennyfive.cinemafinlando.api.model.EventGallery;
 import com.github.pennyfive.cinemafinlando.ui.EventCallbacks;
+import com.github.pennyfive.cinemafinlando.ui.PaletteGeneratingTargetWrapper;
 
 import java.util.List;
 
@@ -91,8 +92,11 @@ public abstract class EventListFragment extends QueryAbsListFragment<DetailedEve
         ((TextView) view.findViewById(R.id.text)).setText(event.getTitle());
         ImageView target = (ImageView) view.findViewById(R.id.image);
         String url = event.getImages().getUrl(EventGallery.SIZE_LANDSCAPE_LARGE);
-        Glide.with(this).load(url).placeholder(R.drawable.event_item_placeholder).into(target);
-        onViewBound(view, event);
+        Glide.with(this)
+                .load(url)
+                .asBitmap()
+                .placeholder(R.drawable.event_item_placeholder)
+                .into(new PaletteGeneratingTargetWrapper(target, view, url));
     }
 
     @Override

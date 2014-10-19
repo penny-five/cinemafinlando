@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/event_synopsis_selector"
-        android:padding="12dp">
+        android:padding="16dp">
 
         <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/synopsis"
@@ -25,16 +25,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/event_alt_background"
+        android:background="@color/app_primary"
         android:orientation="horizontal"
-        android:padding="12dp">
+        android:padding="16dp">
 
         <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/release_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="16sp"
             app:customTypeface="condensed"
+            android:textColor="@android:color/white"
             tools:text="20.30.2014"/>
 
         <Space
@@ -45,9 +46,9 @@
         <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
             android:id="@+id/production_year"
             android:layout_width="wrap_content"
-
+            android:textColor="@android:color/white"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="16sp"
             app:customTypeface="condensed"
             tools:text="2013"/>
     </LinearLayout>
@@ -58,23 +59,19 @@
         android:layout_height="96dp"
         android:layout_marginLeft="1dp"
         android:layout_marginRight="1dp"
-        android:background="#0d0d0d"
         android:clipToPadding="false"
         android:drawSelectorOnTop="true"
         android:listSelector="@drawable/list_framed_selector"
         android:overScrollMode="never"
-        android:padding="12dp"
-        app:hlv_dividerWidth="12dp"/>
+        android:padding="16dp"
+        app:hlv_dividerWidth="16dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/event_alt_background"
+        android:background="@color/app_primary"
         android:orientation="horizontal"
-        android:paddingBottom="6dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:paddingTop="6dp">
+        android:paddingLeft="16dp">
 
         <LinearLayout
             android:id="@+id/descriptor_icons"
@@ -92,9 +89,9 @@
             android:id="@+id/age_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="6dp"
-            android:paddingTop="6dp"
-            android:textSize="15sp"
+            android:padding="16dp"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
             app:customTypeface="condensed"
             tools:text="16"/>
     </LinearLayout>

@@ -30,7 +30,7 @@ import com.github.pennyfive.cinemafinlando.ui.UiUtils;
 /**
  *
  */
-public class ToolbarActivity extends ActionBarActivity {
+public abstract class ToolbarActivity extends ActionBarActivity {
     private Toolbar toolbar;
     private FrameLayout frame;
 

@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -65,11 +66,18 @@ public class NavigationFragment extends QueryAbsListFragment<TheatreArea, Theatr
         view.setSelector(R.drawable.selector);
         view.setDrawSelectorOnTop(true);
         view.setDividerHeight(0);
-        view.addHeaderView(View.inflate(getActivity(), R.layout.item_drawer_now_showing, null));
-        view.addHeaderView(View.inflate(getActivity(), R.layout.item_drawer_coming_soon, null));
+        view.addHeaderView(inflateCategoryHeader(R.drawable.ic_now_showing, R.string.nav_drawer_title_now_showing));
+        view.addHeaderView(inflateCategoryHeader(R.drawable.ic_coming_soon, R.string.nav_drawer_title_coming_soon));
         view.addHeaderView(View.inflate(getActivity(), R.layout.item_drawer_cinemas_divider, null), null, false);
         view.addFooterView(View.inflate(getActivity(), R.layout.footer_drawer_settings, null));
         return view;
+    }
+
+    private View inflateCategoryHeader(int imageResid, int textResid) {
+        View header = View.inflate(getActivity(), R.layout.item_drawer_category, null);
+        ((ImageView) header.findViewById(R.id.image)).setImageResource(imageResid);
+        ((TextView) header.findViewById(R.id.text)).setText(textResid);
+        return header;
     }
 
     @Override

@@ -36,9 +36,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activity.EventActivity"
-            android:theme="@style/CinemaFinlando.EventActivityTheme">
-        <intent-filter>
+            android:name=".ui.activity.EventActivity">
+            <intent-filter>
                 <action android:name="com.pennyfive.cinemafinlando.ACTION_VIEW_EVENT"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
@@ -46,7 +45,7 @@
         <activity
             android:name=".ui.activity.GalleryActivity"
             android:theme="@style/CinemaFinlando.GalleryActivityTheme">
-        <intent-filter>
+            <intent-filter>
                 <action android:name="com.pennyfive.cinemafinlando.ACTION_VIEW_GALLERY"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>

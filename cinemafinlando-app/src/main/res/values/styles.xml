@@ -19,20 +19,15 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="CinemaFinlando.Theme.Global" parent="Theme.AppCompat.NoActionBar">
+    <style name="CinemaFinlando.Theme.Global" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/window_background</item>
         <item name="actionBarStyle">@style/CinemaFinlando.Theme.Global.ActionBarStyle</item>
         <item name="colorPrimary">@color/app_primary</item>
+        <item name="colorAccent">@color/app_accent</item>
     </style>
 
     <style name="CinemaFinlando.Theme.Global.ActionBarStyle" parent="ActionBar.Solid.Cinemafinlando">
         <item name="android:icon">@drawable/ic_ab_home</item>
-    </style>
-
-    <style name="CinemaFinlando.EventActivityTheme" parent="CinemaFinlando.Theme.Global">
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowBackground">@color/event_window_background</item>
     </style>
 
     <style name="CinemaFinlando.GalleryActivityTheme" parent="CinemaFinlando.Theme.Global">

@@ -67,6 +67,7 @@ dependencies {
     releaseCompile 'com.crashlytics.android:crashlytics:1.+'
     compile 'com.android.support:support-v4:21.0.0'
     compile 'com.android.support:appcompat-v7:21.0.0'
+    compile 'com.android.support:palette-v7:21.0.0'
     compile 'it.sephiroth.android.library.horizontallistview:library:+'
     compile 'joda-time:joda-time:2.3'
     compile 'com.jakewharton:butterknife:5.1.1'

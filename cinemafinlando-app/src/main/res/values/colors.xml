@@ -16,9 +16,10 @@
   -->
 
 <resources>
-    <color name="app_primary">#5674b9</color>
-    <color name="window_background">#161616</color>
-    <color name="event_window_background">#0d0d0d</color>
+    <color name="app_primary">#5677fc</color>
+    <color name="app_accent">#e91e63</color>
+    <color name="navigation_drawer_background">#fffafafa</color>
+    <color name="window_background">#ffebebe5</color>
     <color name="gallery_window_background">#f3000000</color>
-    <color name="placeholder_background">#FF333333</color>
+    <color name="placeholder_background">#ffd3d2da</color>
 </resources>

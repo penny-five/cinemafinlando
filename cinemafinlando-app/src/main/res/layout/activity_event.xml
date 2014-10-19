@@ -50,7 +50,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/image"
-                android:background="@drawable/event_activity_background"
                 android:clipChildren="false">
 
                 <RelativeLayout
@@ -65,19 +64,16 @@
                         android:layout_height="0dp"
                         android:layout_alignBottom="@+id/details"
                         android:layout_alignTop="@+id/details"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginRight="1dp"
-                        android:background="@drawable/event_alt_background"/>
+                        android:background="@color/app_primary"/>
 
                     <LinearLayout
                         android:id="@+id/details"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="100dp"
-                        android:minHeight="114dp"
+                        android:layout_marginLeft="97dp"
+                        android:minHeight="118dp"
                         android:orientation="vertical"
-                        android:padding="12dp"
-                        android:paddingRight="12dp">
+                        android:padding="16dp">
 
                         <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
                             android:id="@+id/name"
@@ -99,7 +95,7 @@
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:singleLine="true"
-                            android:textColor="#5674b9"
+                            android:textColor="@android:color/white"
                             tools:text="List of genres"/>
 
                         <com.github.pennyfive.cinemafinlando.ui.view.CustomTypefaceTextView
@@ -108,7 +104,7 @@
                             android:layout_height="wrap_content"
                             android:ellipsize="end"
                             android:maxLines="1"
-                            android:textColor="#5674b9"
+                            android:textColor="@android:color/white"
                             tools:text="Duration in minutes"/>
                     </LinearLayout>
 
@@ -118,8 +114,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/details"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginRight="1dp"
                         tools:layout="@layout/fragment_event_details"/>
                 </RelativeLayout>
             </FrameLayout>
@@ -135,7 +129,7 @@
                     android:id="@+id/poster"
                     android:layout_width="81dp"
                     android:layout_height="120dp"
-                    android:layout_marginLeft="12dp"
+                    android:layout_marginLeft="16dp"
                     android:background="@drawable/image_frame_black"
                     android:scaleType="fitXY"
                     tools:src="@drawable/event_poster_placeholder"/>

@@ -25,4 +25,7 @@
     <declare-styleable name="FixedAspectRatioImageView">
         <attr name="aspectRatio" format="float"/>
     </declare-styleable>
+    <declare-styleable name="ColoredImageView">
+        <attr name="overlayColor" format="color"/>
+    </declare-styleable>
 </resources>
